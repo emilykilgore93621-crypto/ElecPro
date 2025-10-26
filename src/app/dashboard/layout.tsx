@@ -1,10 +1,14 @@
+"use client"
+
 import Link from "next/link";
 import {
   Menu,
-  Search,
   User,
   LogOut,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 
 import { Button } from "@/components/ui/button";
 import {
@@ -22,24 +26,45 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
   Sidebar,
   SidebarProvider,
   SidebarHeader,
   SidebarContent,
-  SidebarTrigger,
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import { AppLogo } from "@/components/app-logo";
 import { MainNav } from "@/components/main-nav";
+import { useAuth, useUser } from "@/firebase";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { user, isUserLoading } = useUser();
+  const auth = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isUserLoading && !user) {
+      router.replace('/');
+    }
+  }, [user, isUserLoading, router]);
+
+  const handleLogout = () => {
+    auth.signOut();
+  };
+
+  if (isUserLoading || !user) {
+    return (
+       <div className="flex items-center justify-center h-screen">
+        <div className="text-lg font-semibold">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <SidebarProvider>
       <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -87,7 +112,7 @@ export default function DashboardLayout({
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col bg-sidebar text-sidebar-foreground p-0">
                 <SheetHeader>
-                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                   <SheetTitle className="sr-only">Navigation</SheetTitle>
                 </SheetHeader>
                 <SidebarHeader className="p-4 border-b border-sidebar-border">
                   <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
@@ -113,14 +138,12 @@ export default function DashboardLayout({
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuItem disabled>Settings</DropdownMenuItem>
+                <DropdownMenuItem disabled>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </Link>
+                <DropdownMenuItem onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
