@@ -87,15 +87,15 @@ export default function DashboardLayout({
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col bg-sidebar text-sidebar-foreground p-0">
                 <SheetHeader>
-                    <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 </SheetHeader>
-                <SidebarHeader className="p-4">
+                <SidebarHeader className="p-4 border-b border-sidebar-border">
                   <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                     <AppLogo className="h-6 w-6 text-sidebar-primary" />
                     <span className="">WattsUp</span>
                   </Link>
                 </SidebarHeader>
-                <div className="flex-1 px-4">
+                <div className="flex-1 px-4 py-4">
                  <MainNav />
                 </div>
               </SheetContent>
