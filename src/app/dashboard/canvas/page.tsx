@@ -15,7 +15,7 @@ import {
   Trash2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import React, { useState, MouseEvent, useRef } from "react";
+import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
 
 const tools = [
     { id: "select", icon: MousePointer, label: "Select" },
@@ -32,9 +32,10 @@ type CanvasElement = {
     type: string;
     x: number;
     y: number;
-    icon: React.ElementType;
+    icon?: React.ElementType;
     label: string;
     transform?: string;
+    isEditing?: boolean;
 };
 
 type Wire = {
@@ -59,8 +60,16 @@ export default function CanvasPage() {
     const [wiringStartElement, setWiringStartElement] = useState<CanvasElement | null>(null);
     const [draggingElement, setDraggingElement] = useState<{ id: number; offsetX: number; offsetY: number } | null>(null);
     const canvasRef = useRef<HTMLDivElement>(null);
+    const editInputRef = useRef<HTMLInputElement>(null);
     
     const gridSize = 20;
+    
+    useEffect(() => {
+        if (editInputRef.current) {
+            editInputRef.current.focus();
+        }
+    }, [elements]);
+
 
     const getCanvasCoordinates = (e: MouseEvent, canvasEl: HTMLDivElement | null): { x: number; y: number } => {
         if (!canvasEl) return { x: 0, y: 0 };
@@ -72,7 +81,11 @@ export default function CanvasPage() {
 
     const handleCanvasClick = (e: MouseEvent<HTMLDivElement>) => {
         // Prevent adding new elements if we clicked on an existing one
-        if (e.target !== e.currentTarget) return;
+        if (e.target !== e.currentTarget) {
+            // If clicking off an element, disable any active editing states
+            setElements(prev => prev.map(el => ({ ...el, isEditing: false })));
+            return;
+        };
 
         if (activeTool === 'select' || activeTool === 'wire' || draggingElement) {
             setWiringStartElement(null); // Deselect wiring start if clicking on canvas background
@@ -92,6 +105,7 @@ export default function CanvasPage() {
                 ...component,
                 x: snappedX,
                 y: snappedY,
+                isEditing: component.type === 'label', // Immediately start editing if it's a label
             };
             setElements(prev => [...prev, newElement]);
         }
@@ -122,6 +136,23 @@ export default function CanvasPage() {
                 setWires(prev => [...prev, newWire]);
                 setWiringStartElement(null); // Reset after creating wire
             }
+        }
+    };
+    
+    const handleElementDoubleClick = (elementId: number) => {
+        const element = elements.find(el => el.id === elementId);
+        if (element && element.type === 'label') {
+            setElements(prev => prev.map(el => el.id === elementId ? { ...el, isEditing: true } : { ...el, isEditing: false }));
+        }
+    };
+
+    const handleLabelChange = (e: ChangeEvent<HTMLInputElement>, elementId: number) => {
+        setElements(prev => prev.map(el => el.id === elementId ? { ...el, label: e.target.value } : el));
+    };
+
+    const handleLabelKeyDown = (e: KeyboardEvent<HTMLInputElement>, elementId: number) => {
+        if (e.key === 'Enter' || e.key === 'Escape') {
+            setElements(prev => prev.map(el => el.id === elementId ? { ...el, isEditing: false } : el));
         }
     };
 
@@ -235,24 +266,47 @@ export default function CanvasPage() {
                 {elements.map(el => {
                     const Icon = el.icon;
                     const isWiringStart = wiringStartElement?.id === el.id;
+                    const isLabel = el.type === 'label';
+                    
                     return (
                         <div 
                             key={el.id}
                             className={cn(
-                              "absolute flex flex-col items-center p-2 rounded-full",
+                              "absolute flex flex-col items-center",
+                              !isLabel && "p-2 rounded-full",
                               activeTool === 'select' && 'cursor-grab',
                               activeTool === 'wire' && 'cursor-pointer',
                               draggingElement?.id === el.id && 'cursor-grabbing',
                               isWiringStart && 'bg-primary/20 ring-2 ring-primary'
                             )}
-                            style={{ left: el.x - 24, top: el.y - 24, zIndex: draggingElement?.id === el.id ? 10 : 1 }}
+                            style={{ 
+                                left: el.x - (isLabel ? 40 : 24), 
+                                top: el.y - (isLabel ? 12 : 24), 
+                                zIndex: draggingElement?.id === el.id ? 10 : 1,
+                                minWidth: isLabel ? '80px' : 'auto',
+                            }}
                             onMouseDown={(e) => handleElementMouseDown(e, el)}
+                            onDoubleClick={() => handleElementDoubleClick(el.id)}
                         >
-                            <Icon 
-                                className="h-8 w-8 text-primary pointer-events-none" 
-                                style={{ transform: el.transform }} 
-                            />
-                            <span className="text-xs pointer-events-none select-none">{el.label}</span>
+                            {Icon && (
+                                <Icon 
+                                    className="h-8 w-8 text-primary pointer-events-none" 
+                                    style={{ transform: el.transform }} 
+                                />
+                            )}
+                            {isLabel && el.isEditing ? (
+                                <input
+                                    ref={editInputRef}
+                                    type="text"
+                                    value={el.label}
+                                    onChange={(e) => handleLabelChange(e, el.id)}
+                                    onKeyDown={(e) => handleLabelKeyDown(e, el.id)}
+                                    onBlur={() => setElements(prev => prev.map(elem => elem.id === el.id ? { ...elem, isEditing: false } : elem))}
+                                    className="text-xs text-center bg-transparent border border-primary rounded px-1 py-0.5 w-full pointer-events-auto"
+                                />
+                            ) : (
+                                <span className="text-xs pointer-events-none select-none text-center">{el.label}</span>
+                            )}
                         </div>
                     )
                 })}
@@ -262,5 +316,7 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    
 
     
