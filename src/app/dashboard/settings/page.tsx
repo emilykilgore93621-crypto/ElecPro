@@ -31,7 +31,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, FileText } from 'lucide-react';
 
 const formSchema = z
   .object({
@@ -97,7 +97,7 @@ export default function SettingsPage() {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl font-headline">Settings</h1>
       </div>
-      <div className="max-w-xl">
+      <div className="max-w-xl grid gap-6">
         <Card>
           <CardHeader>
             <CardTitle className='font-headline'>Change Password</CardTitle>
@@ -161,6 +161,33 @@ export default function SettingsPage() {
                 </Button>
               </form>
             </Form>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className='font-headline'>User Rights &amp; Privacy</CardTitle>
+             <CardDescription>
+                Information regarding your data and privacy on this platform.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+             <div>
+                <h3 className="font-semibold mb-2">Your Rights</h3>
+                <p className="text-sm text-muted-foreground">
+                    As a user, you have the right to access, rectify, or erase your personal data stored on our platform. You can manage your account information directly from this settings page. For complete data deletion, please contact our support team.
+                </p>
+             </div>
+              <div>
+                <h3 className="font-semibold mb-2">Data Privacy</h3>
+                <p className="text-sm text-muted-foreground">
+                    We are committed to protecting your privacy. We only collect data that is essential for the application to function, such as your user authentication details. We do not sell or share your data with third parties. All user-generated content, such as canvas diagrams, is stored securely and is only accessible to you.
+                </p>
+             </div>
+             <Button variant="outline">
+                <FileText className="mr-2 h-4 w-4"/>
+                View Full Privacy Policy
+             </Button>
           </CardContent>
         </Card>
       </div>
