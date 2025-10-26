@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints } from "lucide-react";
+import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints, Ruler } from "lucide-react";
 
 const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
     "12.5": { volume: 12.5, type: "Single-gang handy box (4 x 2 1/8 x 1 7/8)" },
@@ -274,11 +274,11 @@ export default function CalculatorsPage() {
       <Tabs defaultValue="ohms-law" className="w-full">
         <ScrollArea className="w-full whitespace-nowrap">
           <TabsList className="inline-flex">
-            <TabsTrigger value="ohms-law">Ohm's Law</TabsTrigger>
-            <TabsTrigger value="wire-sizing">Wire Sizing</TabsTrigger>
-            <TabsTrigger value="box-fill">Box Fill</TabsTrigger>
-            <TabsTrigger value="panel-sizing">Panel Sizing</TabsTrigger>
-            <TabsTrigger value="conduit-fill">Conduit Fill</TabsTrigger>
+            <TabsTrigger value="ohms-law"><Sigma />Ohm's Law</TabsTrigger>
+            <TabsTrigger value="wire-sizing"><Ruler />Wire Sizing</TabsTrigger>
+            <TabsTrigger value="box-fill"><Box />Box Fill</TabsTrigger>
+            <TabsTrigger value="panel-sizing"><LayoutPanelTop />Panel Sizing</TabsTrigger>
+            <TabsTrigger value="conduit-fill"><Waypoints />Conduit Fill</TabsTrigger>
           </TabsList>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>

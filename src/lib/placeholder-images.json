@@ -7,58 +7,58 @@
       "imageHint": "electrician panel"
     },
     {
-      "id": "guide-outlets",
-      "description": "A standard electrical outlet.",
-      "imageUrl": "https://images.unsplash.com/photo-1759772237947-0c14aef755d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVjdHJpY2FsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "electrical outlet"
+      "id": "guide-outlet",
+      "description": "A cleanly installed residential wall outlet.",
+      "imageUrl": "https://images.unsplash.com/photo-1621358988949-c55395a12f5e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YWxsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjAyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wall outlet"
     },
     {
-      "id": "guide-switches",
-      "description": "A light switch on a wall.",
-      "imageUrl": "https://images.unsplash.com/photo-1556217994-22de7face210?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaWdodCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "id": "guide-switch",
+      "description": "A modern light switch on a residential wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1582227163457-3df2e76a66b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaWdodCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE3ODIwNDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "light switch"
     },
     {
       "id": "guide-gfci",
-      "description": "A GFCI outlet, typically used in kitchens and bathrooms.",
-      "imageUrl": "https://images.unsplash.com/photo-1615716038854-58e352eee1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A close-up of a GFCI outlet with test and reset buttons.",
+      "imageUrl": "https://images.unsplash.com/photo-1621358925232-3580516ee51c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjA2NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "GFCI outlet"
     },
     {
       "id": "guide-weather-tight",
-      "description": "A weather-tight outdoor outlet cover.",
-      "imageUrl": "https://images.unsplash.com/photo-1690739934113-633caadaaa77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvdXRkb29yJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "outdoor outlet"
+      "description": "A durable, weather-tight outdoor electrical outlet cover.",
+      "imageUrl": "https://images.unsplash.com/photo-1587884899539-08c69a5e12e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvdXRkb29yJTIwZWxlY3RyaWNhbCUyMGNvdnJ8ZW58MHx8fHwxNzYxNzgyMTgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "outdoor electrical"
     },
     {
-      "id": "guide-cameras",
-      "description": "A security camera mounted on a wall.",
-      "imageUrl": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzZWN1cml0eSUyMGNhbWVyYXxlbnwwfHx8fDE3NjE0MTAxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "security camera"
+      "id": "guide-camera",
+      "description": "A sleek security camera mounted on a modern home exterior.",
+      "imageUrl": "https://images.unsplash.com/photo-1599908757025-10a11a4365b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXNpZGVudGlhbCUyMHNlY3VyaXR5JTIwY2FtZXJhfGVufDB8fHx8MTc2MTc4MjEwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "home security"
     },
     {
-      "id": "guide-stoves",
-      "description": "An electric stove in a kitchen.",
-      "imageUrl": "https://images.unsplash.com/photo-1627662057514-f15bc58cc179?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbGVjdHJpYyUyMHN0b3ZlfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "electric stove"
+      "id": "guide-stove",
+      "description": "A stainless steel electric range and hood in a residential kitchen.",
+      "imageUrl": "https://images.unsplash.com/photo-1604928141068-a2d04b684535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwcmFuZ2UlMjBob29kfGVufDB8fHx8MTc2MTc4MjQ2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kitchen range"
     },
     {
       "id": "guide-dishwasher",
-      "description": "A modern dishwasher in a kitchen.",
-      "imageUrl": "https://images.unsplash.com/photo-1668910232414-bf9e54c0b666?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A modern, integrated dishwasher in a clean kitchen setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1583192131941-2427954553a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE3ODI0ODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kitchen dishwasher"
     },
     {
-      "id": "guide-garbage-disposal",
-      "description": "A garbage disposal unit under a sink.",
-      "imageUrl": "https://images.unsplash.com/photo-1652377752257-a276b7304fef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnYXJiYWdlJTIwZGlzcG9zYWx8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "garbage disposal"
+      "id": "guide-disposal",
+      "description": "Under-sink view of a garbage disposal installation.",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1661778931215-4a57235a8289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx1bmRlciUyMHNpbmslMjBwbHVtYmluZ3xlbnwwfHx8fDE3NjE3ODIzMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sink plumbing"
     },
     {
-      "id": "guide-hot-water-heater",
-      "description": "An on-demand tankless water heater.",
-      "imageUrl": "https://images.unsplash.com/photo-1616035882393-d01ad3ae058d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0YW5rbGVzcyUyMHdhdGVyJTIwaGVhdGVyfGVufDB8fHx8MTc2MTUzNTU5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tankless heater"
+      "id": "guide-water-heater",
+      "description": "A professional installing a tankless water heater.",
+      "imageUrl": "https://images.unsplash.com/photo-1631048924373-a0a354f971b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0YW5rbGVzcyUyMHdhdGVyJTIwaGVhdGVyJTIwaW5zdGFsbHxlbnwwfHx8fDE3NjE3ODIzOTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "heater install"
     },
     {
       "id": "safety-breakers",
@@ -81,25 +81,25 @@
     {
       "id": "safety-ppe",
       "description": "Guide to personal protective equipment (PPE).",
-      "imageUrl": "https://images.unsplash.com/photo-1552879890-3a06dd3a06c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1552879890-3a06dd3a06c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWZldHklMjBnZWFyfGVufDB8fHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "safety gear"
     },
     {
       "id": "guide-usb-outlet",
-      "description": "An outlet with built-in USB charging ports.",
-      "imageUrl": "https://images.unsplash.com/photo-1745169921021-3304a3eed8ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A modern wall outlet with integrated USB charging ports.",
+      "imageUrl": "https://images.unsplash.com/photo-1588725345788-239c3a3b59f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxVU0IlMjB3YWxsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjI1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "USB outlet"
     },
     {
       "id": "guide-ceiling-fan",
-      "description": "A modern ceiling fan with a light.",
-      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A stylish ceiling fan with a light installed in a living room.",
+      "imageUrl": "https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjZWlsaW5nJTIwZmFuJTIwaW4lMjByb29tfGVufDB8fHx8MTc2MTc4MjI4MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ceiling fan"
     },
     {
       "id": "guide-smart-switch",
-      "description": "A smart light switch that can be controlled remotely.",
-      "imageUrl": "https://images.unsplash.com/photo-1733810763720-4c83af0668ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A hand interacting with a modern smart switch on a wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1643449523996-3a7553a2909a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMGxpZ2h0JTIwc3dpdGNofGVufDB8fHx8MTc2MTc4MjMwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "smart switch"
     },
     {

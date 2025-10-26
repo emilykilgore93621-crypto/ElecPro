@@ -5,18 +5,18 @@ import { placeHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 
 const guides = [
-    { slug: "outlets", title: "Outlets", imageId: "guide-outlet" },
-    { slug: "switches", title: "Switches", imageId: "guide-switch" },
-    { slug: "gfci", title: "GFCI", imageId: "guide-gfci" },
-    { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
-    { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
-    { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
-    { slug: "weather-tight", title: "Weather-tight", imageId: "guide-weather-tight" },
     { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
-    { slug: "stoves", title: "Stoves", imageId: "guide-stove" },
+    { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
     { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
     { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-disposal" },
+    { slug: "gfci", title: "GFCI", imageId: "guide-gfci" },
     { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-water-heater" },
+    { slug: "outlets", title: "Outlets", imageId: "guide-outlet" },
+    { slug: "ranges-and-hoods", title: "Ranges and Hoods", imageId: "guide-stove" },
+    { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
+    { slug: "switches", title: "Switches", imageId: "guide-switch" },
+    { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
+    { slug: "weather-tight", title: "Weather-tight", imageId: "guide-weather-tight" },
 ]
 
 export default function GuidesPage() {
