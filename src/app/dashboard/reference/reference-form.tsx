@@ -1,6 +1,8 @@
+
 "use client";
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -40,7 +42,7 @@ export function ReferenceForm({
     data: FormData
   ) => Promise<typeof initialState>;
 }) {
-  const [state, formAction] = useFormState(getGuidelines, initialState);
+  const [state, formAction] = useActionState(getGuidelines, initialState);
 
   return (
     <div className="space-y-4">
