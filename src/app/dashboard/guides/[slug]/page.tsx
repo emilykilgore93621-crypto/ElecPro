@@ -4,7 +4,7 @@ import { placeHolderImages } from "@/lib/placeholder-images";
 import { CheckCircle2, AlertTriangle, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { guideData } from "./guide-data";
+import { guideData } from "../guide-data";
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
