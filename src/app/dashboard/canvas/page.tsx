@@ -8,6 +8,12 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -27,17 +33,33 @@ import {
 import { cn } from "@/lib/utils";
 import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
 
-const tools = [
+
+type Tool = {
+  id: string;
+  icon: React.ElementType;
+  label: string;
+  transform?: string;
+  subTools?: Omit<Tool, 'subTools'>[];
+};
+
+const tools: Tool[] = [
     { id: "select", icon: MousePointer, label: "Select" },
     { id: "outlet", icon: ToggleLeft, label: "Outlet", transform: 'rotate(90deg)' },
-    { id: "switch", icon: ToggleLeft, label: "Switch" },
-    { id: "3-way-switch", icon: Waypoints, label: "3-Way Switch" },
-    { id: "4-way-switch", icon: Waypoints, label: "4-Way Switch" },
+    { 
+        id: "switches", 
+        icon: ToggleLeft, 
+        label: "Switch",
+        subTools: [
+            { id: "switch", icon: ToggleLeft, label: "Switch" },
+            { id: "3-way-switch", icon: Waypoints, label: "3-Way Switch" },
+            { id: "4-way-switch", icon: Waypoints, label: "4-Way Switch" },
+        ]
+    },
     { id: "light", icon: Lightbulb, label: "Light" },
     { id: "junction-box", icon: Box, label: "Junction Box" },
     { id: "wire", icon: Spline, label: "Wire" },
     { id: "label", icon: Type, label: "Label" },
-]
+];
 
 type CanvasElement = {
     id: number;
@@ -257,22 +279,49 @@ export default function CanvasPage() {
       <div className="flex-1 flex gap-4 flex-col md:flex-row">
         <Card className="w-full md:w-auto">
             <CardContent className="p-2 flex md:flex-col gap-1 justify-center flex-wrap">
-                 {tools.map(tool => (
-                    <Button 
-                        key={tool.id}
-                        variant={activeTool === tool.id ? "secondary" : "ghost"}
-                        size="icon"
-                        className="w-16 h-16 flex-col"
-                        onClick={() => {
-                            setActiveTool(tool.id);
-                            setWiringStartElement(null); // Deselect any wiring start when changing tools
-                        }}
-                        title={tool.label}
-                    >
-                        <tool.icon className="size-6" style={{ transform: tool.transform }} />
-                        <span className="text-xs">{tool.label}</span>
-                    </Button>
-                ))}
+                 {tools.map(tool => {
+                    if (tool.subTools) {
+                        return (
+                             <DropdownMenu key={tool.id}>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        variant={tool.subTools.some(st => st.id === activeTool) ? "secondary" : "ghost"}
+                                        size="icon"
+                                        className="w-16 h-16 flex-col"
+                                        title={tool.label}
+                                    >
+                                        <tool.icon className="size-8" style={{ transform: tool.transform }} />
+                                        <span className="text-xs">{tool.label}</span>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    {tool.subTools.map(subTool => (
+                                        <DropdownMenuItem key={subTool.id} onSelect={() => setActiveTool(subTool.id)}>
+                                            <subTool.icon className="mr-2 size-5" />
+                                            <span>{subTool.label}</span>
+                                        </DropdownMenuItem>
+                                    ))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        )
+                    }
+                    return (
+                        <Button 
+                            key={tool.id}
+                            variant={activeTool === tool.id ? "secondary" : "ghost"}
+                            size="icon"
+                            className="w-16 h-16 flex-col"
+                            onClick={() => {
+                                setActiveTool(tool.id);
+                                setWiringStartElement(null);
+                            }}
+                            title={tool.label}
+                        >
+                            <tool.icon className="size-8" style={{ transform: tool.transform }} />
+                            <span className="text-xs">{tool.label}</span>
+                        </Button>
+                    )
+                 })}
             </CardContent>
         </Card>
         <div className="flex-1 flex flex-col gap-4">
@@ -398,6 +447,8 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    
 
     
 
