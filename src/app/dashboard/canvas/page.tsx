@@ -15,7 +15,7 @@ import {
   Trash2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useRef } from "react";
 
 const tools = [
     { id: "select", icon: MousePointer, label: "Select" },
@@ -50,11 +50,13 @@ export default function CanvasPage() {
     const [activeTool, setActiveTool] = useState("select");
     const [elements, setElements] = useState<CanvasElement[]>([]);
     const [draggingElement, setDraggingElement] = useState<{ id: number; offsetX: number; offsetY: number } | null>(null);
+    const canvasRef = useRef<HTMLDivElement>(null);
     
     const gridSize = 20;
 
-    const getCanvasCoordinates = (e: MouseEvent<HTMLDivElement>): { x: number; y: number } => {
-        const rect = e.currentTarget.getBoundingClientRect();
+    const getCanvasCoordinates = (e: MouseEvent, canvasEl: HTMLDivElement | null): { x: number; y: number } => {
+        if (!canvasEl) return { x: 0, y: 0 };
+        const rect = canvasEl.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         return { x, y };
@@ -63,7 +65,7 @@ export default function CanvasPage() {
     const handleCanvasClick = (e: MouseEvent<HTMLDivElement>) => {
         if (activeTool === 'select' || activeTool === 'wire' || draggingElement) return;
 
-        const { x, y } = getCanvasCoordinates(e);
+        const { x, y } = getCanvasCoordinates(e, e.currentTarget);
 
         // Snap to grid
         const snappedX = Math.round(x / gridSize) * gridSize;
@@ -82,9 +84,9 @@ export default function CanvasPage() {
     };
     
     const handleElementMouseDown = (e: MouseEvent<HTMLDivElement>, element: CanvasElement) => {
-        if (activeTool !== 'select') return;
+        if (activeTool !== 'select' || !canvasRef.current) return;
         e.stopPropagation();
-        const { x: mouseX, y: mouseY } = getCanvasCoordinates(e.currentTarget.parentElement as HTMLDivElement);
+        const { x: mouseX, y: mouseY } = getCanvasCoordinates(e, canvasRef.current);
         
         const offsetX = mouseX - element.x;
         const offsetY = mouseY - element.y;
@@ -93,9 +95,9 @@ export default function CanvasPage() {
     };
 
     const handleCanvasMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-        if (!draggingElement) return;
+        if (!draggingElement || !canvasRef.current) return;
 
-        const { x, y } = getCanvasCoordinates(e);
+        const { x, y } = getCanvasCoordinates(e, canvasRef.current);
 
         const newX = x - draggingElement.offsetX;
         const newY = y - draggingElement.offsetY;
@@ -157,6 +159,7 @@ export default function CanvasPage() {
         </Card>
         <Card className="flex-1 relative">
             <CardContent 
+                ref={canvasRef}
                 className={cn(
                   "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg",
                   activeTool === 'select' ? 'cursor-default' : 'cursor-crosshair'
