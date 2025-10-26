@@ -176,7 +176,11 @@ export default function CanvasPage() {
             return;
         };
 
-        if (activeTool === 'select' || activeTool === 'wire' || draggingElement) {
+        if (activeTool === 'select' || draggingElement) {
+            return;
+        }
+        
+        if (activeTool === 'wire') {
             setWiringStartElement(null); // Deselect wiring start if clicking on canvas background
             return;
         }
@@ -472,3 +476,5 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    
