@@ -31,10 +31,14 @@ import {
   Waypoints,
   Wind,
   Power,
-  Usb
+  Usb,
+  FileImage,
+  FileText
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 
 type Tool = {
@@ -177,6 +181,7 @@ export default function CanvasPage() {
         };
 
         if (activeTool === 'select' || draggingElement) {
+             setWiringStartElement(null); // Deselect wiring start if clicking on canvas background
             return;
         }
         
@@ -279,6 +284,42 @@ export default function CanvasPage() {
     }
     
     const getElementById = (id: number) => elements.find(el => el.id === id);
+    
+    const handleExport = async (format: 'pdf' | 'jpeg' | 'png') => {
+        if (!canvasRef.current) return;
+
+        // Temporarily remove background grid for capture
+        const originalBg = canvasRef.current.style.backgroundImage;
+        canvasRef.current.style.backgroundImage = 'none';
+
+        const canvas = await html2canvas(canvasRef.current, {
+            backgroundColor: null, // Use transparent background
+            logging: false,
+            useCORS: true,
+        });
+
+        // Restore background grid
+        canvasRef.current.style.backgroundImage = originalBg;
+
+        const dataUrl = canvas.toDataURL(`image/${format}`, 1.0);
+
+        if (format === 'pdf') {
+            const pdf = new jsPDF({
+                orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+                unit: 'px',
+                format: [canvas.width, canvas.height]
+            });
+            pdf.addImage(dataUrl, 'PNG', 0, 0, canvas.width, canvas.height);
+            pdf.save('wattpad-canvas.pdf');
+        } else {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = `wattpad-canvas.${format}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    };
 
 
   return (
@@ -298,10 +339,28 @@ export default function CanvasPage() {
                 <Save className="mr-2 h-4 w-4"/>
                 Save
             </Button>
-            <Button disabled>
-                <Printer className="mr-2 h-4 w-4" />
-                Print / Export
-            </Button>
+             <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>
+                  <Printer className="mr-2 h-4 w-4" />
+                  Print / Export
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onSelect={() => handleExport('pdf')}>
+                    <FileText className="mr-2 h-4 w-4" />
+                    Export as PDF
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => handleExport('jpeg')}>
+                    <FileImage className="mr-2 h-4 w-4" />
+                    Export as JPG
+                </DropdownMenuItem>
+                 <DropdownMenuItem onSelect={() => handleExport('png')}>
+                    <FileImage className="mr-2 h-4 w-4" />
+                    Export as PNG
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </div>
       </div>
       <div className="flex-1 flex gap-4 flex-col md:flex-row">

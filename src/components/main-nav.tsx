@@ -10,6 +10,7 @@ import {
   PenSquare,
   ShieldCheck,
   ClipboardCheck,
+  Cog,
 } from "lucide-react"
 
 import {
@@ -26,6 +27,7 @@ const navItems = [
   { href: "/dashboard/canvas", icon: PenSquare, label: "Interactive Canvas" },
   { href: "/dashboard/safety", icon: ShieldCheck, label: "Safety Overview" },
   { href: "/dashboard/inspection", icon: ClipboardCheck, label: "Inspection Tips" },
+  { href: "/dashboard/settings", icon: Cog, label: "Settings" },
 ]
 
 export function MainNav() {

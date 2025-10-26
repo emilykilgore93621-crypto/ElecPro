@@ -5,6 +5,7 @@ import {
   Menu,
   User,
   LogOut,
+  Cog,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -26,7 +27,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import {
   Sidebar,
   SidebarProvider,
@@ -111,15 +112,13 @@ export default function DashboardLayout({
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col bg-sidebar text-sidebar-foreground p-0">
-                <SheetHeader>
-                   <SheetTitle className="sr-only">Navigation</SheetTitle>
-                </SheetHeader>
-                <SidebarHeader className="p-4 border-b border-sidebar-border">
+                <SheetHeader className="border-b border-sidebar-border p-4">
                   <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                     <AppLogo className="h-6 w-6 text-sidebar-primary" />
                     <span className="">WattsUp</span>
                   </Link>
-                </SidebarHeader>
+                  <SheetTitle className="sr-only">Navigation</SheetTitle>
+                </SheetHeader>
                 <div className="flex-1 px-4 py-4">
                  <MainNav />
                 </div>
@@ -138,7 +137,12 @@ export default function DashboardLayout({
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem disabled>Settings</DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/settings">
+                    <Cog className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem disabled>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
