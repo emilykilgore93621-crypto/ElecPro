@@ -23,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader as SheetHeaderPrimitive, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
   Sidebar,
   SidebarProvider,
@@ -86,9 +86,9 @@ export default function DashboardLayout({
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col bg-sidebar text-sidebar-foreground p-0">
-                <SheetHeaderPrimitive>
+                <SheetHeader>
                     <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-                </SheetHeaderPrimitive>
+                </SheetHeader>
                 <SidebarHeader className="p-4">
                   <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                     <AppLogo className="h-6 w-6 text-sidebar-primary" />
