@@ -7,13 +7,13 @@
       "imageHint": "electrician panel"
     },
     {
-      "id": "guide-outlet",
+      "id": "guide-outlets",
       "description": "A standard electrical outlet.",
       "imageUrl": "https://images.unsplash.com/photo-1759772237947-0c14aef755d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVjdHJpY2FsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "electrical outlet"
     },
     {
-      "id": "guide-switch",
+      "id": "guide-switches",
       "description": "A light switch on a wall.",
       "imageUrl": "https://images.unsplash.com/photo-1556217994-22de7face210?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaWdodCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "light switch"
@@ -31,13 +31,13 @@
       "imageHint": "outdoor outlet"
     },
     {
-      "id": "guide-camera",
+      "id": "guide-cameras",
       "description": "A security camera mounted on a wall.",
       "imageUrl": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzZWN1cml0eSUyMGNhbWVyYXxlbnwwfHx8fDE3NjE0MTAxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "security camera"
     },
     {
-      "id": "guide-stove",
+      "id": "guide-stoves",
       "description": "An electric stove in a kitchen.",
       "imageUrl": "https://images.unsplash.com/photo-1627662057514-f15bc58cc179?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbGVjdHJpYyUyMHN0b3ZlfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "electric stove"
@@ -49,13 +49,13 @@
       "imageHint": "kitchen dishwasher"
     },
     {
-      "id": "guide-disposal",
+      "id": "guide-garbage-disposal",
       "description": "A garbage disposal unit under a sink.",
       "imageUrl": "https://images.unsplash.com/photo-1652377752257-a276b7304fef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnYXJiYWdlJTIwZGlzcG9zYWx8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "garbage disposal"
     },
     {
-      "id": "guide-water-heater",
+      "id": "guide-hot-water-heater",
       "description": "An on-demand tankless water heater.",
       "imageUrl": "https://images.unsplash.com/photo-1616035882393-d01ad3ae058d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0YW5rbGVzcyUyMHdhdGVyJTIwaGVhdGVyfGVufDB8fHx8MTc2MTUzNTU5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "tankless heater"

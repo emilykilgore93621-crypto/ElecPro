@@ -1,20 +1,22 @@
+
 import Link from "next/link";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { placeHolderImages } from "@/lib/placeholder-images";
+import Image from "next/image";
 
 const guides = [
-    { slug: "outlets", title: "Outlets" },
-    { slug: "switches", title: "Switches" },
-    { slug: "gfci", title: "GFCI" },
-    { slug: "usb-outlet", title: "USB Outlet" },
-    { slug: "smart-switch", title: "Smart Switch" },
-    { slug: "ceiling-fan", title: "Ceiling Fan" },
-    { slug: "weather-tight", title: "Weather-tight" },
-    { slug: "cameras", title: "Cameras" },
-    { slug: "stoves", title: "Stoves" },
-    { slug: "dishwasher", title: "Dishwasher" },
-    { slug: "garbage-disposal", title: "Garbage Disposal" },
-    { slug: "hot-water-heater", title: "Hot Water Heater" },
+    { slug: "outlets", title: "Outlets", imageId: "guide-outlet" },
+    { slug: "switches", title: "Switches", imageId: "guide-switch" },
+    { slug: "gfci", title: "GFCI", imageId: "guide-gfci" },
+    { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
+    { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
+    { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
+    { slug: "weather-tight", title: "Weather-tight", imageId: "guide-weather-tight" },
+    { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
+    { slug: "stoves", title: "Stoves", imageId: "guide-stove" },
+    { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
+    { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-disposal" },
+    { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-water-heater" },
 ]
 
 export default function GuidesPage() {
@@ -25,11 +27,21 @@ export default function GuidesPage() {
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {guides.map((guide) => {
+                     const image = placeHolderImages.find(p => p.id === guide.imageId);
                     return (
                         <Link key={guide.slug} href={`/dashboard/guides/${guide.slug}`}>
-                            <Card className="flex flex-col justify-center items-center text-center p-6 transition-all hover:shadow-lg hover:-translate-y-1 h-full">
-                                <Wrench className="h-12 w-12 mb-4 text-primary" />
-                                <CardHeader>
+                            <Card className="overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+                                {image && (
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={image.description}
+                                        width={600}
+                                        height={400}
+                                        data-ai-hint={image.imageHint}
+                                        className="aspect-video w-full object-cover"
+                                    />
+                                )}
+                                <CardHeader className="flex-1">
                                     <CardTitle className="font-headline text-lg">{guide.title}</CardTitle>
                                 </CardHeader>
                             </Card>
