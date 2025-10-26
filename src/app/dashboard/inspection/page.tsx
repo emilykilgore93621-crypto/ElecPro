@@ -5,6 +5,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { placeHolderImages } from "@/lib/placeholder-images";
+import Image from "next/image";
 
 const inspectionTips = [
     {
@@ -40,12 +42,23 @@ const inspectionTips = [
 ]
 
 export default function InspectionPage() {
+    const inspectionImage = placeHolderImages.find(p => p.id === 'inspection-inspector');
   return (
     <>
         <div className="flex items-center">
             <h1 className="text-lg font-semibold md:text-2xl font-headline">Inspection Tips</h1>
         </div>
-        <Card>
+        <Card className="overflow-hidden">
+             {inspectionImage && (
+                <Image
+                    src={inspectionImage.imageUrl}
+                    alt={inspectionImage.description}
+                    width={1200}
+                    height={400}
+                    data-ai-hint={inspectionImage.imageHint}
+                    className="w-full object-cover aspect-[3/1]"
+                />
+            )}
             <CardHeader>
                 <CardTitle className="font-headline">Common Inspection Checklist</CardTitle>
                 <CardDescription>Guidance on what inspectors typically look for to help ensure compliance.</CardDescription>
