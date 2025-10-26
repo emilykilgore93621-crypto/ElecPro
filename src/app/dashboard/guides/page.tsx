@@ -39,7 +39,7 @@ export default function GuidesPage() {
                                     </div>
                                 )}
                                 <CardHeader>
-                                    <CardTitle className="font-headline">{guide.title}</CardTitle>
+                                    <CardTitle className="font-headline text-lg">{guide.title}</CardTitle>
                                 </CardHeader>
                             </Card>
                         </Link>
