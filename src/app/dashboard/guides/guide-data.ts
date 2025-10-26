@@ -66,7 +66,7 @@ export const guideData: { [key: string]: GuideContent } = {
         title: "Ceiling Fan",
         steps: [
             "Turn off power at the breaker.",
-            "Ensure the electrical box is fan-rated. If not, replace it.",
+            "Ensure the electrical box is fan-rated. If not, replace it with a fan-rated electrical box.",
             "Install the mounting bracket to the electrical box.",
             "Assemble the fan motor, downrod, and canopy according to the manufacturer's instructions.",
             "Hang the fan assembly from the mounting bracket.",

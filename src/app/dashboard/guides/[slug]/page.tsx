@@ -3,7 +3,38 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { placeHolderImages } from "@/lib/placeholder-images";
 import { CheckCircle2, AlertTriangle, Lightbulb } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { guideData } from "./guide-data";
+
+const keywordsToLinks: { [key: string]: string } = {
+    "circuit breaker": "/dashboard/guides/circuit-breakers",
+    "voltage tester": "/dashboard/guides/power-tools",
+    "GFCI outlet": "/dashboard/guides/gfci",
+    "GFCI": "/dashboard/guides/gfci",
+    "fan-rated electrical box": "/dashboard/guides/box-fill",
+    "neutral wire": "/dashboard/reference",
+};
+
+const LinkRenderer = ({ text }: { text: string }) => {
+    const parts = text.split(new RegExp(`(${Object.keys(keywordsToLinks).join('|')})`, 'gi'));
+
+    return (
+        <>
+            {parts.map((part, index) => {
+                const lowerCasePart = part.toLowerCase();
+                if (keywordsToLinks[lowerCasePart]) {
+                    return (
+                        <Link key={index} href={keywordsToLinks[lowerCasePart]} className="text-primary font-semibold underline hover:text-primary/80">
+                            {part}
+                        </Link>
+                    );
+                }
+                return part;
+            })}
+        </>
+    );
+};
+
 
 export default function GuideDetailPage({ params }: { params: { slug: string } }) {
     const guide = guideData[params.slug];
@@ -39,7 +70,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                    <ol className="list-decimal list-inside space-y-3">
-                                       {guide.steps.map((step, index) => <li key={index}>{step}</li>)}
+                                       {guide.steps.map((step, index) => <li key={index}><LinkRenderer text={step} /></li>)}
                                    </ol>
                                 </CardContent>
                             </Card>
@@ -49,7 +80,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                    <p className="text-muted-foreground">
-                                       {guide.safetyNotes ? guide.safetyNotes : "Always turn off power at the breaker before beginning work. Verify the power is off with a voltage tester. Consult a professional if you are unsure about any step."}
+                                       <LinkRenderer text={guide.safetyNotes ? guide.safetyNotes : "Always turn off power at the breaker before beginning work. Verify the power is off with a voltage tester. Consult a professional if you are unsure about any step."} />
                                    </p>
                                 </CardContent>
                             </Card>
@@ -62,7 +93,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                                 <CardContent>
                                      <ul className="space-y-2 text-muted-foreground">
                                         {guide.materials.map((material, index) => (
-                                            <li key={index} className="flex items-center gap-2"><CheckCircle2 className="text-primary size-4" /> {material}</li>
+                                            <li key={index} className="flex items-start gap-2"><CheckCircle2 className="text-primary size-4 mt-1 shrink-0" /> <span><LinkRenderer text={material} /></span></li>
                                         ))}
                                     </ul>
                                 </CardContent>
@@ -74,7 +105,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                                 <CardContent>
                                     <ul className="space-y-3 text-muted-foreground list-disc list-inside">
                                         {guide.proTips ? guide.proTips.map((tip, index) => (
-                                            <li key={index}>{tip}</li>
+                                            <li key={index}><LinkRenderer text={tip} /></li>
                                         )) : (
                                             <li>Tips from expert electricians will be available here.</li>
                                         )}
