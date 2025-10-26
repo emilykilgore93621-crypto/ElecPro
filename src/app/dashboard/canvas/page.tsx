@@ -39,6 +39,10 @@ import { cn } from "@/lib/utils";
 import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { useFirebase } from "@/firebase";
+import { collection } from "firebase/firestore";
+import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
+import { useToast } from "@/hooks/use-toast";
 
 
 type Tool = {
@@ -91,11 +95,14 @@ type CanvasElement = {
     type: string;
     x: number;
     y: number;
-    icon?: React.ElementType;
     label: string;
     transform?: string;
     isEditing?: boolean;
 };
+
+// Stripping icon before saving to firestore
+type SerializableCanvasElement = Omit<CanvasElement, 'icon'>;
+
 
 type Wire = {
     id: number;
@@ -127,6 +134,8 @@ export default function CanvasPage() {
     const [showTakeoff, setShowTakeoff] = useState(true);
     const canvasRef = useRef<HTMLDivElement>(null);
     const editInputRef = useRef<HTMLInputElement>(null);
+    const { firestore, user } = useFirebase();
+    const { toast } = useToast();
     
     const gridSize = 20;
     
@@ -135,6 +144,34 @@ export default function CanvasPage() {
             editInputRef.current.focus();
         }
     }, [elements]);
+
+    const handleSave = () => {
+        if (!firestore || !user) {
+            toast({
+                variant: 'destructive',
+                title: 'Error',
+                description: 'You must be logged in to save.',
+            });
+            return;
+        }
+
+        const serializableElements: SerializableCanvasElement[] = elements.map(({ icon, ...rest }) => rest);
+
+        const canvasData = {
+            elements: serializableElements,
+            wires: wires,
+            createdAt: new Date(),
+            userId: user.uid,
+        };
+
+        const canvasesColRef = collection(firestore, 'users', user.uid, 'canvases');
+        addDocumentNonBlocking(canvasesColRef, canvasData);
+        
+        toast({
+            title: 'Canvas Saved',
+            description: 'Your canvas has been saved successfully.',
+        });
+    };
 
     const takeoffList = useMemo(() => {
         const counts: { [key: string]: number } = {};
@@ -283,7 +320,19 @@ export default function CanvasPage() {
         setWiringStartElement(null);
     }
     
-    const getElementById = (id: number) => elements.find(el => el.id === id);
+    const getElementById = (id: number) => {
+      const elData = elements.find(el => el.id === id);
+      if (!elData) return null;
+      
+      const component = componentMap[elData.type];
+      if (!component) return elData;
+
+      return {
+          ...elData,
+          icon: component.icon,
+          transform: component.transform,
+      };
+    };
     
     const handleExport = async (format: 'pdf' | 'jpeg' | 'png') => {
         if (!canvasRef.current) return;
@@ -335,7 +384,7 @@ export default function CanvasPage() {
                 <Trash2 className="mr-2 h-4 w-4"/>
                 Clear
             </Button>
-            <Button variant="outline" disabled>
+            <Button variant="outline" onClick={handleSave}>
                 <Save className="mr-2 h-4 w-4"/>
                 Save
             </Button>
@@ -450,7 +499,8 @@ export default function CanvasPage() {
                     </svg>
 
                     {elements.map(el => {
-                        const Icon = el.icon;
+                        const componentDetails = componentMap[el.type];
+                        const Icon = componentDetails?.icon;
                         const isWiringStart = wiringStartElement?.id === el.id;
                         const isLabel = el.type === 'label';
                         
@@ -477,7 +527,7 @@ export default function CanvasPage() {
                                 {Icon && (
                                     <Icon 
                                         className="h-8 w-8 text-primary pointer-events-none" 
-                                        style={{ transform: el.transform }} 
+                                        style={{ transform: componentDetails?.transform }} 
                                     />
                                 )}
                                 {isLabel && el.isEditing ? (

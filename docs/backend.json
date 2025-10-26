@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "User": {
@@ -41,6 +42,53 @@
         "lastName",
         "registrationDate"
       ]
+    },
+    "Canvas": {
+      "title": "Canvas",
+      "description": "Represents a saved canvas state, including all its elements and wires.",
+      "type": "object",
+      "properties": {
+        "elements": {
+          "type": "array",
+          "description": "An array of all elements present on the canvas.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "number" },
+              "type": { "type": "string" },
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "label": { "type": "string" },
+              "transform": { "type": "string" },
+              "isEditing": { "type": "boolean" }
+            },
+            "required": ["id", "type", "x", "y", "label"]
+          }
+        },
+        "wires": {
+          "type": "array",
+          "description": "An array of all wires connecting elements on the canvas.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "number" },
+              "startElementId": { "type": "number" },
+              "endElementId": { "type": "number" }
+            },
+            "required": ["id", "startElementId", "endElementId"]
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the canvas was saved."
+        },
+        "userId": {
+          "type": "string",
+          "description": "The UID of the user who owns this canvas."
+        }
+      },
+      "required": ["elements", "wires", "createdAt", "userId"]
     }
   },
   "auth": {
@@ -58,7 +106,7 @@
           "schema": {
             "$ref": "#/backend/entities/User"
           },
-          "description": "Stores user profile information.  Accessible only to the authenticated user (request.auth.uid == userId).",
+          "description": "Stores user profile information. Accessible only to the authenticated user (request.auth.uid == userId).",
           "params": [
             {
               "name": "userId",
@@ -66,8 +114,30 @@
             }
           ]
         }
+      },
+      {
+        "path": "/users/{userId}/canvases/{canvasId}",
+        "definition": {
+          "entityName": "Canvas",
+          "schema": {
+            "$ref": "#/backend/entities/Canvas"
+          },
+          "description": "Stores a user's saved canvas designs. Accessible only to the user who created it.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The UID of the user."
+            },
+            {
+              "name": "canvasId",
+              "description": "The unique ID for the canvas document."
+            }
+          ]
+        }
       }
     ],
-    "reasoning": "This Firestore structure prioritizes security and scalability for the WattsUp Electrical Toolkit application, focusing on user authentication and data isolation.  The core principle is Authorization Independence, achieved through path-based ownership.  Each user's data is stored under their unique user ID, eliminating the need for complex `get()` calls in security rules and ensuring atomic operations are possible.\n\nThe `/users/{userId}` collection stores user profile information. This path structure ensures that only the authenticated user (identified by `request.auth.uid`) can access their own data, providing a solid foundation for data privacy.\n\nThe structure inherently supports QAPs (Rules are not Filters) because each user's data is isolated under their `userId`. List operations are secure as rules can simply verify that `request.auth.uid == userId`.\n\nAuthentication providers are 'password' and 'anonymous', requiring secure handling on the client-side using Firebase Authentication."
+    "reasoning": "This Firestore structure prioritizes security and scalability for the WattsUp Electrical Toolkit application, focusing on user authentication and data isolation.  The core principle is Authorization Independence, achieved through path-based ownership.  Each user's data is stored under their unique user ID, eliminating the need for complex `get()` calls in security rules and ensuring atomic operations are possible.\n\nThe `/users/{userId}` collection stores user profile information. This path structure ensures that only the authenticated user (identified by `request.auth.uid`) can access their own data, providing a solid foundation for data privacy.\n\nThe nested collection `/users/{userId}/canvases/{canvasId}` stores individual canvas designs. This structure inherits the security of its parent path, ensuring that a user's saved canvases are private and can only be accessed by them. This prevents data leakage and simplifies security rules.\n\nThe structure inherently supports QAPs (Rules are not Filters) because each user's data is isolated under their `userId`. List operations on canvases are secure as rules can simply verify that `request.auth.uid == userId`.\n\nAuthentication providers are 'password' and 'anonymous', requiring secure handling on the client-side using Firebase Authentication."
   }
 }
+
+    
