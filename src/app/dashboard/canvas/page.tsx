@@ -37,6 +37,12 @@ type CanvasElement = {
     transform?: string;
 };
 
+type Wire = {
+    id: number;
+    startElementId: number;
+    endElementId: number;
+}
+
 const componentMap: { [key: string]: Omit<CanvasElement, 'id' | 'x' | 'y'> } = {
     'outlet': { type: 'outlet', icon: ToggleLeft, label: 'Outlet', transform: 'rotate(90deg)' },
     'switch': { type: 'switch', icon: ToggleLeft, label: 'Switch' },
@@ -49,6 +55,8 @@ const componentMap: { [key: string]: Omit<CanvasElement, 'id' | 'x' | 'y'> } = {
 export default function CanvasPage() {
     const [activeTool, setActiveTool] = useState("select");
     const [elements, setElements] = useState<CanvasElement[]>([]);
+    const [wires, setWires] = useState<Wire[]>([]);
+    const [wiringStartElement, setWiringStartElement] = useState<CanvasElement | null>(null);
     const [draggingElement, setDraggingElement] = useState<{ id: number; offsetX: number; offsetY: number } | null>(null);
     const canvasRef = useRef<HTMLDivElement>(null);
     
@@ -63,7 +71,13 @@ export default function CanvasPage() {
     };
 
     const handleCanvasClick = (e: MouseEvent<HTMLDivElement>) => {
-        if (activeTool === 'select' || activeTool === 'wire' || draggingElement) return;
+        // Prevent adding new elements if we clicked on an existing one
+        if (e.target !== e.currentTarget) return;
+
+        if (activeTool === 'select' || activeTool === 'wire' || draggingElement) {
+            setWiringStartElement(null); // Deselect wiring start if clicking on canvas background
+            return;
+        }
 
         const { x, y } = getCanvasCoordinates(e, e.currentTarget);
 
@@ -84,14 +98,31 @@ export default function CanvasPage() {
     };
     
     const handleElementMouseDown = (e: MouseEvent<HTMLDivElement>, element: CanvasElement) => {
-        if (activeTool !== 'select' || !canvasRef.current) return;
         e.stopPropagation();
-        const { x: mouseX, y: mouseY } = getCanvasCoordinates(e, canvasRef.current);
-        
-        const offsetX = mouseX - element.x;
-        const offsetY = mouseY - element.y;
+        if (activeTool === 'select') {
+            if (!canvasRef.current) return;
+            const { x: mouseX, y: mouseY } = getCanvasCoordinates(e, canvasRef.current);
+            
+            const offsetX = mouseX - element.x;
+            const offsetY = mouseY - element.y;
 
-        setDraggingElement({ id: element.id, offsetX, offsetY });
+            setDraggingElement({ id: element.id, offsetX, offsetY });
+        } else if (activeTool === 'wire') {
+             if (!wiringStartElement) {
+                setWiringStartElement(element);
+            } else {
+                // Prevent wiring to the same element
+                if (wiringStartElement.id === element.id) return;
+                
+                const newWire: Wire = {
+                    id: Date.now(),
+                    startElementId: wiringStartElement.id,
+                    endElementId: element.id,
+                };
+                setWires(prev => [...prev, newWire]);
+                setWiringStartElement(null); // Reset after creating wire
+            }
+        }
     };
 
     const handleCanvasMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -119,7 +150,12 @@ export default function CanvasPage() {
 
     const clearCanvas = () => {
         setElements([]);
+        setWires([]);
+        setWiringStartElement(null);
     }
+    
+    const getElementById = (id: number) => elements.find(el => el.id === id);
+
 
   return (
     <div className="flex flex-col h-full gap-4">
@@ -149,7 +185,10 @@ export default function CanvasPage() {
                         variant={activeTool === tool.id ? "secondary" : "ghost"}
                         size="icon"
                         className="w-12 h-12"
-                        onClick={() => setActiveTool(tool.id)}
+                        onClick={() => {
+                            setActiveTool(tool.id);
+                            setWiringStartElement(null); // Deselect any wiring start when changing tools
+                        }}
                         title={tool.label}
                     >
                         <tool.icon style={{ transform: tool.transform }} />
@@ -161,7 +200,7 @@ export default function CanvasPage() {
             <CardContent 
                 ref={canvasRef}
                 className={cn(
-                  "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg",
+                  "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg relative",
                   activeTool === 'select' ? 'cursor-default' : 'cursor-crosshair'
                 )}
                 style={{
@@ -173,24 +212,47 @@ export default function CanvasPage() {
                 onMouseUp={handleCanvasMouseUp}
                 onMouseLeave={handleCanvasMouseUp}
             >
+                <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                    {wires.map(wire => {
+                        const startEl = getElementById(wire.startElementId);
+                        const endEl = getElementById(wire.endElementId);
+                        if(!startEl || !endEl) return null;
+                        
+                        return (
+                            <line
+                                key={wire.id}
+                                x1={startEl.x}
+                                y1={startEl.y}
+                                x2={endEl.x}
+                                y2={endEl.y}
+                                stroke="hsl(var(--primary))"
+                                strokeWidth="2"
+                            />
+                        )
+                    })}
+                </svg>
+
                 {elements.map(el => {
                     const Icon = el.icon;
+                    const isWiringStart = wiringStartElement?.id === el.id;
                     return (
                         <div 
                             key={el.id}
                             className={cn(
-                              "absolute flex flex-col items-center",
+                              "absolute flex flex-col items-center p-2 rounded-full",
                               activeTool === 'select' && 'cursor-grab',
-                              draggingElement?.id === el.id && 'cursor-grabbing'
+                              activeTool === 'wire' && 'cursor-pointer',
+                              draggingElement?.id === el.id && 'cursor-grabbing',
+                              isWiringStart && 'bg-primary/20 ring-2 ring-primary'
                             )}
-                            style={{ left: el.x - 16, top: el.y - 16, zIndex: draggingElement?.id === el.id ? 10 : 1 }}
+                            style={{ left: el.x - 24, top: el.y - 24, zIndex: draggingElement?.id === el.id ? 10 : 1 }}
                             onMouseDown={(e) => handleElementMouseDown(e, el)}
                         >
                             <Icon 
                                 className="h-8 w-8 text-primary pointer-events-none" 
                                 style={{ transform: el.transform }} 
                             />
-                            <span className="text-xs pointer-events-none">{el.label}</span>
+                            <span className="text-xs pointer-events-none select-none">{el.label}</span>
                         </div>
                     )
                 })}
@@ -200,3 +262,5 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    
