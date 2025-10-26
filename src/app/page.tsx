@@ -30,7 +30,7 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="youremail@account.com"
                 required
               />
             </div>
@@ -54,7 +54,7 @@ export default function LoginPage() {
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{' '}
+            &apos;Don't have an account?{' '}
             <Link href="#" className="underline">
               Sign up
             </Link>
