@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box } from "lucide-react";
+import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop } from "lucide-react";
 
 const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
     "12.5": { volume: 12.5, type: "Single-gang handy box (4 x 2 1/8 x 1 7/8)" },
@@ -26,6 +26,7 @@ export default function CalculatorsPage() {
     const [ohmsResult, setOhmsResult] = useState<{ v?: number, i?: number, r?: number, p?: number, error?: string } | null>(null);
     const [wireSizeResult, setWireSizeResult] = useState<{ awg?: string, voltageDrop?: number, necArticle?: string, error?: string } | null>(null);
     const [boxFillResult, setBoxFillResult] = useState<{ totalVolume?: number, necArticle?: string, recommendedBox?: { volume: number, type: string }, error?: string } | null>(null);
+    const [panelSizeResult, setPanelSizeResult] = useState<{ panelAmps?: number, minSpaces?: number, necArticle?: string, notes?: string[], error?: string } | null>(null);
 
     const handleOhmsLawCalculate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -150,6 +151,55 @@ export default function CalculatorsPage() {
         });
     };
 
+    const handlePanelSizingCalculate = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const load = parseFloat(formData.get('load-ps') as string);
+        const circuits = parseInt(formData.get('circuits-ps') as string, 10);
+        const panelType = formData.get('panel-type-ps') as string;
+
+        if (isNaN(load) || isNaN(circuits)) {
+            setPanelSizeResult({ error: "Please fill out all fields." });
+            return;
+        }
+
+        const panelSizes = [100, 125, 150, 200, 225, 400];
+        const recommendedPanelAmps = panelSizes.find(size => size >= load) || panelSizes[panelSizes.length - 1];
+
+        const spaceTiers = [
+            { circuits: 12, spaces: 20 },
+            { circuits: 20, spaces: 30 },
+            { circuits: 30, spaces: 40 },
+            { circuits: 40, spaces: 42 },
+        ];
+        let minSpaces = circuits + Math.ceil(circuits * 0.25); // Add 25% for future expansion
+        const recommendedSpaces = spaceTiers.find(tier => tier.circuits >= circuits)?.spaces || 42;
+        minSpaces = Math.max(minSpaces, recommendedSpaces);
+        // Round up to nearest even number
+        minSpaces = Math.ceil(minSpaces / 2) * 2;
+
+
+        let notes = [
+            "Always verify with a qualified electrician and local codes.",
+            "PGE Greenbook may have specific requirements for service equipment location and clearances.",
+            "NFPA 70 (NEC) contains detailed requirements for panel installation."
+        ];
+        
+        if(panelType === 'main') {
+            notes.push("Main panel requires a main breaker and proper service grounding (NEC 250).");
+        } else {
+            notes.push("Subpanel requires a separate ground bar if in a detached structure (NEC 250.32).");
+        }
+
+
+        setPanelSizeResult({
+            panelAmps: recommendedPanelAmps,
+            minSpaces: minSpaces,
+            necArticle: "220 (Load Calc), 408 (Panels)",
+            notes: notes,
+        });
+    };
+
   return (
     <>
       <div className="flex items-center">
@@ -161,6 +211,7 @@ export default function CalculatorsPage() {
             <TabsTrigger value="ohms-law">Ohm's Law</TabsTrigger>
             <TabsTrigger value="wire-sizing">Wire Sizing</TabsTrigger>
             <TabsTrigger value="box-fill">Box Fill</TabsTrigger>
+            <TabsTrigger value="panel-sizing">Panel Sizing</TabsTrigger>
           </TabsList>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -364,9 +415,71 @@ export default function CalculatorsPage() {
             </form>
           </Card>
         </TabsContent>
+        <TabsContent value="panel-sizing">
+           <Card>
+            <form onSubmit={handlePanelSizingCalculate}>
+                <CardHeader>
+                  <CardTitle className="font-headline">Panel Sizing Calculator</CardTitle>
+                  <CardDescription>Estimate the minimum panel size for a service or subpanel.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="load-ps">Calculated Load (Amps)</Label>
+                        <Input name="load-ps" id="load-ps" placeholder="e.g., 85" type="number" step="any" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="circuits-ps"># of Circuits</Label>
+                        <Input name="circuits-ps" id="circuits-ps" placeholder="e.g., 22" type="number" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="panel-type-ps">Panel Type</Label>
+                         <Select name="panel-type-ps" defaultValue="main">
+                            <SelectTrigger id="panel-type-ps">
+                                <SelectValue placeholder="Select type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="main">Main Service Panel</SelectItem>
+                                <SelectItem value="sub">Subpanel</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                  </div>
+                  {panelSizeResult && (
+                      <Alert variant={panelSizeResult.error ? "destructive" : "default"}>
+                        {panelSizeResult.error ? (
+                          <>
+                           <AlertCircle className="h-4 w-4" />
+                           <AlertTitle>Error</AlertTitle>
+                           <AlertDescription>{panelSizeResult.error}</AlertDescription>
+                          </>
+                        ) : (
+                          <>
+                           <LayoutPanelTop className="h-4 w-4" />
+                           <AlertTitle>Recommended Panel Size</AlertTitle>
+                           <AlertDescription>
+                             <p>Minimum Panel Rating: <strong className="text-primary">{panelSizeResult.panelAmps}A</strong></p>
+                             <p>Minimum Breaker Spaces: <strong className="text-primary">{panelSizeResult.minSpaces}</strong></p>
+                             <div className="mt-4">
+                                <h4 className="font-semibold">Notes & Considerations:</h4>
+                                <ul className="list-disc pl-5 mt-1 text-xs space-y-1">
+                                    {panelSizeResult.notes?.map((note, i) => <li key={i}>{note}</li>)}
+                                </ul>
+                             </div>
+                             <p className="text-xs text-muted-foreground mt-2">Reference: NEC {panelSizeResult.necArticle}</p>
+                           </AlertDescription>
+                          </>
+                        )}
+                      </Alert>
+                    )}
+                </CardContent>
+                <CardFooter>
+                  <Button type="submit">Calculate</Button>
+                </CardFooter>
+            </form>
+          </Card>
+        </TabsContent>
       </Tabs>
     </>
   );
 }
-
-    
