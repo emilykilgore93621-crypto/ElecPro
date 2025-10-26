@@ -15,7 +15,7 @@ import {
   Trash2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 
 const tools = [
     { id: "select", icon: MousePointer, label: "Select" },
@@ -49,15 +49,21 @@ const componentMap: { [key: string]: Omit<CanvasElement, 'id' | 'x' | 'y'> } = {
 export default function CanvasPage() {
     const [activeTool, setActiveTool] = useState("select");
     const [elements, setElements] = useState<CanvasElement[]>([]);
+    const [draggingElement, setDraggingElement] = useState<{ id: number; offsetX: number; offsetY: number } | null>(null);
     
     const gridSize = 20;
 
-    const handleCanvasClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (activeTool === 'select' || activeTool === 'wire') return;
-
+    const getCanvasCoordinates = (e: MouseEvent<HTMLDivElement>): { x: number; y: number } => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
+        return { x, y };
+    };
+
+    const handleCanvasClick = (e: MouseEvent<HTMLDivElement>) => {
+        if (activeTool === 'select' || activeTool === 'wire' || draggingElement) return;
+
+        const { x, y } = getCanvasCoordinates(e);
 
         // Snap to grid
         const snappedX = Math.round(x / gridSize) * gridSize;
@@ -74,6 +80,40 @@ export default function CanvasPage() {
             setElements(prev => [...prev, newElement]);
         }
     };
+    
+    const handleElementMouseDown = (e: MouseEvent<HTMLDivElement>, element: CanvasElement) => {
+        if (activeTool !== 'select') return;
+        e.stopPropagation();
+        const { x: mouseX, y: mouseY } = getCanvasCoordinates(e.currentTarget.parentElement as HTMLDivElement);
+        
+        const offsetX = mouseX - element.x;
+        const offsetY = mouseY - element.y;
+
+        setDraggingElement({ id: element.id, offsetX, offsetY });
+    };
+
+    const handleCanvasMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+        if (!draggingElement) return;
+
+        const { x, y } = getCanvasCoordinates(e);
+
+        const newX = x - draggingElement.offsetX;
+        const newY = y - draggingElement.offsetY;
+
+        const snappedX = Math.round(newX / gridSize) * gridSize;
+        const snappedY = Math.round(newY / gridSize) * gridSize;
+
+        setElements(prevElements =>
+            prevElements.map(el =>
+                el.id === draggingElement.id ? { ...el, x: snappedX, y: snappedY } : el
+            )
+        );
+    };
+
+    const handleCanvasMouseUp = () => {
+        setDraggingElement(null);
+    };
+
 
     const clearCanvas = () => {
         setElements([]);
@@ -117,26 +157,37 @@ export default function CanvasPage() {
         </Card>
         <Card className="flex-1 relative">
             <CardContent 
-                className="h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg cursor-crosshair"
+                className={cn(
+                  "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg",
+                  activeTool === 'select' ? 'cursor-default' : 'cursor-crosshair'
+                )}
                 style={{
                     backgroundSize: `${gridSize}px ${gridSize}px`,
                     backgroundImage: 'linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)',
                 }}
                 onClick={handleCanvasClick}
+                onMouseMove={handleCanvasMouseMove}
+                onMouseUp={handleCanvasMouseUp}
+                onMouseLeave={handleCanvasMouseUp}
             >
                 {elements.map(el => {
                     const Icon = el.icon;
                     return (
                         <div 
                             key={el.id}
-                            className="absolute flex flex-col items-center"
-                            style={{ left: el.x - 16, top: el.y - 16 }}
+                            className={cn(
+                              "absolute flex flex-col items-center",
+                              activeTool === 'select' && 'cursor-grab',
+                              draggingElement?.id === el.id && 'cursor-grabbing'
+                            )}
+                            style={{ left: el.x - 16, top: el.y - 16, zIndex: draggingElement?.id === el.id ? 10 : 1 }}
+                            onMouseDown={(e) => handleElementMouseDown(e, el)}
                         >
                             <Icon 
-                                className="h-8 w-8 text-primary" 
+                                className="h-8 w-8 text-primary pointer-events-none" 
                                 style={{ transform: el.transform }} 
                             />
-                            <span className="text-xs">{el.label}</span>
+                            <span className="text-xs pointer-events-none">{el.label}</span>
                         </div>
                     )
                 })}
