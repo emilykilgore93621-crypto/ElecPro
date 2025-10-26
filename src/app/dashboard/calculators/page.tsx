@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function CalculatorsPage() {
   return (
@@ -12,11 +13,14 @@ export default function CalculatorsPage() {
         <h1 className="text-lg font-semibold md:text-2xl font-headline">Calculation Tools</h1>
       </div>
       <Tabs defaultValue="ohms-law" className="w-full">
-        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3">
-          <TabsTrigger value="ohms-law">Ohm's Law</TabsTrigger>
-          <TabsTrigger value="wire-sizing">Wire Sizing</TabsTrigger>
-          <TabsTrigger value="box-fill">Box Fill</TabsTrigger>
-        </TabsList>
+        <ScrollArea className="w-full whitespace-nowrap">
+          <TabsList className="inline-flex">
+            <TabsTrigger value="ohms-law">Ohm's Law</TabsTrigger>
+            <TabsTrigger value="wire-sizing">Wire Sizing</TabsTrigger>
+            <TabsTrigger value="box-fill">Box Fill</TabsTrigger>
+          </TabsList>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
         <TabsContent value="ohms-law">
           <Card>
             <CardHeader>
