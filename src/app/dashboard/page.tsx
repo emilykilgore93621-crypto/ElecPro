@@ -62,7 +62,10 @@ export default function DashboardPage() {
         {features.map((feature) => (
           <Card key={feature.title} className="flex flex-col transition-all hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
-              <CardTitle className="font-headline">{feature.title}</CardTitle>
+              <div className="flex items-center gap-4 mb-2">
+                <feature.icon className="size-6 text-primary" />
+                <CardTitle className="font-headline">{feature.title}</CardTitle>
+              </div>
               <CardDescription>{feature.description}</CardDescription>
             </CardHeader>
             <CardFooter className="mt-auto">
@@ -78,3 +81,5 @@ export default function DashboardPage() {
     </>
   );
 }
+
+    

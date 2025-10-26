@@ -51,13 +51,13 @@
     {
       "id": "guide-ranges-and-hoods",
       "description": "A stainless steel electric range and hood in a residential kitchen.",
-      "imageUrl": "https://images.unsplash.com/photo-1604928141068-a2d04b684535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwcmFuZ2UlMjBob29kfGVufDB8fHx8MTc2MTc4MjQ2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1604928141068-a2d04b684535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwcmFuZ2UlMjBob29kfGVufDB8fHx8MTc2MTc4MjQ2Nnww&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "kitchen range"
     },
     {
       "id": "guide-dishwasher",
       "description": "A modern, integrated dishwasher in a clean kitchen setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1583192131941-2427954553a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE3ODI0ODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1583192131941-2427954553a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE3ODIyODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kitchen dishwasher"
     },
     {
