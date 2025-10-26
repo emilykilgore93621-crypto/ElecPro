@@ -11,7 +11,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth"
 
-import { useAuth } from "@/firebase"
+import { useAuth, useUser } from "@/firebase"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -39,6 +39,7 @@ export function AuthForm() {
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const auth = useAuth()
+  const { user } = useUser();
   const router = useRouter()
   const { toast } = useToast()
 

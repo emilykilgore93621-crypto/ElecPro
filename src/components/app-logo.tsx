@@ -12,7 +12,7 @@ export function AppLogo(props: SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M13 3l- circuitos cerrados para proteger contra sobretensiones-4 1h4l-6 9h4l-3 7" />
+      <path d="M13 3l-4 1h4l-6 9h4l-3 7" />
     </svg>
   );
 }
