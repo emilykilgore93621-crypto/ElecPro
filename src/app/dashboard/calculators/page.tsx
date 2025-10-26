@@ -12,10 +12,20 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box } from "lucide-react";
 
+const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
+    "12.5": { volume: 12.5, type: "Single-gang handy box (4 x 2 1/8 x 1 7/8)" },
+    "14": { volume: 14, type: "Single-gang switch box (3 x 2 x 2 1/2)" },
+    "18": { volume: 18, type: "Single-gang switch box (3 x 2 x 3 1/2)" },
+    "21": { volume: 21, type: "4-inch square box (4 x 4 x 1 1/2)" },
+    "25.5": { volume: 25.5, type: "Double-gang masonry box (3 3/4 x 3 3/4 x 2 1/2)" },
+    "30.3": { volume: 30.3, type: "4-inch square box (4 x 4 x 2 1/8)" },
+    "42": { volume: 42, type: "4-11/16 inch square box (4 11/16 x 4 11/16 x 2 1/8)" },
+};
+
 export default function CalculatorsPage() {
     const [ohmsResult, setOhmsResult] = useState<{ v?: number, i?: number, r?: number, p?: number, error?: string } | null>(null);
     const [wireSizeResult, setWireSizeResult] = useState<{ awg?: string, voltageDrop?: number, necArticle?: string, error?: string } | null>(null);
-    const [boxFillResult, setBoxFillResult] = useState<{ totalVolume?: number, necArticle?: string, error?: string } | null>(null);
+    const [boxFillResult, setBoxFillResult] = useState<{ totalVolume?: number, necArticle?: string, recommendedBox?: { volume: number, type: string }, error?: string } | null>(null);
 
     const handleOhmsLawCalculate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -81,17 +91,18 @@ export default function CalculatorsPage() {
         let finalAWG = suitableWireForAmpacity;
         let voltageDrop = (2 * K * current * distance) / finalAWG.cm;
 
+        let currentIndex = awgData.findIndex(w => w.awg === finalAWG.awg);
         while (voltageDrop > maxVoltageDrop) {
-            let currentIndex = awgData.findIndex(w => w.awg === finalAWG.awg);
-            if (currentIndex < awgData.length -1) {
-                finalAWG = awgData[currentIndex + 1];
+             const nextIndex = awgData.findIndex(w => w.cm > finalAWG.cm);
+             if(nextIndex > -1) {
+                finalAWG = awgData[nextIndex];
                 voltageDrop = (2 * K * current * distance) / finalAWG.cm;
-            } else {
-                 setWireSizeResult({ error: "Distance is too long for a reasonable voltage drop." });
-                return;
-            }
+             } else {
+                 setWireSizeResult({ error: "Distance is too long for a reasonable voltage drop. Consider a larger transformer or different voltage." });
+                 return;
+             }
         }
-
+        
         setWireSizeResult({ awg: finalAWG.awg, voltageDrop: Number(voltageDrop.toFixed(2)), necArticle: "210.19(A)" });
     };
     
@@ -99,10 +110,12 @@ export default function CalculatorsPage() {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const conductorAWG = formData.get('conductor-awg-bf') as string;
-        const conductorCount = parseInt(formData.get('conductors-bf') as string, 10) || 0;
+        const hotCount = parseInt(formData.get('hots-bf') as string, 10) || 0;
+        const neutralCount = parseInt(formData.get('neutrals-bf') as string, 10) || 0;
+        const groundCount = parseInt(formData.get('grounds-bf') as string, 10) || 0;
         const deviceCount = parseInt(formData.get('devices-bf') as string, 10) || 0;
         const clampCount = parseInt(formData.get('clamps-bf') as string, 10) || 0;
-        const groundCount = parseInt(formData.get('grounds-bf') as string, 10) || 0;
+        
 
         if (!conductorAWG) {
             setBoxFillResult({ error: "Please select a conductor AWG." });
@@ -119,15 +132,22 @@ export default function CalculatorsPage() {
 
         const unitVolume = volumePerConductor[conductorAWG];
 
-        const totalConductors = conductorCount;
-        const totalDevices = deviceCount * 2; // Each device yoke counts as two conductors
-        const totalClamps = clampCount * 1; // Internal clamps count as one
-        const totalGrounds = groundCount > 0 ? 1 : 0; // All ground wires count as one
+        const totalConductors = hotCount + neutralCount;
+        const totalDevices = deviceCount * 2; // Each device yoke counts as two conductors of the largest wire size connected to it
+        const totalClamps = clampCount * 1; // Internal clamps count as one conductor allowance
+        const totalGrounds = groundCount > 0 ? 1 : 0; // All ground wires combined count as one conductor allowance
 
         const totalConductorEquivalents = totalConductors + totalDevices + totalClamps + totalGrounds;
         const totalVolume = totalConductorEquivalents * unitVolume;
 
-        setBoxFillResult({ totalVolume: Number(totalVolume.toFixed(2)), necArticle: "314.16(B)" });
+        const availableBoxSizes = Object.values(standardBoxSizes).sort((a,b) => a.volume - b.volume);
+        const recommendedBox = availableBoxSizes.find(box => box.volume >= totalVolume);
+
+        setBoxFillResult({ 
+            totalVolume: Number(totalVolume.toFixed(2)), 
+            necArticle: "314.16(B)",
+            recommendedBox: recommendedBox
+        });
     };
 
   return (
@@ -272,42 +292,44 @@ export default function CalculatorsPage() {
             <form onSubmit={handleBoxFillCalculate}>
                 <CardHeader>
                   <CardTitle className="font-headline">Box Fill Calculator</CardTitle>
-                  <CardDescription>Calculate the minimum required electrical box volume.</CardDescription>
+                  <CardDescription>Calculate the minimum required electrical box volume based on NEC 314.16.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label>Largest Conductor (AWG)</Label>
-                             <Select name="conductor-awg-bf">
-                                <SelectTrigger>
-                                    <SelectValue placeholder="e.g., 14 AWG" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="14">14 AWG</SelectItem>
-                                    <SelectItem value="12">12 AWG</SelectItem>
-                                    <SelectItem value="10">10 AWG</SelectItem>
-                                    <SelectItem value="8">8 AWG</SelectItem>
-                                    <SelectItem value="6">6 AWG</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="conductors-bf"># of Wires (Hot/Neutral)</Label>
-                            <Input name="conductors-bf" id="conductors-bf" placeholder="e.g., 4" type="number" />
-                        </div>
+                    <div className="space-y-2">
+                        <Label>Largest Conductor (AWG)</Label>
+                         <Select name="conductor-awg-bf">
+                            <SelectTrigger>
+                                <SelectValue placeholder="e.g., 12 AWG" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="14">14 AWG</SelectItem>
+                                <SelectItem value="12">12 AWG</SelectItem>
+                                <SelectItem value="10">10 AWG</SelectItem>
+                                <SelectItem value="8">8 AWG</SelectItem>
+                                <SelectItem value="6">6 AWG</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
-                   <div className="grid sm:grid-cols-3 gap-4">
+                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                     <div className="space-y-2">
+                        <Label htmlFor="hots-bf"># of Hot Wires</Label>
+                        <Input name="hots-bf" id="hots-bf" placeholder="e.g., 2" type="number" defaultValue="0"/>
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="neutrals-bf"># of Neutral Wires</Label>
+                        <Input name="neutrals-bf" id="neutrals-bf" placeholder="e.g., 2" type="number" defaultValue="0"/>
+                    </div>
+                     <div className="space-y-2">
+                        <Label htmlFor="grounds-bf"># of Ground Wires</Label>
+                        <Input name="grounds-bf" id="grounds-bf" placeholder="e.g., 1" type="number" defaultValue="0"/>
+                    </div>
                      <div className="space-y-2">
                         <Label htmlFor="devices-bf"># of Devices</Label>
-                        <Input name="devices-bf" id="devices-bf" placeholder="e.g., 2" type="number" />
+                        <Input name="devices-bf" id="devices-bf" placeholder="e.g., 1" type="number" defaultValue="0"/>
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="clamps-bf"># of Clamps</Label>
-                        <Input name="clamps-bf" id="clamps-bf" placeholder="e.g., 1" type="number" />
-                    </div>
-                     <div className="space-y-2">
-                        <Label htmlFor="grounds-bf"># of Grounds</Label>
-                        <Input name="grounds-bf" id="grounds-bf" placeholder="e.g., 1" type="number" />
+                        <Input name="clamps-bf" id="clamps-bf" placeholder="e.g., 0" type="number" defaultValue="0"/>
                     </div>
                   </div>
                    {boxFillResult && (
@@ -321,11 +343,15 @@ export default function CalculatorsPage() {
                         ) : (
                           <>
                            <Box className="h-4 w-4" />
-                           <AlertTitle>Minimum Box Volume</AlertTitle>
+                           <AlertTitle>Calculation Result</AlertTitle>
                            <AlertDescription>
-                             <p className="font-bold text-lg text-primary">{boxFillResult.totalVolume} in³</p>
-                             <p>Select a box with at least this volume.</p>
-                             <p className="text-xs text-muted-foreground mt-2">Reference: NEC {boxFillResult.necArticle} (Box Volume Calculations)</p>
+                             <p>Total Required Volume: <strong className="text-primary">{boxFillResult.totalVolume} in³</strong></p>
+                             {boxFillResult.recommendedBox ? (
+                                <p>Suggested Box: <strong className="text-primary">{boxFillResult.recommendedBox.type}</strong> ({boxFillResult.recommendedBox.volume} in³)</p>
+                             ) : (
+                                <p>No standard box found for this volume. A larger or custom box is required.</p>
+                             )}
+                             <p className="text-xs text-muted-foreground mt-2">Reference: NEC {boxFillResult.necArticle}</p>
                            </AlertDescription>
                           </>
                         )}
@@ -342,3 +368,5 @@ export default function CalculatorsPage() {
     </>
   );
 }
+
+    
