@@ -28,7 +28,10 @@ import {
   Type,
   Trash2,
   ChevronDown,
-  Waypoints
+  Waypoints,
+  Wind,
+  Power,
+  Usb
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
@@ -44,7 +47,16 @@ type Tool = {
 
 const tools: Tool[] = [
     { id: "select", icon: MousePointer, label: "Select" },
-    { id: "outlet", icon: ToggleLeft, label: "Outlet", transform: 'rotate(90deg)' },
+    { 
+        id: "outlets", 
+        icon: Power, 
+        label: "Outlet",
+        subTools: [
+            { id: "outlet", icon: ToggleLeft, label: "Standard Outlet", transform: 'rotate(90deg)' },
+            { id: "usb-outlet", icon: Usb, label: "USB Outlet" },
+            { id: "gfci-outlet", icon: ToggleLeft, label: "GFCI Outlet", transform: 'rotate(90deg)' },
+        ]
+    },
     { 
         id: "switches", 
         icon: ToggleLeft, 
@@ -55,7 +67,16 @@ const tools: Tool[] = [
             { id: "4-way-switch", icon: Waypoints, label: "4-Way Switch" },
         ]
     },
-    { id: "light", icon: Lightbulb, label: "Light" },
+    { 
+        id: "fixtures", 
+        icon: Lightbulb, 
+        label: "Fixture",
+        subTools: [
+             { id: "light", icon: Lightbulb, label: "Light Fixture" },
+             { id: "ceiling-fan", icon: Wind, label: "Ceiling Fan" },
+             { id: "smart-switch", icon: ToggleLeft, label: "Smart Switch" },
+        ]
+    },
     { id: "junction-box", icon: Box, label: "Junction Box" },
     { id: "wire", icon: Spline, label: "Wire" },
     { id: "label", icon: Type, label: "Label" },
@@ -80,10 +101,14 @@ type Wire = {
 
 const componentMap: { [key: string]: Omit<CanvasElement, 'id' | 'x' | 'y'> } = {
     'outlet': { type: 'outlet', icon: ToggleLeft, label: 'Outlet', transform: 'rotate(90deg)' },
+    'usb-outlet': { type: 'usb-outlet', icon: Usb, label: 'USB Outlet' },
+    'gfci-outlet': { type: 'gfci-outlet', icon: ToggleLeft, label: 'GFCI', transform: 'rotate(90deg)' },
     'switch': { type: 'switch', icon: ToggleLeft, label: 'Switch' },
     '3-way-switch': { type: '3-way-switch', icon: Waypoints, label: '3-Way Sw' },
     '4-way-switch': { type: '4-way-switch', icon: Waypoints, label: '4-Way Sw' },
     'light': { type: 'light', icon: Lightbulb, label: 'Light' },
+    'ceiling-fan': { type: 'ceiling-fan', icon: Wind, label: 'Ceiling Fan' },
+    'smart-switch': { type: 'smart-switch', icon: ToggleLeft, label: 'Smart Sw' },
     'junction-box': { type: 'junction-box', icon: Box, label: 'J-Box' },
     'label': {type: 'label', icon: Type, label: 'Label'},
 };
@@ -108,15 +133,14 @@ export default function CanvasPage() {
     }, [elements]);
 
     const takeoffList = useMemo(() => {
-        const counts: { [key: string]: number } = {
-            'outlet': 0,
-            'switch': 0,
-            '3-way-switch': 0,
-            '4-way-switch': 0,
-            'light': 0,
-            'junction-box': 0,
-            'wire': 0,
-        };
+        const counts: { [key: string]: number } = {};
+
+        const allComponentTypes = Object.keys(componentMap);
+        allComponentTypes.forEach(type => {
+            if(type !== 'label') counts[type] = 0;
+        });
+        counts['wire'] = 0;
+
 
         elements.forEach(el => {
             if (counts[el.type] !== undefined) {
@@ -280,12 +304,13 @@ export default function CanvasPage() {
         <Card className="w-full md:w-auto">
             <CardContent className="p-2 flex md:flex-col gap-1 justify-center flex-wrap">
                  {tools.map(tool => {
+                    const isToolActive = activeTool === tool.id || (tool.subTools && tool.subTools.some(st => st.id === activeTool));
                     if (tool.subTools) {
                         return (
                              <DropdownMenu key={tool.id}>
                                 <DropdownMenuTrigger asChild>
                                     <Button
-                                        variant={tool.subTools.some(st => st.id === activeTool) ? "secondary" : "ghost"}
+                                        variant={isToolActive ? "secondary" : "ghost"}
                                         size="icon"
                                         className="w-16 h-16 flex-col"
                                         title={tool.label}
@@ -297,7 +322,7 @@ export default function CanvasPage() {
                                 <DropdownMenuContent>
                                     {tool.subTools.map(subTool => (
                                         <DropdownMenuItem key={subTool.id} onSelect={() => setActiveTool(subTool.id)}>
-                                            <subTool.icon className="mr-2 size-5" />
+                                            <subTool.icon className="mr-2 size-5" style={{ transform: subTool.transform }} />
                                             <span>{subTool.label}</span>
                                         </DropdownMenuItem>
                                     ))}
@@ -447,9 +472,3 @@ export default function CanvasPage() {
     </div>
   );
 }
-
-    
-
-    
-
-    

@@ -83,6 +83,24 @@
       "description": "Guide to personal protective equipment (PPE).",
       "imageUrl": "https://images.unsplash.com/photo-1552879890-3a06dd3a06c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "safety gear"
+    },
+    {
+      "id": "guide-usb-outlet",
+      "description": "An outlet with built-in USB charging ports.",
+      "imageUrl": "https://images.unsplash.com/photo-1745169921021-3304a3eed8ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "USB outlet"
+    },
+    {
+      "id": "guide-ceiling-fan",
+      "description": "A modern ceiling fan with a light.",
+      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceiling fan"
+    },
+    {
+      "id": "guide-smart-switch",
+      "description": "A smart light switch that can be controlled remotely.",
+      "imageUrl": "https://images.unsplash.com/photo-1733810763720-4c83af0668ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smart switch"
     }
   ]
 }
