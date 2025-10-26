@@ -157,5 +157,34 @@ export const guideData: { [key: string]: GuideContent } = {
             "Check local codes for requirements like expansion tanks or drain pans."
         ],
         safetyNotes: "A 240V circuit is dangerous. Verify power is off at the breaker and at the heater's junction box with a voltage tester. If you see two linked breakers for one appliance, that is a double-pole breaker."
+    },
+    "rv-wiring": {
+        title: "RV / Trailer Wiring",
+        steps: [
+            "Ensure the shore power pedestal breaker is OFF before plugging in.",
+            "Connect your heavy-gauge shore power cord from the pedestal to your RV's inlet.",
+            "Turn on the pedestal breaker. Your RV's main panel should now be energized.",
+            "AC power is routed through the main fuses/breakers to your branch AC loads (outlets, microwave, A/C).",
+            "AC power also supplies the Converter/Charger, which transforms 120V AC into ~13.6V DC.",
+            "The DC output from the converter charges your battery bank and powers the 12V fuse panel.",
+            "The 12V fuse panel distributes power to all DC loads like lights, water pump, and furnace fans.",
+            "The chassis of the RV is typically grounded for the 12V system."
+        ],
+        materials: [
+            "Shore Power Cord (30A or 50A as required)",
+            "RV Fused Main Panel",
+            "Converter/Charger unit",
+            "12V DC Fuse Panel",
+            "Deep Cycle Battery Bank",
+            "Appropriately sized wiring for AC and DC systems"
+        ],
+        proTips: [
+            "Always use a surge protector or EMS (Electrical Management System) between the pedestal and your RV to protect against faulty park power.",
+            "Regularly check your battery water levels (for lead-acid batteries) and clean the terminals.",
+            "Understand the difference between your converter (charges batteries when on shore power) and your inverter (creates AC power from your batteries when off-grid)."
+        ],
+        safetyNotes: "RV electrical systems involve both 120V AC and 12V DC. Both can be dangerous. Never work on the system with shore power connected or the batteries engaged unless you are a qualified technician. Reverse polarity at a pedestal can cause serious damage."
     }
 };
+
+    

@@ -3,31 +3,31 @@
     {
       "id": "login-bg",
       "description": "An electrical blueprint for a building.",
-      "imageUrl": "/placeholder_1726781254.jpeg",
+      "imageUrl": "/placeholder_1726783935.jpeg",
       "imageHint": "electrical blueprint"
     },
     {
       "id": "calculator-wiring-diagram",
       "description": "A wiring diagram for a 120V & 208V main panel.",
-      "imageUrl": "/placeholder_1726781429.jpeg",
+      "imageUrl": "/placeholder_1726784013.jpeg",
       "imageHint": "panel wiring"
     },
     {
       "id": "reference-symbols",
       "description": "A chart showing typical electrical symbols, the devices they represent, and the electrical boxes that could be used with them.",
-      "imageUrl": "/placeholder_1726781533.jpeg",
+      "imageUrl": "/placeholder_1726784065.jpeg",
       "imageHint": "electrical symbols"
     },
     {
       "id": "guide-outlet-wiring",
       "description": "A wiring diagram showing how to wire a GFCI outlet to protect other standard outlets downstream in the same circuit.",
-      "imageUrl": "/placeholder_1726781878.jpeg",
+      "imageUrl": "/placeholder_1726784210.jpeg",
       "imageHint": "outlet wiring"
     },
     {
       "id": "guide-switch",
       "description": "A combination GFCI outlet and rocker switch on a tiled kitchen backsplash.",
-      "imageUrl": "/placeholder_1726782522.jpeg",
+      "imageUrl": "/placeholder_tbd.jpeg",
       "imageHint": "light switch"
     },
     {
@@ -51,7 +51,7 @@
     {
       "id": "guide-ranges-and-hoods",
       "description": "A stainless steel electric range and hood in a residential kitchen.",
-      "imageUrl": "https://images.unsplash.com/photo-1604928141068-a2d04b684535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwcmFuZ2UlMjBob29kfGVufDB8fHx8MTc2MTc4MjQ2Nnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1604928141068-a2d04b684535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwcmFuZ2UlMjBob29kfGVufDB8fHx8MTc2MTc4MjQ2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kitchen range"
     },
     {
@@ -69,7 +69,7 @@
     {
       "id": "guide-hot-water-heater",
       "description": "An exploded-view diagram of a hot water heater and its components.",
-      "imageUrl": "/placeholder_1726782582.jpeg",
+      "imageUrl": "/placeholder_1726784400.jpeg",
       "imageHint": "water heater"
     },
     {
@@ -93,13 +93,13 @@
     {
       "id": "safety-ppe",
       "description": "Guide to personal protective equipment (PPE).",
-      "imageUrl": "https://images.unsplash.com/photo-1552879890-3a06dd3a06c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWZldHklMjBnZWFyfGVufDB8fHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1552879890-3a06dd3a06c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWZldHklMjBnZWFyfGVufDB8fHx8fDE3NjE0Mzg3NTF8MA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "safety gear"
     },
     {
       "id": "guide-usb-outlet",
       "description": "A modern wall outlet with integrated USB charging ports.",
-      "imageUrl": "https://images.unsplash.com/photo-1588725345788-239c3a3b59f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxVU0IlMjB3YWxsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjI1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1588725345788-239c3a3b59f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxVU0IlMjB3YWxsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjI1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "USB outlet"
     },
     {
@@ -117,8 +117,14 @@
     {
       "id": "inspection-inspector",
       "description": "An electrician inspecting a circuit breaker panel.",
-      "imageUrl": "https://images.unsplash.com/photo-1621905251936-0870c9a3523d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2lhbiUyMGhvbWV8ZW58MHx8fHwxNzYxNjI4MzE2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1621905251936-0870c9a3523d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2lhbiUyMGhvbWV8ZW58MHx8fHwxNzYxNjI4MzE2fDA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "electrician inspection"
+    },
+    {
+      "id": "guide-rv-wiring",
+      "description": "A wiring diagram for an RV/trailer electrical system.",
+      "imageUrl": "/placeholder_1726784488.png",
+      "imageHint": "RV wiring"
     }
   ]
 }

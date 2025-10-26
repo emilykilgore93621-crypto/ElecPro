@@ -13,6 +13,7 @@ const guides = [
     { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-hot-water-heater" },
     { slug: "outlets", title: "Outlets", imageId: "guide-outlet-wiring" },
     { slug: "ranges-and-hoods", title: "Ranges and Hoods", imageId: "guide-ranges-and-hoods" },
+    { slug: "rv-wiring", title: "RV / Trailer Wiring", imageId: "guide-rv-wiring" },
     { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
     { slug: "switches", title: "Switches", imageId: "guide-switch" },
     { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
@@ -52,3 +53,5 @@ export default function GuidesPage() {
         </>
     );
 }
+
+    
