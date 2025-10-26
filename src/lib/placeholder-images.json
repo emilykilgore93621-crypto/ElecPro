@@ -1,3 +1,88 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "login-bg",
+      "description": "An electrician works on a circuit breaker panel.",
+      "imageUrl": "https://images.unsplash.com/photo-1725391798478-5fe9cfc8398e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJpY2lhbiUyMHBhbmVsfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electrician panel"
+    },
+    {
+      "id": "guide-outlet",
+      "description": "A standard electrical outlet.",
+      "imageUrl": "https://images.unsplash.com/photo-1759772237947-0c14aef755d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVjdHJpY2FsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electrical outlet"
+    },
+    {
+      "id": "guide-switch",
+      "description": "A light switch on a wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1556217994-22de7face210?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaWdodCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "light switch"
+    },
+    {
+      "id": "guide-gfci",
+      "description": "A GFCI outlet, typically used in kitchens and bathrooms.",
+      "imageUrl": "https://images.unsplash.com/photo-1615716038854-58e352eee1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "GFCI outlet"
+    },
+    {
+      "id": "guide-weather-tight",
+      "description": "A weather-tight outdoor outlet cover.",
+      "imageUrl": "https://images.unsplash.com/photo-1690739934113-633caadaaa77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvdXRkb29yJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "outdoor outlet"
+    },
+    {
+      "id": "guide-camera",
+      "description": "A security camera mounted on a wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzZWN1cml0eSUyMGNhbWVyYXxlbnwwfHx8fDE3NjE0MTAxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "security camera"
+    },
+    {
+      "id": "guide-stove",
+      "description": "An electric stove in a kitchen.",
+      "imageUrl": "https://images.unsplash.com/photo-1627662057514-f15bc58cc179?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbGVjdHJpYyUyMHN0b3ZlfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electric stove"
+    },
+    {
+      "id": "guide-dishwasher",
+      "description": "A modern dishwasher in a kitchen.",
+      "imageUrl": "https://images.unsplash.com/photo-1668910232414-bf9e54c0b666?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kitchen dishwasher"
+    },
+    {
+      "id": "guide-disposal",
+      "description": "A garbage disposal unit under a sink.",
+      "imageUrl": "https://images.unsplash.com/photo-1652377752257-a276b7304fef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnYXJiYWdlJTIwZGlzcG9zYWx8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "garbage disposal"
+    },
+    {
+      "id": "guide-water-heater",
+      "description": "An on-demand tankless water heater.",
+      "imageUrl": "https://images.unsplash.com/photo-1749560855706-7e5b654be346?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3YXRlciUyMGhlYXRlcnxlbnwwfHx8fDE3NjE0MjI2NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "water heater"
+    },
+    {
+      "id": "safety-breakers",
+      "description": "Overview of circuit breaker safety.",
+      "imageUrl": "https://images.unsplash.com/photo-1635335874521-7987db781153?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaXJjdWl0JTIwYnJlYWtlcnxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "circuit breaker"
+    },
+    {
+      "id": "safety-wiring",
+      "description": "Best practices for safe wiring.",
+      "imageUrl": "https://images.unsplash.com/photo-1607631697491-61972eecf928?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZWxlY3RyaWNhbCUyMHdpcmluZ3xlbnwwfHx8fDE3NjEzMzQ3Mjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electrical wiring"
+    },
+    {
+      "id": "safety-tools",
+      "description": "Proper handling of power tools.",
+      "imageUrl": "https://images.unsplash.com/photo-1518709414768-a88981a4515d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwb3dlciUyMHRvb2xzfGVufDB8fHx8MTc2MTM0ODEyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "power tools"
+    },
+    {
+      "id": "safety-ppe",
+      "description": "Guide to personal protective equipment (PPE).",
+      "imageUrl": "https://images.unsplash.com/photo-1552879890-3a06dd3a06c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "safety gear"
+    }
+  ]
 }
