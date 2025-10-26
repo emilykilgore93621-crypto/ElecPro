@@ -21,7 +21,7 @@
     {
       "id": "guide-gfci",
       "description": "A close-up of a GFCI outlet with test and reset buttons.",
-      "imageUrl": "https://images.unsplash.com/photo-1621358925232-3580516ee51c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjA2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1621358925232-3580516ee51c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjA2NHww&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "GFCI outlet"
     },
     {
@@ -37,7 +37,7 @@
       "imageHint": "home security"
     },
     {
-      "id": "guide-stove",
+      "id": "guide-ranges-and-hoods",
       "description": "A stainless steel electric range and hood in a residential kitchen.",
       "imageUrl": "https://images.unsplash.com/photo-1604928141068-a2d04b684535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwcmFuZ2UlMjBob29kfGVufDB8fHx8MTc2MTc4MjQ2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kitchen range"
@@ -49,13 +49,13 @@
       "imageHint": "kitchen dishwasher"
     },
     {
-      "id": "guide-disposal",
+      "id": "guide-garbage-disposal",
       "description": "Under-sink view of a garbage disposal installation.",
       "imageUrl": "https://plus.unsplash.com/premium_photo-1661778931215-4a57235a8289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx1bmRlciUyMHNpbmslMjBwbHVtYmluZ3xlbnwwfHx8fDE3NjE3ODIzMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "sink plumbing"
     },
     {
-      "id": "guide-water-heater",
+      "id": "guide-hot-water-heater",
       "description": "A professional installing a tankless water heater.",
       "imageUrl": "https://images.unsplash.com/photo-1631048924373-a0a354f971b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0YW5rbGVzcyUyMHdhdGVyJTIwaGVhdGVyJTIwaW5zdGFsbHxlbnwwfHx8fDE3NjE3ODIzOTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "heater install"

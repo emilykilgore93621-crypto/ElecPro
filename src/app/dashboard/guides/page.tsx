@@ -8,16 +8,16 @@ const guides = [
     { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
     { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
     { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
-    { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-disposal" },
+    { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-garbage-disposal" },
     { slug: "gfci", title: "GFCI", imageId: "guide-gfci" },
-    { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-water-heater" },
+    { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-hot-water-heater" },
     { slug: "outlets", title: "Outlets", imageId: "guide-outlet" },
-    { slug: "ranges-and-hoods", title: "Ranges and Hoods", imageId: "guide-stove" },
+    { slug: "ranges-and-hoods", title: "Ranges and Hoods", imageId: "guide-ranges-and-hoods" },
     { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
     { slug: "switches", title: "Switches", imageId: "guide-switch" },
     { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
     { slug: "weather-tight", title: "Weather-tight", imageId: "guide-weather-tight" },
-]
+].sort((a, b) => a.title.localeCompare(b.title));
 
 export default function GuidesPage() {
     return (
@@ -52,3 +52,5 @@ export default function GuidesPage() {
         </>
     );
 }
+
+    
