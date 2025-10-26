@@ -135,5 +135,27 @@ export const guideData: { [key: string]: GuideContent } = {
             "Leave a service loop of wire and water line behind the dishwasher to make it easier to pull out for service."
         ],
         safetyNotes: "Water and electricity are a dangerous combination. Ensure all connections are tight and the junction box is properly sealed and secured."
+    },
+    "hot-water-heater": {
+        title: "Electric Water Heater",
+        steps: [
+            "Turn off the double-pole circuit breaker for the water heater.",
+            "Drain the tank completely by connecting a hose to the drain valve.",
+            "Disconnect the electrical conduit from the junction box on top of the heater.",
+            "Disconnect the hot and neutral wires (usually black and red/white) and the ground wire.",
+            "Disconnect the hot and cold water pipes.",
+            "Remove the old heater and position the new one.",
+            "Reconnect the water pipes using new flexible connectors if possible.",
+            "Rewire the electrical connections: connect the two hot wires and the ground wire.",
+            "Close the drain valve and fill the tank completely with water before restoring power.",
+            "Turn the circuit breaker back on and set the thermostat."
+        ],
+        materials: ["New electric water heater", "Screwdriver", "Wrenches", "Pipe dope or Teflon tape", "Voltage tester", "Flexible water connectors"],
+        proTips: [
+            "Always fill the tank with water before turning on the power to avoid burning out the heating elements.",
+            "It's a good idea to replace the temperature and pressure (T&P) relief valve.",
+            "Check local codes for requirements like expansion tanks or drain pans."
+        ],
+        safetyNotes: "A 240V circuit is dangerous. Verify power is off at the breaker and at the heater's junction box with a voltage tester. If you see two linked breakers for one appliance, that is a double-pole breaker."
     }
 };
