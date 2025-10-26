@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop } from "lucide-react";
+import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints } from "lucide-react";
 
 const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
     "12.5": { volume: 12.5, type: "Single-gang handy box (4 x 2 1/8 x 1 7/8)" },
@@ -22,11 +22,31 @@ const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
     "42": { volume: 42, type: "4-11/16 inch square box (4 11/16 x 4 11/16 x 2 1/8)" },
 };
 
+// NEC Chapter 9, Table 4 for conduit areas (in²)
+const conduitAreas: { [type: string]: { [size: string]: number } } = {
+    "EMT": { "1/2": 0.304, "3/4": 0.533, "1": 0.864, "1 1/4": 1.501, "1 1/2": 2.036, "2": 3.356 },
+    "RMC": { "1/2": 0.314, "3/4": 0.556, "1": 0.849, "1 1/4": 1.526, "1 1/2": 2.084, "2": 3.356 },
+    "PVC Sch 40": { "1/2": 0.283, "3/4": 0.505, "1": 0.817, "1 1/4": 1.457, "1 1/2": 1.986, "2": 3.262 },
+    "LFMC": { "1/2": 0.292, "3/4": 0.518, "1": 0.849, "1 1/4": 1.457, "1 1/2": 1.986, "2": 3.234 },
+};
+
+// NEC Chapter 9, Table 5 for THHN/THWN conductor areas (in²)
+const conductorAreas: { [awg: string]: number } = {
+    "14": 0.00323,
+    "12": 0.00479,
+    "10": 0.00755,
+    "8": 0.0132,
+    "6": 0.0185,
+    "4": 0.0295,
+    "2": 0.0465,
+};
+
 export default function CalculatorsPage() {
     const [ohmsResult, setOhmsResult] = useState<{ v?: number, i?: number, r?: number, p?: number, error?: string } | null>(null);
     const [wireSizeResult, setWireSizeResult] = useState<{ awg?: string, voltageDrop?: number, necArticle?: string, error?: string } | null>(null);
     const [boxFillResult, setBoxFillResult] = useState<{ totalVolume?: number, necArticle?: string, recommendedBox?: { volume: number, type: string }, error?: string } | null>(null);
     const [panelSizeResult, setPanelSizeResult] = useState<{ panelAmps?: number, minSpaces?: number, necArticle?: string, notes?: string[], error?: string } | null>(null);
+    const [conduitFillResult, setConduitFillResult] = useState<{ maxConductors?: number, fillPercentage?: number, necArticle?: string, error?: string, notes?: string[] } | null>(null);
 
     const handleOhmsLawCalculate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -199,6 +219,51 @@ export default function CalculatorsPage() {
             notes: notes,
         });
     };
+    
+    const handleConduitFillCalculate = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const conduitType = formData.get('conduit-type-cf') as string;
+        const conduitSize = formData.get('conduit-size-cf') as string;
+        const conductorAWG = formData.get('conductor-awg-cf') as string;
+        const numConductors = parseInt(formData.get('num-conductors-cf') as string, 10) || 0;
+
+        if (!conduitType || !conduitSize || !conductorAWG) {
+            setConduitFillResult({ error: "Please fill out all fields." });
+            return;
+        }
+        
+        const fillPercent = numConductors > 2 ? 0.40 : (numConductors === 2 ? 0.31 : 0.53);
+        const totalConduitArea = conduitAreas[conduitType]?.[conduitSize];
+        const singleConductorArea = conductorAreas[conductorAWG];
+
+        if(!totalConduitArea || !singleConductorArea) {
+             setConduitFillResult({ error: "Could not find data for the selected combination." });
+            return;
+        }
+
+        const maxConductors = Math.floor((totalConduitArea * (numConductors > 2 ? 0.40 : 0.31)) / singleConductorArea);
+        
+        let currentFill = 0;
+        if(numConductors > 0){
+             currentFill = (numConductors * singleConductorArea / totalConduitArea) * 100;
+        }
+
+        const notes = [
+            "DO: Ream conduit ends to remove sharp edges.",
+            "DON'T: Exceed 360 degrees of bends between pull points.",
+            "DO: Use expansion fittings for long runs of PVC in areas with temperature swings.",
+            "DON'T: Use EMT in wet locations or where subject to severe physical damage.",
+            "DO: Secure and support conduit at required intervals (e.g., every 10 ft for EMT).",
+        ];
+
+        setConduitFillResult({
+            maxConductors: maxConductors,
+            fillPercentage: Number(currentFill.toFixed(1)),
+            necArticle: "Chapter 9, Table 1",
+            notes: notes
+        });
+    }
 
   return (
     <>
@@ -212,6 +277,7 @@ export default function CalculatorsPage() {
             <TabsTrigger value="wire-sizing">Wire Sizing</TabsTrigger>
             <TabsTrigger value="box-fill">Box Fill</TabsTrigger>
             <TabsTrigger value="panel-sizing">Panel Sizing</TabsTrigger>
+            <TabsTrigger value="conduit-fill">Conduit Fill</TabsTrigger>
           </TabsList>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -467,6 +533,94 @@ export default function CalculatorsPage() {
                                 </ul>
                              </div>
                              <p className="text-xs text-muted-foreground mt-2">Reference: NEC {panelSizeResult.necArticle}</p>
+                           </AlertDescription>
+                          </>
+                        )}
+                      </Alert>
+                    )}
+                </CardContent>
+                <CardFooter>
+                  <Button type="submit">Calculate</Button>
+                </CardFooter>
+            </form>
+          </Card>
+        </TabsContent>
+         <TabsContent value="conduit-fill">
+           <Card>
+            <form onSubmit={handleConduitFillCalculate}>
+                <CardHeader>
+                  <CardTitle className="font-headline">Conduit Fill Calculator</CardTitle>
+                  <CardDescription>Calculate conduit fill percentages based on NEC Chapter 9.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                     <div className="space-y-2">
+                        <Label htmlFor="conduit-type-cf">Conduit Type</Label>
+                         <Select name="conduit-type-cf">
+                            <SelectTrigger id="conduit-type-cf">
+                                <SelectValue placeholder="Select type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {Object.keys(conduitAreas).map(type => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                     <div className="space-y-2">
+                        <Label htmlFor="conduit-size-cf">Conduit Size</Label>
+                         <Select name="conduit-size-cf">
+                            <SelectTrigger id="conduit-size-cf">
+                                <SelectValue placeholder="Select size" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {Object.keys(conduitAreas["EMT"]).map(size => <SelectItem key={size} value={size}>{size}"</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                     <div className="space-y-2">
+                        <Label htmlFor="conductor-awg-cf">Conductor (THHN/THWN)</Label>
+                         <Select name="conductor-awg-cf">
+                            <SelectTrigger id="conductor-awg-cf">
+                                <SelectValue placeholder="Select AWG" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {Object.keys(conductorAreas).map(awg => <SelectItem key={awg} value={awg}>{awg} AWG</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                  </div>
+                  <div className="space-y-2 max-w-xs">
+                        <Label htmlFor="num-conductors-cf">Number of Conductors</Label>
+                        <Input name="num-conductors-cf" id="num-conductors-cf" placeholder="e.g., 3" type="number" />
+                  </div>
+                  {conduitFillResult && (
+                      <Alert variant={conduitFillResult.error ? "destructive" : "default"}>
+                        {conduitFillResult.error ? (
+                          <>
+                           <AlertCircle className="h-4 w-4" />
+                           <AlertTitle>Error</AlertTitle>
+                           <AlertDescription>{conduitFillResult.error}</AlertDescription>
+                          </>
+                        ) : (
+                          <>
+                           <Waypoints className="h-4 w-4" />
+                           <AlertTitle>Conduit Fill Result</AlertTitle>
+                           <AlertDescription>
+                             <p>
+                                Max <strong className="text-primary">{conduitFillResult.maxConductors}</strong> conductors allowed for 40% fill.
+                             </p>
+                              {conduitFillResult.fillPercentage !== undefined && conduitFillResult.fillPercentage > 0 && (
+                                <p>Your current configuration is at <strong className={cn("text-primary", conduitFillResult.fillPercentage > 40 && "text-destructive")}>{conduitFillResult.fillPercentage}%</strong> fill.</p>
+                              )}
+                              <div className="mt-4">
+                                <h4 className="font-semibold">Residential Do's & Don'ts:</h4>
+                                <ul className="list-disc pl-5 mt-1 text-xs space-y-1">
+                                    {conduitFillResult.notes?.map((note, i) => {
+                                        const isDont = note.startsWith("DON'T");
+                                        return <li key={i} className={cn(isDont ? "text-destructive" : "text-muted-foreground")}>{note}</li>
+                                    })}
+                                </ul>
+                             </div>
+                             <p className="text-xs text-muted-foreground mt-2">Reference: NEC {conduitFillResult.necArticle}</p>
                            </AlertDescription>
                           </>
                         )}
