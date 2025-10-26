@@ -1,0 +1,60 @@
+/**
+ * @fileoverview Firestore Security Rules for the WattsUp Electrical Toolkit application.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model. Each user's data is isolated under their unique user ID, ensuring that only the authenticated user can access their own data. This approach prioritizes security, data privacy, and avoids complex `get()` calls for authorization.
+ *
+ * Data Structure:
+ * All user data is nested under `/users/{userId}`.
+ *
+ * Key Security Decisions:
+ * - Listing of users is explicitly disallowed to protect user privacy.
+ * - The rules enforce that a user can only create, read, update, or delete their own data.
+ * - Authentication is required for all operations except where explicitly allowed (e.g., public read-only collections, which this app does not have).
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Enforces document ownership for the /users/{userId} collection, ensuring only the authenticated user can access their own profile data.
+     * @path /users/{userId}
+     * @allow (create) - Authenticated user with UID 'user_abc' can create their own profile at /users/user_abc with matching id field.
+     * @allow (get, update, delete) - Authenticated user with UID 'user_abc' can get, update, or delete their own profile at /users/user_abc.
+     * @deny (create) - Authenticated user with UID 'user_xyz' cannot create a profile at /users/user_abc.
+     * @deny (get, update, delete) - Authenticated user with UID 'user_xyz' cannot get, update, or delete the profile at /users/user_abc.
+     * @principle Enforces document ownership for all operations in the user's profile.
+     */
+    match /users/{userId} {
+      // Helper function to check if the user is signed in
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      // Helper function to check if the authenticated user is the owner of the resource
+      function isOwner(userId) {
+        return isSignedIn() && request.auth.uid == userId;
+      }
+
+      // Helper function to check if the authenticated user is the existing owner of the resource
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      // Allow a user to create their own profile if the userId matches their auth.uid
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+
+      // Allow a user to read their own profile
+      allow get: if isOwner(userId);
+
+      // Prevent listing of all users
+      allow list: if false;
+
+      // Allow a user to update their own profile
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+
+      // Allow a user to delete their own profile
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the WattsUp Electrical Toolkit application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        },
+        "registrationDate": {
+          "type": "string",
+          "description": "Date and time the user registered.",
+          "format": "date-time"
+        },
+        "lastLogin": {
+          "type": "string",
+          "description": "Date and time of the user's last login.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "registrationDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information.  Accessible only to the authenticated user (request.auth.uid == userId).",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user, matching the Firebase Authentication UID."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure prioritizes security and scalability for the WattsUp Electrical Toolkit application, focusing on user authentication and data isolation.  The core principle is Authorization Independence, achieved through path-based ownership.  Each user's data is stored under their unique user ID, eliminating the need for complex `get()` calls in security rules and ensuring atomic operations are possible.\n\nThe `/users/{userId}` collection stores user profile information. This path structure ensures that only the authenticated user (identified by `request.auth.uid`) can access their own data, providing a solid foundation for data privacy.\n\nThe structure inherently supports QAPs (Rules are not Filters) because each user's data is isolated under their `userId`. List operations are secure as rules can simply verify that `request.auth.uid == userId`.\n\nAuthentication providers are 'password' and 'anonymous', requiring secure handling on the client-side using Firebase Authentication."
+  }
+}
