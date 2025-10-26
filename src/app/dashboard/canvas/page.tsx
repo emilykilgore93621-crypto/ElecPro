@@ -3,6 +3,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { 
   Save, 
   Printer,
@@ -12,10 +20,11 @@ import {
   Box,
   Spline,
   Type,
-  Trash2
+  Trash2,
+  ChevronDown
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
+import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
 
 const tools = [
     { id: "select", icon: MousePointer, label: "Select" },
@@ -59,6 +68,7 @@ export default function CanvasPage() {
     const [wires, setWires] = useState<Wire[]>([]);
     const [wiringStartElement, setWiringStartElement] = useState<CanvasElement | null>(null);
     const [draggingElement, setDraggingElement] = useState<{ id: number; offsetX: number; offsetY: number } | null>(null);
+    const [showTakeoff, setShowTakeoff] = useState(true);
     const canvasRef = useRef<HTMLDivElement>(null);
     const editInputRef = useRef<HTMLInputElement>(null);
     
@@ -69,6 +79,32 @@ export default function CanvasPage() {
             editInputRef.current.focus();
         }
     }, [elements]);
+
+    const takeoffList = useMemo(() => {
+        const counts: { [key: string]: number } = {
+            'outlet': 0,
+            'switch': 0,
+            'light': 0,
+            'junction-box': 0,
+            'wire': 0,
+        };
+
+        elements.forEach(el => {
+            if (counts[el.type] !== undefined) {
+                counts[el.type]++;
+            }
+        });
+
+        counts['wire'] = wires.length;
+
+        return Object.entries(counts)
+            .filter(([, count]) => count > 0)
+            .map(([name, count]) => ({
+                item: name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+                quantity: count,
+            }));
+
+    }, [elements, wires]);
 
 
     const getCanvasCoordinates = (e: MouseEvent, canvasEl: HTMLDivElement | null): { x: number; y: number } => {
@@ -190,9 +226,13 @@ export default function CanvasPage() {
 
   return (
     <div className="flex flex-col h-full gap-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-2">
         <h1 className="text-lg font-semibold md:text-2xl font-headline">Interactive Canvas</h1>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+            <div className="flex items-center space-x-2">
+                <Switch id="show-takeoff" checked={showTakeoff} onCheckedChange={setShowTakeoff} />
+                <Label htmlFor="show-takeoff">Show Take-off</Label>
+            </div>
             <Button variant="outline" onClick={clearCanvas}>
                 <Trash2 className="mr-2 h-4 w-4"/>
                 Clear
@@ -227,96 +267,128 @@ export default function CanvasPage() {
                 ))}
             </CardContent>
         </Card>
-        <Card className="flex-1 relative">
-            <CardContent 
-                ref={canvasRef}
-                className={cn(
-                  "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg relative",
-                  activeTool === 'select' ? 'cursor-default' : 'cursor-crosshair'
-                )}
-                style={{
-                    backgroundSize: `${gridSize}px ${gridSize}px`,
-                    backgroundImage: 'linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)',
-                }}
-                onClick={handleCanvasClick}
-                onMouseMove={handleCanvasMouseMove}
-                onMouseUp={handleCanvasMouseUp}
-                onMouseLeave={handleCanvasMouseUp}
-            >
-                <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                    {wires.map(wire => {
-                        const startEl = getElementById(wire.startElementId);
-                        const endEl = getElementById(wire.endElementId);
-                        if(!startEl || !endEl) return null;
+        <div className="flex-1 flex flex-col gap-4">
+            <Card className="flex-1 relative">
+                <CardContent 
+                    ref={canvasRef}
+                    className={cn(
+                      "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg relative",
+                      activeTool === 'select' ? 'cursor-default' : 'cursor-crosshair'
+                    )}
+                    style={{
+                        backgroundSize: `${gridSize}px ${gridSize}px`,
+                        backgroundImage: 'linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)',
+                    }}
+                    onClick={handleCanvasClick}
+                    onMouseMove={handleCanvasMouseMove}
+                    onMouseUp={handleCanvasMouseUp}
+                    onMouseLeave={handleCanvasMouseUp}
+                >
+                    <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                        {wires.map(wire => {
+                            const startEl = getElementById(wire.startElementId);
+                            const endEl = getElementById(wire.endElementId);
+                            if(!startEl || !endEl) return null;
+                            
+                            return (
+                                <line
+                                    key={wire.id}
+                                    x1={startEl.x}
+                                    y1={startEl.y}
+                                    x2={endEl.x}
+                                    y2={endEl.y}
+                                    stroke="hsl(var(--primary))"
+                                    strokeWidth="2"
+                                />
+                            )
+                        })}
+                    </svg>
+
+                    {elements.map(el => {
+                        const Icon = el.icon;
+                        const isWiringStart = wiringStartElement?.id === el.id;
+                        const isLabel = el.type === 'label';
                         
                         return (
-                            <line
-                                key={wire.id}
-                                x1={startEl.x}
-                                y1={startEl.y}
-                                x2={endEl.x}
-                                y2={endEl.y}
-                                stroke="hsl(var(--primary))"
-                                strokeWidth="2"
-                            />
+                            <div 
+                                key={el.id}
+                                className={cn(
+                                  "absolute flex flex-col items-center",
+                                  !isLabel && "p-2 rounded-full",
+                                  activeTool === 'select' && 'cursor-grab',
+                                  activeTool === 'wire' && 'cursor-pointer',
+                                  draggingElement?.id === el.id && 'cursor-grabbing',
+                                  isWiringStart && 'bg-primary/20 ring-2 ring-primary'
+                                )}
+                                style={{ 
+                                    left: el.x - (isLabel ? 40 : 24), 
+                                    top: el.y - (isLabel ? 12 : 24), 
+                                    zIndex: draggingElement?.id === el.id ? 10 : 1,
+                                    minWidth: isLabel ? '80px' : 'auto',
+                                }}
+                                onMouseDown={(e) => handleElementMouseDown(e, el)}
+                                onDoubleClick={() => handleElementDoubleClick(el.id)}
+                            >
+                                {Icon && (
+                                    <Icon 
+                                        className="h-8 w-8 text-primary pointer-events-none" 
+                                        style={{ transform: el.transform }} 
+                                    />
+                                )}
+                                {isLabel && el.isEditing ? (
+                                    <input
+                                        ref={editInputRef}
+                                        type="text"
+                                        value={el.label}
+                                        onChange={(e) => handleLabelChange(e, el.id)}
+                                        onKeyDown={(e) => handleLabelKeyDown(e, el.id)}
+                                        onBlur={() => setElements(prev => prev.map(elem => elem.id === el.id ? { ...elem, isEditing: false } : elem))}
+                                        className="text-xs text-center bg-transparent border border-primary rounded px-1 py-0.5 w-full pointer-events-auto"
+                                    />
+                                ) : (
+                                    <span className="text-xs pointer-events-none select-none text-center">{el.label}</span>
+                                )}
+                            </div>
                         )
                     })}
-                </svg>
-
-                {elements.map(el => {
-                    const Icon = el.icon;
-                    const isWiringStart = wiringStartElement?.id === el.id;
-                    const isLabel = el.type === 'label';
-                    
-                    return (
-                        <div 
-                            key={el.id}
-                            className={cn(
-                              "absolute flex flex-col items-center",
-                              !isLabel && "p-2 rounded-full",
-                              activeTool === 'select' && 'cursor-grab',
-                              activeTool === 'wire' && 'cursor-pointer',
-                              draggingElement?.id === el.id && 'cursor-grabbing',
-                              isWiringStart && 'bg-primary/20 ring-2 ring-primary'
-                            )}
-                            style={{ 
-                                left: el.x - (isLabel ? 40 : 24), 
-                                top: el.y - (isLabel ? 12 : 24), 
-                                zIndex: draggingElement?.id === el.id ? 10 : 1,
-                                minWidth: isLabel ? '80px' : 'auto',
-                            }}
-                            onMouseDown={(e) => handleElementMouseDown(e, el)}
-                            onDoubleClick={() => handleElementDoubleClick(el.id)}
-                        >
-                            {Icon && (
-                                <Icon 
-                                    className="h-8 w-8 text-primary pointer-events-none" 
-                                    style={{ transform: el.transform }} 
-                                />
-                            )}
-                            {isLabel && el.isEditing ? (
-                                <input
-                                    ref={editInputRef}
-                                    type="text"
-                                    value={el.label}
-                                    onChange={(e) => handleLabelChange(e, el.id)}
-                                    onKeyDown={(e) => handleLabelKeyDown(e, el.id)}
-                                    onBlur={() => setElements(prev => prev.map(elem => elem.id === el.id ? { ...elem, isEditing: false } : elem))}
-                                    className="text-xs text-center bg-transparent border border-primary rounded px-1 py-0.5 w-full pointer-events-auto"
-                                />
-                            ) : (
-                                <span className="text-xs pointer-events-none select-none text-center">{el.label}</span>
-                            )}
-                        </div>
-                    )
-                })}
-            </CardContent>
-        </Card>
+                </CardContent>
+            </Card>
+            {showTakeoff && takeoffList.length > 0 && (
+                 <Collapsible defaultOpen={true}>
+                    <CollapsibleTrigger asChild>
+                        <Button variant="outline" className="w-full">
+                            Take-off List
+                            <ChevronDown className="ml-2 h-4 w-4" />
+                        </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                        <Card className="mt-2">
+                            <CardContent className="p-4">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Item</TableHead>
+                                            <TableHead className="text-right">Quantity</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {takeoffList.map((item, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell className="font-medium">{item.item}</TableCell>
+                                                <TableCell className="text-right">{item.quantity}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </CardContent>
+                        </Card>
+                    </CollapsibleContent>
+                 </Collapsible>
+            )}
+        </div>
       </div>
     </div>
   );
 }
-
-    
 
     
