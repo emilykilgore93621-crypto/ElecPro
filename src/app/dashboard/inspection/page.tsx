@@ -1,3 +1,4 @@
+
 import {
   Accordion,
   AccordionContent,
@@ -16,7 +17,8 @@ const inspectionTips = [
             "Clearances: Ensure 3 feet of clearance in front of the panel.",
             "Labeling: All circuits must be clearly and accurately labeled.",
             "Wiring: No double-tapped breakers unless the breaker is rated for it.",
-            "Grounding: Proper grounding and bonding of the service entrance.",
+            "Grounding: Proper grounding and bonding of the service entrance. Per NEC, if a single ground rod has a resistance of 25 ohms or more, a second one is required.",
+            "Main Panels > 100A: Often require two ground rods spaced at least 6 feet apart. Always verify with local code amendments.",
         ]
     },
     {
