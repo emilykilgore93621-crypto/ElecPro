@@ -27,20 +27,9 @@ export default function GuidesPage() {
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {guides.map((guide) => {
-                     const image = placeHolderImages.find(p => p.id === guide.imageId);
                     return (
                         <Link key={guide.slug} href={`/dashboard/guides/${guide.slug}`}>
                             <Card className="overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
-                                {image && (
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={image.description}
-                                        width={600}
-                                        height={400}
-                                        data-ai-hint={image.imageHint}
-                                        className="aspect-video w-full object-cover"
-                                    />
-                                )}
                                 <CardHeader className="flex-1">
                                     <CardTitle className="font-headline text-lg">{guide.title}</CardTitle>
                                 </CardHeader>
@@ -52,5 +41,3 @@ export default function GuidesPage() {
         </>
     );
 }
-
-    

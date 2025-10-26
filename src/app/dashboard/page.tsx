@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -61,7 +62,6 @@ export default function DashboardPage() {
         {features.map((feature) => (
           <Card key={feature.title} className="flex flex-col transition-all hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
-              <feature.icon className="h-8 w-8 mb-2 text-primary" />
               <CardTitle className="font-headline">{feature.title}</CardTitle>
               <CardDescription>{feature.description}</CardDescription>
             </CardHeader>
