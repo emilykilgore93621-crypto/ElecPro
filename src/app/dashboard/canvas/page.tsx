@@ -21,7 +21,8 @@ import {
   Spline,
   Type,
   Trash2,
-  ChevronDown
+  ChevronDown,
+  Waypoints
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
@@ -30,6 +31,8 @@ const tools = [
     { id: "select", icon: MousePointer, label: "Select" },
     { id: "outlet", icon: ToggleLeft, label: "Outlet", transform: 'rotate(90deg)' },
     { id: "switch", icon: ToggleLeft, label: "Switch" },
+    { id: "3-way-switch", icon: Waypoints, label: "3-Way Switch" },
+    { id: "4-way-switch", icon: Waypoints, label: "4-Way Switch" },
     { id: "light", icon: Lightbulb, label: "Light" },
     { id: "junction-box", icon: Box, label: "Junction Box" },
     { id: "wire", icon: Spline, label: "Wire" },
@@ -56,6 +59,8 @@ type Wire = {
 const componentMap: { [key: string]: Omit<CanvasElement, 'id' | 'x' | 'y'> } = {
     'outlet': { type: 'outlet', icon: ToggleLeft, label: 'Outlet', transform: 'rotate(90deg)' },
     'switch': { type: 'switch', icon: ToggleLeft, label: 'Switch' },
+    '3-way-switch': { type: '3-way-switch', icon: Waypoints, label: '3-Way Sw' },
+    '4-way-switch': { type: '4-way-switch', icon: Waypoints, label: '4-Way Sw' },
     'light': { type: 'light', icon: Lightbulb, label: 'Light' },
     'junction-box': { type: 'junction-box', icon: Box, label: 'J-Box' },
     'label': {type: 'label', icon: Type, label: 'Label'},
@@ -84,6 +89,8 @@ export default function CanvasPage() {
         const counts: { [key: string]: number } = {
             'outlet': 0,
             'switch': 0,
+            '3-way-switch': 0,
+            '4-way-switch': 0,
             'light': 0,
             'junction-box': 0,
             'wire': 0,
@@ -249,20 +256,21 @@ export default function CanvasPage() {
       </div>
       <div className="flex-1 flex gap-4 flex-col md:flex-row">
         <Card className="w-full md:w-auto">
-            <CardContent className="p-2 flex md:flex-col gap-2 justify-center">
+            <CardContent className="p-2 flex md:flex-col gap-1 justify-center flex-wrap">
                  {tools.map(tool => (
                     <Button 
                         key={tool.id}
                         variant={activeTool === tool.id ? "secondary" : "ghost"}
                         size="icon"
-                        className="w-12 h-12"
+                        className="w-16 h-16 flex-col"
                         onClick={() => {
                             setActiveTool(tool.id);
                             setWiringStartElement(null); // Deselect any wiring start when changing tools
                         }}
                         title={tool.label}
                     >
-                        <tool.icon style={{ transform: tool.transform }} />
+                        <tool.icon className="size-6" style={{ transform: tool.transform }} />
+                        <span className="text-xs">{tool.label}</span>
                     </Button>
                 ))}
             </CardContent>
@@ -390,5 +398,7 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    
 
     
