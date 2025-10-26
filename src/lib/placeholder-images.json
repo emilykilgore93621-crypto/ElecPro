@@ -7,6 +7,12 @@
       "imageHint": "electrical blueprint"
     },
     {
+      "id": "calculator-wiring-diagram",
+      "description": "A wiring diagram for a 120V & 208V main panel.",
+      "imageUrl": "/placeholder_1726771031.jpeg",
+      "imageHint": "panel wiring"
+    },
+    {
       "id": "guide-outlet",
       "description": "A cleanly installed residential wall outlet.",
       "imageUrl": "https://images.unsplash.com/photo-1621358988949-c55395a12f5e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YWxsJTIwb3V0bGV0fGVufDB8fHx8MTc2MTc4MjAyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
