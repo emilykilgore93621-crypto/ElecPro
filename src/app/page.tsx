@@ -28,7 +28,7 @@ export default function LoginPage() {
         {loginImage && (
           <Image
             src={loginImage.imageUrl}
-            alt="An electrician working on a circuit breaker panel"
+            alt={loginImage.description}
             width="1280"
             height="853"
             data-ai-hint={loginImage.imageHint}
