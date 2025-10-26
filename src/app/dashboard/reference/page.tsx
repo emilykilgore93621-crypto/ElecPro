@@ -1,3 +1,4 @@
+
 import { necQuickGuide } from '@/ai/flows/nec-quick-guide';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ReferenceForm } from './reference-form';
@@ -48,9 +49,9 @@ export default function ReferencePage() {
               <CardDescription>Quick links to official documentation.</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col space-y-2">
-                <Link href="#" className="text-primary underline font-medium">NEC Code Snippets</Link>
-                <Link href="#" className="text-primary underline font-medium">PGE Green Book</Link>
-                <Link href="#" className="text-primary underline font-medium">NFPA Articles</Link>
+                <Link href="https://www.nfpa.org/nec" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">NEC (NFPA 70)</Link>
+                <Link href="https://www.pge.com/en/building-and-renovation/greenbook-manuals-and-guides.html" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">PGE Green Book</Link>
+                <Link href="https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">NFPA Codes & Standards</Link>
             </CardContent>
           </Card>
         </div>
