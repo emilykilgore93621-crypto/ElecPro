@@ -39,7 +39,7 @@
     {
       "id": "guide-weather-tight",
       "description": "A durable, weather-tight outdoor electrical outlet cover.",
-      "imageUrl": "https://images.unsplash.com/photo-1696672436197-60c1a20d5b8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3V0ZG9vciUyMGVsZWN0cmljYWx8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1696672436197-60c1a20d5b8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3V0ZG9vciUyMGVsZWN0cmljYWx8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlibrb-4.1.0&q=80&w=600",
       "imageHint": "outdoor electrical"
     },
     {
@@ -63,7 +63,7 @@
     {
       "id": "guide-garbage-disposal",
       "description": "Under-sink view of a garbage disposal installation.",
-      "imageUrl": "https://images.unsplash.com/photo-1759605233915-76406790a491?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzaW5rJTIwcGx1bWJpbmd8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1759605233915-76406790a491?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzaW5rJTIwcGx1bWJpbmd8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlibrb-4.1.0&q=80&w=600",
       "imageHint": "sink plumbing"
     },
     {
@@ -87,7 +87,7 @@
     {
       "id": "safety-tools",
       "description": "Proper handling of power tools.",
-      "imageUrl": "https://images.unsplash.com/photo-1546827209-a218e99fdbe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3dlciUyMHRvb2xzfGVufDB8fHx8MTc2MTUwMDU1MHww&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1546827209-a218e99fdbe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3dlciUyMHRvb2xzfGVufDB8fHx8MTc2MTUwMDU1MHww&ixlibrb-4.1.0&q=80&w=600",
       "imageHint": "power tools"
     },
     {
@@ -99,31 +99,31 @@
     {
       "id": "guide-usb-outlet",
       "description": "A modern wall outlet with integrated USB charging ports.",
-      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib-rb-4.1.0&q=80&w=600",
       "imageHint": "USB outlet"
     },
     {
       "id": "guide-ceiling-fan",
       "description": "A stylish ceiling fan with a light installed in a living room.",
-      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib-rb-4.1.0&q=80&w=600",
       "imageHint": "ceiling fan"
     },
     {
       "id": "guide-smart-switch",
       "description": "A hand interacting with a modern smart switch on a wall.",
-      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib-rb-4.1.0&q=80&w=600",
       "imageHint": "smart switch"
     },
     {
       "id": "inspection-inspector",
       "description": "An electrician inspecting a circuit breaker panel.",
-      "imageUrl": "https://images.unsplash.com/photo-1467733238130-bb6846885316?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2lhbiUyMGluc3BlY3Rpb258ZW58MHx8fHwxNzYxNTAwNTUxfDA&ixlib=rb-4.1.0&q=80&w=1200",
+      "imageUrl": "https://images.unsplash.com/photo-1467733238130-bb6846885316?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2lhbiUyMGluc3BlY3Rpb258ZW58MHx8fHwxNzYxNTAwNTUxfDA&ixlibrb-4.1.0&q=80&w=1200",
       "imageHint": "electrician inspection"
     },
     {
       "id": "guide-rv-wiring",
       "description": "A wiring diagram for an RV/trailer electrical system.",
-      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSViUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSViUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib-rb-4.1.0&q=80&w=600",
       "imageHint": "RV wiring"
     },
     {
@@ -134,9 +134,9 @@
     },
     {
       "id": "guide-well-pump",
-      "description": "A pressure switch and gauge for a water well pump system.",
-      "imageUrl": "https://images.unsplash.com/photo-1599214340299-101139a9a36f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXRlciUyMHdlbGwlMjBwdW1wfGVufDB8fDB8fHwxNzYzMTExNjk3fDA",
-      "imageHint": "water well"
+      "description": "An off-grid water pump and heating system with an inverter, battery, and water heater.",
+      "imageUrl": "https://storage.googleapis.com/aif-staging-images/e307f4a0-f80e-473d-9d41-e9a078d4c92c.png",
+      "imageHint": "off-grid water"
     },
     {
       "id": "guide-fire-alarm",
