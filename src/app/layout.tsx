@@ -1,10 +1,11 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
-  title: 'WattsUp Electrical Toolkit',
+  title: 'ELECPRO-HUB Electrical Toolkit',
   description: 'An all-in-one toolkit for electricians and DIY enthusiasts.',
 };
 

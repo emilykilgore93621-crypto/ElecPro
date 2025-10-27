@@ -14,7 +14,7 @@ export default function LoginPage() {
             <div className="flex justify-center items-center gap-2 mb-4">
               <AppLogo className="size-8 text-primary" />
               <h1 className="text-3xl font-bold font-headline">
-                WattsUp
+                ELECPRO-HUB
               </h1>
             </div>
             <p className="text-balance text-muted-foreground">
