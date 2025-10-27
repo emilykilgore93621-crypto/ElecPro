@@ -99,19 +99,19 @@
     {
       "id": "guide-usb-outlet",
       "description": "A modern wall outlet with integrated USB charging ports.",
-      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "USB outlet"
     },
     {
       "id": "guide-ceiling-fan",
       "description": "A stylish ceiling fan with a light installed in a living room.",
-      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "ceiling fan"
     },
     {
       "id": "guide-smart-switch",
       "description": "A hand interacting with a modern smart switch on a wall.",
-      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "smart switch"
     },
     {
@@ -123,7 +123,7 @@
     {
       "id": "guide-rv-wiring",
       "description": "A wiring diagram for an RV/trailer electrical system.",
-      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSViUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSViUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "RV wiring"
     },
     {
@@ -141,7 +141,7 @@
     {
       "id": "guide-fire-alarm",
       "description": "A modern smoke and carbon monoxide detector mounted on a ceiling.",
-      "imageUrl": "https://images.unsplash.com/photo-1579450841235-437937397b37?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbW9rZSUyMGRldGVjdG9yfGVufDB8fDB8fHwxNzYzMTM0MjMwfDA",
+      "imageUrl": "https://images.unsplash.com/photo-1620766165556-0f0f76a6d8d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTAzfDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA&ixlib=rb-4.0.3&q=80&w=1200",
       "imageHint": "smoke detector"
     }
   ]
