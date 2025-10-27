@@ -75,7 +75,7 @@ export default function DashboardLayout({
             <SidebarHeader className="p-4">
               <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                 <AppLogo className="h-6 w-6 text-sidebar-primary" />
-                <span className="">ELECPRO-HUB</span>
+                <span className="">ElectroPro Hub</span>
               </Link>
             </SidebarHeader>
             <div className="flex-1 px-4">
@@ -116,7 +116,7 @@ export default function DashboardLayout({
                 <SheetHeader className="border-b border-sidebar-border p-4">
                   <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                     <AppLogo className="h-6 w-6 text-sidebar-primary" />
-                    <span className="">ELECPRO-HUB</span>
+                    <span className="">ElectroPro Hub</span>
                   </Link>
                   <SheetTitle className="sr-only">Navigation</SheetTitle>
                 </SheetHeader>
