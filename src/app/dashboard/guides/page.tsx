@@ -23,6 +23,7 @@ const guides = [
     { slug: "switches", title: "Switches", imageId: "guide-switch" },
     { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
     { slug: "weather-tight", title: "Weather-tight", imageId: "guide-weather-tight" },
+    { slug: "well-pump", title: "Water Well Pump", imageId: "guide-well-pump" },
 ].sort((a, b) => a.title.localeCompare(b.title));
 
 export default function GuidesPage() {
@@ -58,3 +59,5 @@ export default function GuidesPage() {
         </>
     );
 }
+
+    

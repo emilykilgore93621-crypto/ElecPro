@@ -342,5 +342,25 @@ export const guideData: { [key: string]: GuideContent } = {
             "Check the rotation of the new motor. Some are reversible. It should match the direction of the old motor."
         ],
         safetyNotes: "Coolers involve both water and electricity. Ensure power is completely off before starting. The fan blades can be sharp. Wear gloves."
+    },
+    "well-pump": {
+        title: "Water Well Pump",
+        steps: [
+            "Safety First: Turn off the double-pole breaker for the well pump. Confirm power is off with a voltage tester at the pressure switch and control box.",
+            "Identify Components: Locate the pressure switch (usually near the pressure tank), the control box (for 3-wire pumps), and the pump itself (submersible or jet pump).",
+            "Pressure Switch Wiring: Note the two pairs of terminals. One pair receives incoming power from the panel (LINE), the other sends power to the pump/control box (LOAD).",
+            "Control Box Wiring (3-Wire Pumps): The control box contains a start capacitor and relay. Wires are typically color-coded (e.g., Black, Yellow, Red for pump motor, plus incoming power and ground). Follow the diagram inside the cover precisely.",
+            "Jet Pump Wiring (2-Wire Pumps): The motor is wired directly from the pressure switch. The capacitor is built into the motor. Connect LINE from the pressure switch to the motor terminals and connect the ground.",
+            "Troubleshooting: If the pump doesn't start, check for 240V at the pressure switch (LINE side). If present, check for 240V on the LOAD side when the contacts are closed. If power is present at the control box/motor but it doesn't run, suspect the control box, capacitor, or motor itself."
+        ],
+        materials: ["Voltage tester (multimeter)", "Screwdrivers", "Pliers", "Wire strippers", "Wire nuts", "Replacement components (pressure switch, capacitor, etc.)"],
+        proTips: [
+            "A humming pump that doesn't run often points to a bad start capacitor in the control box or on the motor.",
+            "If the pressure switch contacts are pitted or burnt, it's time to replace the switch.",
+            "Always re-prime a jet pump after service to avoid damage."
+        ],
+        safetyNotes: "Well pumps operate on a 240V circuit which is extremely dangerous. Always verify power is off. Capacitors can store a dangerous electrical charge even when the power is off; discharge them safely with an insulated screwdriver before handling."
     }
 };
+
+    

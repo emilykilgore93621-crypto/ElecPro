@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   ClipboardCheck,
   Cog,
+  Droplet,
 } from "lucide-react"
 
 import {
@@ -25,6 +26,7 @@ const navItems = [
   { href: "/dashboard/guides", icon: Wrench, label: "Installation Guides" },
   { href: "/dashboard/reference", icon: BookText, label: "Reference Library" },
   { href: "/dashboard/canvas", icon: PenSquare, label: "Interactive Canvas" },
+  { href: "/dashboard/well-controls", icon: Droplet, label: "Well Controls" },
   { href: "/dashboard/safety", icon: ShieldCheck, label: "Safety Overview" },
   { href: "/dashboard/inspection", icon: ClipboardCheck, label: "Inspection Tips" },
   { href: "/dashboard/settings", icon: Cog, label: "Settings" },
@@ -39,7 +41,7 @@ export function MainNav() {
         <SidebarMenuItem key={item.href}>
           <SidebarMenuButton
             asChild
-            isActive={pathname === item.href}
+            isActive={pathname.startsWith(item.href) && (item.href.length > 10 ? true : pathname === item.href)}
             tooltip={item.label}
           >
             <Link href={item.href}>
@@ -52,3 +54,5 @@ export function MainNav() {
     </SidebarMenu>
   )
 }
+
+    
