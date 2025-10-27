@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from "next/link"
@@ -22,7 +23,7 @@ import {
 } from "@/components/ui/sidebar"
 
 const navItems = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard", exact: true },
   { href: "/dashboard/calculators", icon: Calculator, label: "Calculators" },
   { href: "/dashboard/guides", icon: Wrench, label: "Installation Guides" },
   { href: "/dashboard/reference", icon: BookText, label: "Reference Library" },
@@ -39,20 +40,26 @@ export function MainNav() {
 
   return (
     <SidebarMenu>
-      {navItems.map((item) => (
-        <SidebarMenuItem key={item.href}>
-          <SidebarMenuButton
-            asChild
-            isActive={pathname.startsWith(item.href) && (item.href.length > 10 ? true : pathname === item.href)}
-            tooltip={item.label}
-          >
-            <Link href={item.href}>
-              <item.icon />
-              <span>{item.label}</span>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      ))}
+      {navItems.map((item) => {
+        const isActive = item.exact 
+          ? pathname === item.href 
+          : pathname.startsWith(item.href);
+
+        return (
+          <SidebarMenuItem key={item.href}>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive}
+              tooltip={item.label}
+            >
+              <Link href={item.href}>
+                <item.icon />
+                <span>{item.label}</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        );
+      })}
     </SidebarMenu>
   )
 }
