@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -12,7 +12,6 @@ import {
 
 import { useAuth } from "@/firebase"
 import {
-    initiateAnonymousSignIn,
     initiateEmailSignIn,
     initiateEmailSignUp,
 } from '@/firebase/non-blocking-login';
@@ -28,7 +27,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useToast } from "@/hooks/use-toast"
-import { useEffect } from 'react';
 import { useUser } from '@/firebase/auth/use-user';
 
 
@@ -51,6 +49,7 @@ export function AuthForm() {
   const { user, isUserLoading } = useUser();
 
   useEffect(() => {
+    // This effect redirects the user to the dashboard if they are already logged in.
     if (!isUserLoading && user) {
         router.push('/dashboard');
     }
@@ -73,7 +72,7 @@ export function AuthForm() {
       } else {
         initiateEmailSignIn(auth, data.email, data.password)
       }
-      // The useEffect will handle the redirect
+      // The redirect is now handled by the useEffect hook above and the DashboardLayout.
     } catch (err: any) {
       setError(err.message)
     } finally {
