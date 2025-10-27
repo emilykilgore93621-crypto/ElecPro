@@ -7,12 +7,15 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import {
-  createUserWithEmailAndPassword,
   sendPasswordResetEmail,
-  signInWithEmailAndPassword,
 } from "firebase/auth"
 
 import { useAuth } from "@/firebase"
+import {
+    initiateAnonymousSignIn,
+    initiateEmailSignIn,
+    initiateEmailSignUp,
+} from '@/firebase/non-blocking-login';
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -25,6 +28,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useToast } from "@/hooks/use-toast"
+import { useEffect } from 'react';
+import { useUser } from '@/firebase/auth/use-user';
+
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -42,6 +48,13 @@ export function AuthForm() {
   const auth = useAuth()
   const router = useRouter()
   const { toast } = useToast()
+  const { user, isUserLoading } = useUser();
+
+  useEffect(() => {
+    if (!isUserLoading && user) {
+        router.push('/dashboard');
+    }
+  }, [user, isUserLoading, router]);
 
   const form = useForm<AuthFormValues>({
     resolver: zodResolver(formSchema),
@@ -56,11 +69,11 @@ export function AuthForm() {
     setError(null)
     try {
       if (mode === "signup") {
-        await createUserWithEmailAndPassword(auth, data.email, data.password)
+        initiateEmailSignUp(auth, data.email, data.password)
       } else {
-        await signInWithEmailAndPassword(auth, data.email, data.password)
+        initiateEmailSignIn(auth, data.email, data.password)
       }
-      router.push("/dashboard")
+      // The useEffect will handle the redirect
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -192,8 +205,8 @@ export function AuthForm() {
               {isSubmitting ? "Sending..." : "Send Reset Email"}
             </Button>
           ) : (
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting
+            <Button type="submit" disabled={isSubmitting || isUserLoading}>
+              {isSubmitting || isUserLoading
                 ? "Processing..."
                 : mode === "signin"
                 ? "Login"
