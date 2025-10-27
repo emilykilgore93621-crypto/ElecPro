@@ -320,5 +320,27 @@ export const guideData: { [key: string]: GuideContent } = {
             "Keep your PPE clean and in good condition. Replace it if it becomes damaged."
         ],
         safetyNotes: "There is no substitute for safety. Turning off the power is the most important piece of 'PPE'. All other equipment is a secondary line of defense."
+    },
+    "cooler-motor": {
+        title: "Cooler Motor",
+        steps: [
+            "Turn off power to the cooler unit at the dedicated breaker or switch.",
+            "Access the motor compartment. You may need to remove a side panel of the cooler.",
+            "Loosen the set screw on the blower pulley and slide the fan belt off the motor and blower pulleys.",
+            "Disconnect the motor's wiring from the cooler's control box. Take a photo of the wiring first (e.g., high, low, common wires).",
+            "Unbolt the motor from its mounting bracket and remove it.",
+            "Mount the new motor. Ensure it is the correct horsepower (1/2, 3/4, 1 HP) and voltage for your unit.",
+            "Reconnect the wiring according to your photo and the new motor's diagram. A 1/2 HP motor may use a different speed tap than a 1 HP motor.",
+            "Place the fan belt back on both pulleys. Align the pulleys and tighten the belt so there is about 1/2 inch of deflection.",
+            "Tighten the set screw on the blower pulley.",
+            "Restore power and test both high and low speed settings."
+        ],
+        materials: ["New cooler motor (correct HP)", "Wrench and/or socket set", "Screwdriver", "Allen keys (for set screws)", "Voltage tester"],
+        proTips: [
+            "Motor horsepower must match the manufacturer's specification. A larger motor can overload the circuit and a smaller one will burn out.",
+            "New motors often come with a wiring diagram sticker on them. Always prefer this over your old wiring photo if there are discrepancies.",
+            "Check the rotation of the new motor. Some are reversible. It should match the direction of the old motor."
+        ],
+        safetyNotes: "Coolers involve both water and electricity. Ensure power is completely off before starting. The fan blades can be sharp. Wear gloves."
     }
 };

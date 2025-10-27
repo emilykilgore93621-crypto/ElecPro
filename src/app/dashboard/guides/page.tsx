@@ -8,6 +8,7 @@ const guides = [
     { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
     { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
     { slug: "circuit-breakers", title: "Circuit Breaker Safety", imageId: "safety-breakers" },
+    { slug: "cooler-motor", title: "Cooler Motor", imageId: "guide-cooler-motor" },
     { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
     { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-garbage-disposal" },
     { slug: "gfci", title: "GFCI", imageId: "guide-outlet-wiring" },
