@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "login-bg",
-      "description": "An electrical blueprint for a building.",
-      "imageUrl": "https://images.unsplash.com/photo-1598620617377-3bfb505b4384?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVjdHJpY2FsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2MTUwMDU1MHww&ixlib=rb-4.1.0&q=80&w=1280",
-      "imageHint": "electrical blueprint"
+      "description": "An off-grid water pump and heating system with an inverter, battery, and water heater.",
+      "imageUrl": "https://storage.googleapis.com/aif-staging-images/e307f4a0-f80e-473d-9d41-e9a078d4c92c.png",
+      "imageHint": "off-grid water"
     },
     {
       "id": "calculator-wiring-diagram",
@@ -81,7 +81,7 @@
     {
       "id": "safety-wiring",
       "description": "Best practices for safe wiring.",
-      "imageUrl": "https://images.unsplash.com/photo-1553873002-785d775854c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJpY2FsJTIwd2lyaW5nfGVufDB8fHx8MTc2MTQ1NjU4MXww&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1553873002-785d775854c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJpY2FsJTIwd2lyaW5nfGVufDB8fHx8MTc2MTQ1NjU4MXww&ixlib-rb-4.1.0&q=80&w=600",
       "imageHint": "electrical wiring"
     },
     {
@@ -141,7 +141,7 @@
     {
       "id": "guide-fire-alarm",
       "description": "A modern smoke and carbon monoxide detector mounted on a ceiling.",
-      "imageUrl": "https://images.unsplash.com/photo-1620766165556-0f0f76a6d8d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTAzfDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA&ixlib=rb-4.0.3&q=80&w=1200",
+      "imageUrl": "https://images.unsplash.com/photo-1620766165556-0f0f76a6d8d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZSUyMGRldGVjdG9yfGVufDB8fHx8MTc2MTUzOTgwMnww&ixlib=rb-4.1.0&q=80&w=1200",
       "imageHint": "smoke detector"
     }
   ]
