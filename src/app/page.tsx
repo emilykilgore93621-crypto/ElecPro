@@ -23,8 +23,7 @@ export default function LoginPage() {
         <Image
           src={loginImage.imageUrl}
           alt={loginImage.description}
-          layout="fill"
-          objectFit="cover"
+          fill
           className="absolute inset-0 w-full h-full object-cover -z-10 brightness-50"
           data-ai-hint={loginImage.imageHint}
         />
