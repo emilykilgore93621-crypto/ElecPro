@@ -12,7 +12,7 @@ const guides = [
     { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
     { slug: "fire-alarms", title: "Fire Alarms", imageId: "guide-fire-alarm" },
     { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-garbage-disposal" },
-    { slug: "gfci", title: "GFCI", imageId: "guide-outlet-wiring" },
+    { slug: "gfci", title: "GFCI", imageId: "guide-gfci" },
     { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-hot-water-heater" },
     { slug: "outlets", title: "Outlets", imageId: "guide-outlet-wiring" },
     { slug: "power-tools", title: "Power Tool Handling", imageId: "safety-tools" },
