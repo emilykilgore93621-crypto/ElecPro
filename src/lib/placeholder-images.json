@@ -75,7 +75,7 @@
     {
       "id": "safety-breakers",
       "description": "Overview of circuit breaker safety.",
-      "imageUrl": "https://images.unsplash.com/photo-1668893530232-e11b3650d06a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJyZWFrZXJ8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1668893530232-e11b3650d06a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJyZWFrZXJ8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib-rb-4.1.0&q=80&w=600",
       "imageHint": "circuit breaker"
     },
     {
@@ -129,7 +129,7 @@
     {
       "id": "guide-cooler-motor",
       "description": "An electric motor for an evaporative cooler.",
-      "imageUrl": "https://plus.unsplash.com/premium_photo-1664302654383-a71c15f5d81b?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMG1vdG9yfGVufDB8fDB8fHwxNzYyODg0Mjk3fDA",
+      "imageUrl": "https://storage.googleapis.com/aif-staging-images/e1f2b3c4-d5e6-f7a8-b9c0-d1e2f3a4b5c6.png",
       "imageHint": "electric motor"
     },
     {
