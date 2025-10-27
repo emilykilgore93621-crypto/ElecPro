@@ -601,5 +601,3 @@ export default function CanvasPage() {
   );
 }
 
-
-    

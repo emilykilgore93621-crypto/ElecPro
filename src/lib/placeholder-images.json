@@ -1,160 +1,158 @@
-{
-  "placeholderImages": [
-    {
-      "id": "login-bg",
-      "description": "An electrician's hands working on a complex residential circuit breaker panel.",
-      "imageUrl": "https://images.unsplash.com/photo-1581092916381-7c1ac77a3248?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbGVjdHJpY2FsJTIwcGFuZWx8ZW58MHx8fHwxNzYxNjEyMDIyfDA&ixlib=rb-4.1.0&q=80&w=1200",
-      "imageHint": "electrical panel"
-    },
-    {
-      "id": "calculator-wiring-diagram",
-      "description": "A wiring diagram for a 120V & 208V main panel.",
-      "imageUrl": "https://images.unsplash.com/photo-1761251947512-a293e482919f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYW5lbCUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=1200",
-      "imageHint": "panel wiring"
-    },
-    {
-      "id": "reference-symbols",
-      "description": "A chart showing typical electrical symbols, the devices they represent, and the electrical boxes that could be used with them.",
-      "imageUrl": "https://images.unsplash.com/photo-1716827110125-8618350b5835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxlbGVjdHJpY2FsJTIwc3ltYm9sc3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=1200",
-      "imageHint": "electrical symbols"
-    },
-    {
-      "id": "guide-outlet-wiring",
-      "description": "A wiring diagram showing how to wire a GFCI outlet to protect other standard outlets downstream in the same circuit.",
-      "imageUrl": "https://images.unsplash.com/photo-1738520420641-0d39da26723c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvdXRsZXQlMjB3aXJpbmd8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "outlet wiring"
-    },
-    {
-      "id": "guide-switch",
-      "description": "A combination GFCI outlet and rocker switch on a tiled kitchen backsplash.",
-      "imageUrl": "https://images.unsplash.com/photo-1623707430101-9e74cefe05e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsaWdodCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "light switch"
-    },
-    {
-      "id": "guide-gfci",
-      "description": "A close-up of a GFCI outlet with test and reset buttons.",
-      "imageUrl": "https://images.unsplash.com/photo-1697378985263-7aa13456de69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "GFCI outlet"
-    },
-    {
-      "id": "guide-weather-tight",
-      "description": "A durable, weather-tight outdoor electrical outlet cover.",
-      "imageUrl": "https://images.unsplash.com/photo-1696672436197-60c1a20d5b8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3V0ZG9vciUyMGVsZWN0cmljYWx8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlibrb-4.1.0&q=80&w=600",
-      "imageHint": "outdoor electrical"
-    },
-    {
-      "id": "guide-camera",
-      "description": "A sleek security camera mounted on a modern home exterior.",
-      "imageUrl": "https://images.unsplash.com/photo-1461685265823-f8d5d0b08b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxob21lJTIwc2VjdXJpdHl8ZW58MHx8fHwxNzYxNDcwNDQ0fDA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "home security"
-    },
-    {
-      "id": "guide-ranges-and-hoods",
-      "description": "A stainless steel electric range and hood in a residential kitchen.",
-      "imageUrl": "https://images.unsplash.com/photo-1708915965975-2a950db0e215?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2l0Y2hlbiUyMHJhbmdlfGVufDB8fHx8MTc2MTUwMDU1MHww&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "kitchen range"
-    },
-    {
-      "id": "guide-dishwasher",
-      "description": "A modern, integrated dishwasher in a clean kitchen setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1620568400263-6f1cf95b9e30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "kitchen dishwasher"
-    },
-    {
-      "id": "guide-garbage-disposal",
-      "description": "Under-sink view of a garbage disposal installation.",
-      "imageUrl": "https://images.unsplash.com/photo-1759605233915-76406790a491?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzaW5rJTIwcGx1bWJpbmd8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlibrb-4.1.0&q=80&w=600",
-      "imageHint": "sink plumbing"
-    },
-    {
-      "id": "guide-hot-water-heater",
-      "description": "An exploded-view diagram of a hot water heater and its components.",
-      "imageUrl": "https://images.unsplash.com/photo-1714894691666-e8bb020c781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3YXRlciUyMGhlYXRlcnxlbnwwfHx8fDE3NjE0MjI2NzF8MA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "water heater"
-    },
-    {
-      "id": "safety-breakers",
-      "description": "Overview of circuit breaker safety.",
-      "imageUrl": "https://images.unsplash.com/photo-1668893530232-e11b3650d06a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJyZWFrZXJ8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "circuit breaker"
-    },
-    {
-      "id": "safety-wiring",
-      "description": "Best practices for safe wiring.",
-      "imageUrl": "https://images.unsplash.com/photo-1553873002-785d775854c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJpY2FsJTIwd2lyaW5nfGVufDB8fHx8MTc2MTQ1NjU4MXww&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "electrical wiring"
-    },
-    {
-      "id": "safety-tools",
-      "description": "Proper handling of power tools.",
-      "imageUrl": "https://images.unsplash.com/photo-1546827209-a218e99fdbe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3dlciUyMHRvb2xzfGVufDB8fHx8MTc2MTUwMDU1MHww&ixlibrb-4.1.0&q=80&w=600",
-      "imageHint": "power tools"
-    },
-    {
-      "id": "safety-ppe",
-      "description": "Guide to personal protective equipment (PPE).",
-      "imageUrl": "https://images.unsplash.com/photo-1516223834661-f75a4b900f59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "safety gear"
-    },
-    {
-      "id": "guide-usb-outlet",
-      "description": "A modern wall outlet with integrated USB charging ports.",
-      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "USB outlet"
-    },
-    {
-      "id": "guide-ceiling-fan",
-      "description": "A stylish ceiling fan with a light installed in a living room.",
-      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "ceiling fan"
-    },
-    {
-      "id": "guide-smart-switch",
-      "description": "A hand interacting with a modern smart switch on a wall.",
-      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "smart switch"
-    },
-    {
-      "id": "inspection-inspector",
-      "description": "An electrician inspecting a circuit breaker panel.",
-      "imageUrl": "https://images.unsplash.com/photo-1467733238130-bb6846885316?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2lhbiUyMGluc3BlY3Rpb258ZW58MHx8fHwxNzYxNTAwNTUxfDA&ixlibrb-4.1.0&q=80&w=1200",
-      "imageHint": "electrician inspection"
-    },
-    {
-      "id": "guide-rv-wiring",
-      "description": "A wiring diagram for an RV/trailer electrical system.",
-      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSViUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "RV wiring"
-    },
-    {
-      "id": "guide-cooler-motor",
-      "description": "An electric motor for an evaporative cooler.",
-      "imageUrl": "https://images.unsplash.com/photo-1619478950333-8a39527a2b2e?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMG1vdG9yfGVufDB8fHx8MTc2MTYxMjAyMnww",
-      "imageHint": "electric motor"
-    },
-    {
-      "id": "guide-well-pump",
-      "description": "A close up of a well pump pressure switch and pressure gauge.",
-      "imageUrl": "https://images.unsplash.com/photo-1621245233958-372cf49d5a8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWxsJTIwcHVtcHxlbnwwfHx8fDE3NjE2MTIwMjJ8MA&ixlib=rb-4.1.0&q=80&w=1200",
-      "imageHint": "well pump"
-    },
-    {
-      "id": "guide-fire-alarm",
-      "description": "A modern smoke and carbon monoxide detector mounted on a ceiling.",
-      "imageUrl": "https://images.unsplash.com/photo-1617865293154-2098d1a1827a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzbW9rZSUyMGRldGVjdG9yfGVufDB8fHx8MTc2MTYxMjAyMnww&ixlib=rb-4.1.0&q=80&w=1200",
-      "imageHint": "smoke detector"
-    },
-    {
-      "id": "guide-transfer-switch",
-      "description": "A generator transfer switch connected to a residential electrical panel.",
-      "imageUrl": "https://images.unsplash.com/photo-1762143899238-903747443831?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzc5fDB8MHxwaG90by1ufDB8fHx8fDE3NjE3NzM0MTR8MQ&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "transfer switch"
-    },
-    {
-      "id": "guide-lighting",
-      "description": "A person installing a modern LED light fixture on a ceiling.",
-      "imageUrl": "https://images.unsplash.com/photo-1594931982637-f12735794639?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxpbnN0YWxsaW5nJTIwbGlnaHR8ZW58MHx8fHwxNzYxNzc4MDgyfDA&ixlib=rb-4.1.0&q=80&w=600",
-      "imageHint": "installing light"
-    }
-  ]
-}
+[
+  {
+    "id": "login-bg",
+    "description": "A close-up of a well pump pressure switch, showing the gauge and electrical contacts.",
+    "imageUrl": "https://images.unsplash.com/photo-1621245233958-372cf49d5a8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWxsJTIwcHVtcHxlbnwwfHx8fDE3NjE2MTIwMjJ8MA&ixlib=rb-4.1.0&q=80&w=1200",
+    "imageHint": "well pump"
+  },
+  {
+    "id": "calculator-wiring-diagram",
+    "description": "A wiring diagram for a 120V & 208V main panel.",
+    "imageUrl": "https://images.unsplash.com/photo-1761251947512-a293e482919f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYW5lbCUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=1200",
+    "imageHint": "panel wiring"
+  },
+  {
+    "id": "reference-symbols",
+    "description": "A chart showing typical electrical symbols, the devices they represent, and the electrical boxes that could be used with them.",
+    "imageUrl": "https://images.unsplash.com/photo-1716827110125-8618350b5835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxlbGVjdHJpY2FsJTIwc3ltYm9sc3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=1200",
+    "imageHint": "electrical symbols"
+  },
+  {
+    "id": "guide-outlet-wiring",
+    "description": "A wiring diagram showing how to wire a GFCI outlet to protect other standard outlets downstream in the same circuit.",
+    "imageUrl": "https://images.unsplash.com/photo-1738520420641-0d39da26723c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvdXRsZXQlMjB3aXJpbmd8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "outlet wiring"
+  },
+  {
+    "id": "guide-switch",
+    "description": "A combination GFCI outlet and rocker switch on a tiled kitchen backsplash.",
+    "imageUrl": "https://images.unsplash.com/photo-1623707430101-9e74cefe05e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsaWdodCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "light switch"
+  },
+  {
+    "id": "guide-gfci",
+    "description": "A close-up of a GFCI outlet with test and reset buttons.",
+    "imageUrl": "https://images.unsplash.com/photo-1697378985263-7aa13456de69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxHRkNJJTIwb3V0bGV0fGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "GFCI outlet"
+  },
+  {
+    "id": "guide-weather-tight",
+    "description": "A durable, weather-tight outdoor electrical outlet cover.",
+    "imageUrl": "https://images.unsplash.com/photo-1696672436197-60c1a20d5b8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b3V0ZG9vciUyMGVsZWN0cmljYWx8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlib-rb-4.1.0&q=80&w=600",
+    "imageHint": "outdoor electrical"
+  },
+  {
+    "id": "guide-camera",
+    "description": "A sleek security camera mounted on a modern home exterior.",
+    "imageUrl": "https://images.unsplash.com/photo-1461685265823-f8d5d0b08b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxob21lJTIwc2VjdXJpdHl8ZW58MHx8fHwxNzYxNDcwNDQ0fDA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "home security"
+  },
+  {
+    "id": "guide-ranges-and-hoods",
+    "description": "A stainless steel electric range and hood in a residential kitchen.",
+    "imageUrl": "https://images.unsplash.com/photo-1708915965975-2a950db0e215?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2l0Y2hlbiUyMHJhbmdlfGVufDB8fHx8MTc2MTUwMDU1MHww&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "kitchen range"
+  },
+  {
+    "id": "guide-dishwasher",
+    "description": "A modern, integrated dishwasher in a clean kitchen setting.",
+    "imageUrl": "https://images.unsplash.com/photo-1620568400263-6f1cf95b9e30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxraXRjaGVuJTIwZGlzaHdhc2hlcnxlbnwwfHx8fDE3NjE0Mzg3NTF8MA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "kitchen dishwasher"
+  },
+  {
+    "id": "guide-garbage-disposal",
+    "description": "Under-sink view of a garbage disposal installation.",
+    "imageUrl": "https://images.unsplash.com/photo-1759605233915-76406790a491?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzaW5rJTIwcGx1bWJpbmd8ZW58MHx8fHwxNzYxNTAwNTUwfDA&ixlib-rb-4.1.0&q=80&w=600",
+    "imageHint": "sink plumbing"
+  },
+  {
+    "id": "guide-hot-water-heater",
+    "description": "An exploded-view diagram of a hot water heater and its components.",
+    "imageUrl": "https://images.unsplash.com/photo-1714894691666-e8bb020c781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3YXRlciUyMGhlYXRlcnxlbnwwfHx8fDE3NjE0MjI2NzF8MA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "water heater"
+  },
+  {
+    "id": "safety-breakers",
+    "description": "Overview of circuit breaker safety.",
+    "imageUrl": "https://images.unsplash.com/photo-1668893530232-e11b3650d06a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJyZWFrZXJ8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "circuit breaker"
+  },
+  {
+    "id": "safety-wiring",
+    "description": "Best practices for safe wiring.",
+    "imageUrl": "https://images.unsplash.com/photo-1553873002-785d775854c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbGVjdHJpY2FsJTIwd2lyaW5nfGVufDB8fHx8MTc2MTQ1NjU4MXww&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "electrical wiring"
+  },
+  {
+    "id": "safety-tools",
+    "description": "Proper handling of power tools.",
+    "imageUrl": "https://images.unsplash.com/photo-1546827209-a218e99fdbe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3dlciUyMHRvb2xzfGVufDB8fHx8MTc2MTUwMDU1MHww&ixlib-rb-4.1.0&q=80&w=600",
+    "imageHint": "power tools"
+  },
+  {
+    "id": "safety-ppe",
+    "description": "Guide to personal protective equipment (PPE).",
+    "imageUrl": "https://images.unsplash.com/photo-1516223834661-f75a4b900f59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "safety gear"
+  },
+  {
+    "id": "guide-usb-outlet",
+    "description": "A modern wall outlet with integrated USB charging ports.",
+    "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "USB outlet"
+  },
+  {
+    "id": "guide-ceiling-fan",
+    "description": "A stylish ceiling fan with a light installed in a living room.",
+    "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib-rb-4.1.0&q=80&w=600",
+    "imageHint": "ceiling fan"
+  },
+  {
+    "id": "guide-smart-switch",
+    "description": "A hand interacting with a modern smart switch on a wall.",
+    "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib-rb-4.1.0&q=80&w=600",
+    "imageHint": "smart switch"
+  },
+  {
+    "id": "inspection-inspector",
+    "description": "An electrician inspecting a circuit breaker panel.",
+    "imageUrl": "https://images.unsplash.com/photo-1467733238130-bb6846885316?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2lhbiUyMGluc3BlY3Rpb258ZW58MHx8fHwxNzYxNTAwNTUxfDA&ixlib-rb-4.1.0&q=80&w=1200",
+    "imageHint": "electrician inspection"
+  },
+  {
+    "id": "guide-rv-wiring",
+    "description": "A wiring diagram for an RV/trailer electrical system.",
+    "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSViUyMHdpcmluZ3xlbnwwfHx8fDE3NjE1MDA1NTB8MA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "RV wiring"
+  },
+  {
+    "id": "guide-cooler-motor",
+    "description": "An electric motor for an evaporative cooler.",
+    "imageUrl": "https://images.unsplash.com/photo-1619478950333-8a39527a2b2e?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMG1vdG9yfGVufDB8fHx8MTc2MTYxMjAyMnww",
+    "imageHint": "electric motor"
+  },
+  {
+    "id": "guide-well-pump",
+    "description": "A close up of a well pump pressure switch and pressure gauge.",
+    "imageUrl": "https://images.unsplash.com/photo-1621245233958-372cf49d5a8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWxsJTIwcHVtcHxlbnwwfHx8fDE3NjE2MTIwMjJ8MA&ixlib=rb-4.1.0&q=80&w=1200",
+    "imageHint": "well pump"
+  },
+  {
+    "id": "guide-fire-alarm",
+    "description": "A modern smoke and carbon monoxide detector mounted on a ceiling.",
+    "imageUrl": "https://plus.unsplash.com/premium_photo-1678838321431-8f43c3931b26?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZSUyMGRldGVjdG9yfGVufDB8fHx8MTc2MTgxNjQ5NXww",
+    "imageHint": "smoke detector"
+  },
+  {
+    "id": "guide-transfer-switch",
+    "description": "A generator transfer switch connected to a residential electrical panel.",
+    "imageUrl": "https://images.unsplash.com/photo-1762143899238-903747443831?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzc5fDB8MHxwaG90by1ufDB8fHx8fDE3NjE3NzM0MTR8MQ&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "transfer switch"
+  },
+  {
+    "id": "guide-lighting",
+    "description": "A person installing a modern LED light fixture on a ceiling.",
+    "imageUrl": "https://images.unsplash.com/photo-1594931982637-f12735794639?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxpbnN0YWxsaW5nJTIwbGlnaHR8ZW58MHx8fHwxNzYxNzc4MDgyfDA&ixlib=rb-4.1.0&q=80&w=600",
+    "imageHint": "installing light"
+  }
+]
