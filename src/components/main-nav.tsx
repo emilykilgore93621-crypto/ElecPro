@@ -14,6 +14,7 @@ import {
   Cog,
   Droplet,
   Siren,
+  Camera,
 } from "lucide-react"
 
 import {
@@ -30,6 +31,7 @@ const navItems = [
   { href: "/dashboard/canvas", icon: PenSquare, label: "Interactive Canvas" },
   { href: "/dashboard/well-controls", icon: Droplet, label: "Well Controls" },
   { href: "/dashboard/fire-alarms", icon: Siren, label: "Fire Alarms" },
+  { href: "/dashboard/image-studio", icon: Camera, label: "Image Studio" },
   { href: "/dashboard/safety", icon: ShieldCheck, label: "Safety Overview" },
   { href: "/dashboard/inspection", icon: ClipboardCheck, label: "Inspection Tips" },
   { href: "/dashboard/settings", icon: Cog, label: "Settings" },
