@@ -368,5 +368,25 @@ export const guideData: { [key: string]: GuideContent } = {
         proTips: ["Use dual-sensor (photoelectric and ionization) alarms for the best protection.", "Replace all alarms every 7-10 years, or as recommended by the manufacturer."],
         safetyNotes: "Interconnected, hardwired alarms provide the best protection for your home. Always follow NFPA 72 guidelines for placement.",
         detailsPage: "/dashboard/fire-alarms"
+    },
+    "generator-transfer-switch": {
+        title: "Generator Transfer Switch",
+        steps: [
+            "Turn off the main circuit breaker to shut down all power to the house.",
+            "Identify the critical circuits you want to power with the generator (e.g., refrigerator, well pump, some lights).",
+            "Install the transfer switch panel next to your main electrical panel.",
+            "Move the selected circuit wires from the main panel's breakers to the new breakers in the transfer switch.",
+            "Connect the wires from the transfer switch breakers back to the original breakers in the main panel.",
+            "Install the power inlet box on an exterior wall and run the heavy-gauge conduit to the transfer switch.",
+            "Wire the inlet box to the transfer switch.",
+            "Label everything clearly. Restore main power and test the system by following the transfer switch's operating instructions."
+        ],
+        materials: ["Manual Transfer Switch Kit", "Power Inlet Box", "Conduit and fittings", "Wire connectors", "Screwdrivers", "Drill"],
+        proTips: [
+            "Choose a transfer switch with enough circuits for your needs and a wattage rating that matches your generator.",
+            "A 6-circuit switch is common for essential loads.",
+            "Interlock kits are a cheaper alternative but may not be legal in all areas. A transfer switch is the safest method."
+        ],
+        safetyNotes: "This is an advanced project. Incorrectly wiring a generator can be lethal to you and utility workers. It can also cause fires. Back-feeding your panel without a proper transfer switch is illegal and extremely dangerous. If you have any doubts, hire a licensed electrician."
     }
 };

@@ -1,3 +1,2 @@
-export const devDependencies = {
-    "@types/jspdf": "^2.0.0",
-};
+
+export const devDependencies = {};
