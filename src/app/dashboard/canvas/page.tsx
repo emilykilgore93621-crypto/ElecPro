@@ -40,7 +40,7 @@ import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEv
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useFirebase } from "@/firebase";
-import { collection } from "firebase/firestore";
+import { collection, serverTimestamp } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
@@ -160,7 +160,7 @@ export default function CanvasPage() {
         const canvasData = {
             elements: serializableElements,
             wires: wires,
-            createdAt: new Date(),
+            createdAt: serverTimestamp(),
             userId: user.uid,
         };
 
