@@ -110,19 +110,35 @@ type Wire = {
     endElementId: number;
 }
 
-const componentMap: { [key: string]: Omit<CanvasElement, 'id' | 'x' | 'y'> } = {
-    'outlet': { type: 'outlet', icon: ToggleLeft, label: 'Outlet', transform: 'rotate(90deg)' },
-    'usb-outlet': { type: 'usb-outlet', icon: Usb, label: 'USB Outlet' },
-    'gfci-outlet': { type: 'gfci-outlet', icon: ToggleLeft, label: 'GFCI', transform: 'rotate(90deg)' },
-    'switch': { type: 'switch', icon: ToggleLeft, label: 'Switch' },
-    '3-way-switch': { type: '3-way-switch', icon: Waypoints, label: '3-Way Sw' },
-    '4-way-switch': { type: '4-way-switch', icon: Waypoints, label: '4-Way Sw' },
-    'light': { type: 'light', icon: Lightbulb, label: 'Light' },
-    'ceiling-fan': { type: 'ceiling-fan', icon: Wind, label: 'Ceiling Fan' },
-    'smart-switch': { type: 'smart-switch', icon: ToggleLeft, label: 'Smart Sw' },
-    'junction-box': { type: 'junction-box', icon: Box, label: 'J-Box' },
-    'label': {type: 'label', icon: Type, label: 'Label'},
+const componentMap: { [key: string]: {type: string, label: string, transform?: string } } = {
+    'outlet': { type: 'outlet', label: 'Outlet', transform: 'rotate(90deg)' },
+    'usb-outlet': { type: 'usb-outlet', label: 'USB Outlet' },
+    'gfci-outlet': { type: 'gfci-outlet', label: 'GFCI', transform: 'rotate(90deg)' },
+    'switch': { type: 'switch', label: 'Switch' },
+    '3-way-switch': { type: '3-way-switch', label: '3-Way Sw' },
+    '4-way-switch': { type: '4-way-switch', label: '4-Way Sw' },
+    'light': { type: 'light', label: 'Light' },
+    'ceiling-fan': { type: 'ceiling-fan', label: 'Ceiling Fan' },
+    'smart-switch': { type: 'smart-switch', label: 'Smart Sw' },
+    'junction-box': { type: 'junction-box', label: 'J-Box' },
+    'label': {type: 'label', label: 'Label'},
 };
+
+
+const componentIconMap: { [key: string]: React.ElementType } = {
+    'outlet': ToggleLeft,
+    'usb-outlet': Usb,
+    'gfci-outlet': ToggleLeft,
+    'switch': ToggleLeft,
+    '3-way-switch': Waypoints,
+    '4-way-switch': Waypoints,
+    'light': Lightbulb,
+    'ceiling-fan': Wind,
+    'smart-switch': ToggleLeft,
+    'junction-box': Box,
+    'label': Type
+};
+
 
 
 export default function CanvasPage() {
@@ -155,7 +171,7 @@ export default function CanvasPage() {
             return;
         }
 
-        const serializableElements: SerializableCanvasElement[] = elements.map(({ icon, ...rest }) => rest);
+        const serializableElements: SerializableCanvasElement[] = elements.map(({ ...rest }) => rest);
 
         const canvasData = {
             elements: serializableElements,
@@ -329,7 +345,6 @@ export default function CanvasPage() {
 
       return {
           ...elData,
-          icon: component.icon,
           transform: component.transform,
       };
     };
@@ -499,8 +514,8 @@ export default function CanvasPage() {
                     </svg>
 
                     {elements.map(el => {
+                        const Icon = componentIconMap[el.type];
                         const componentDetails = componentMap[el.type];
-                        const Icon = componentDetails?.icon;
                         const isWiringStart = wiringStartElement?.id === el.id;
                         const isLabel = el.type === 'label';
                         
@@ -585,5 +600,6 @@ export default function CanvasPage() {
     </div>
   );
 }
+
 
     
