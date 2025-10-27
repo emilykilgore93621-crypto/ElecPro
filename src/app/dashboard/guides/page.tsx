@@ -11,6 +11,7 @@ const guideCategories = [
         guides: [
             { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
             { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
+            { slug: "lighting-fixtures", title: "Lighting Fixtures", imageId: "guide-lighting" },
             { slug: "outlets", title: "Outlets", imageId: "guide-outlet-wiring" },
             { slug: "gfci", title: "GFCI Outlets", imageId: "guide-gfci" },
             { slug: "switches", title: "Switches", imageId: "guide-switch" },

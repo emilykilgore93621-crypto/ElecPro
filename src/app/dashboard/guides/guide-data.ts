@@ -388,5 +388,23 @@ export const guideData: { [key: string]: GuideContent } = {
             "Interlock kits are a cheaper alternative but may not be legal in all areas. A transfer switch is the safest method."
         ],
         safetyNotes: "This is an advanced project. Incorrectly wiring a generator can be lethal to you and utility workers. It can also cause fires. Back-feeding your panel without a proper transfer switch is illegal and extremely dangerous. If you have any doubts, hire a licensed electrician."
+    },
+    "lighting-fixtures": {
+        title: "Lighting Fixtures",
+        steps: [
+            "Turn off power at the circuit breaker and verify with a voltage tester.",
+            "Carefully remove the old fixture. This may involve unscrewing a canopy or cover.",
+            "Take a picture of the wiring before disconnecting the hot, neutral, and ground wires.",
+            "Install the mounting bracket for the new fixture to the electrical box in the ceiling.",
+            "Connect the wires for the new fixture: black to black (hot), white to white (neutral), and ground to the green screw or ground wire.",
+            "Secure the new fixture to the mounting bracket.",
+            "Install light bulbs, attach any globes or shades, and restore power."
+        ],
+        materials: ["New lighting fixture", "Screwdriver", "Voltage tester", "Ladder", "Wire nuts"],
+        proTips: [
+            "If the new fixture is significantly heavier than the old one, ensure your electrical box is securely mounted to a ceiling joist.",
+            "Have a helper hold the fixture while you connect the wires.",
+            "For chandeliers on high ceilings, consider renting scaffolding for a safer installation."
+        ]
     }
 };

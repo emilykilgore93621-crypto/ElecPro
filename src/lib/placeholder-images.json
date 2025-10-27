@@ -75,7 +75,7 @@
     {
       "id": "safety-breakers",
       "description": "Overview of circuit breaker safety.",
-      "imageUrl": "https://images.unsplash.com/photo-1668893530232-e11b3650d06a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJyZWFrZXJ8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1668893530232-e11b3650d06a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJyZWFrZXJ8ZW58MHx8fHwxNzYxNDM4NzUxfDA&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "circuit breaker"
     },
     {
@@ -93,13 +93,13 @@
     {
       "id": "safety-ppe",
       "description": "Guide to personal protective equipment (PPE).",
-      "imageUrl": "https://images.unsplash.com/photo-1516223834661-f75a4b900f59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1516223834661-f75a4b900f59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzYWZldHklMjBnZWFyfGVufDB8fHx8MTc2MTQzODc1MXww&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "safety gear"
     },
     {
       "id": "guide-usb-outlet",
       "description": "A modern wall outlet with integrated USB charging ports.",
-      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1652638004066-60896a79c862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxVU0IlMjBvdXRsZXR8ZW58MHx8fHwxNzYxNDQzNzI4fDA&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "USB outlet"
     },
     {
@@ -111,7 +111,7 @@
     {
       "id": "guide-smart-switch",
       "description": "A hand interacting with a modern smart switch on a wall.",
-      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib-rb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1680059439324-d373d9e9e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydCUyMHN3aXRjaHxlbnwwfHx8fDE3NjE0NDM3Mjh8MA&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "smart switch"
     },
     {
@@ -149,6 +149,12 @@
       "description": "A generator transfer switch connected to a residential electrical panel.",
       "imageUrl": "https://images.unsplash.com/photo-1762143899238-903747443831?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzc5fDB8MHxwaG90by1ufDB8fHx8fDE3NjE3NzM0MTR8MQ&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "transfer switch"
+    },
+    {
+      "id": "guide-lighting",
+      "description": "A person installing a modern LED light fixture on a ceiling.",
+      "imageUrl": "https://images.unsplash.com/photo-1594931982637-f12735794639?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxpbnN0YWxsaW5nJTIwbGlnaHR8ZW58MHx8fHwxNzYxNzc4MDgyfDA&ixlib=rb-4.1.0&q=80&w=600",
+      "imageHint": "installing light"
     }
   ]
 }
