@@ -184,7 +184,141 @@ export const guideData: { [key: string]: GuideContent } = {
             "Understand the difference between your converter (charges batteries when on shore power) and your inverter (creates AC power from your batteries when off-grid)."
         ],
         safetyNotes: "RV electrical systems involve both 120V AC and 12V DC. Both can be dangerous. Never work on the system with shore power connected or the batteries engaged unless you are a qualified technician. Reverse polarity at a pedestal can cause serious damage."
+    },
+    "cameras": {
+        title: "Security Camera",
+        steps: [
+            "Plan camera locations for optimal coverage and access to power.",
+            "For wired cameras, run the power and video (Ethernet/PoE) cables from your central hub (DVR/NVR) to the camera locations.",
+            "Mount the camera bracket securely to the wall or eave.",
+            "Connect the cables to the camera.",
+            "Attach the camera to the bracket and adjust the viewing angle.",
+            "For wireless cameras, ensure a strong Wi-Fi signal at the mounting location and connect the power adapter.",
+            "Complete the setup process using the manufacturer's mobile app or software."
+        ],
+        materials: ["Security camera kit (cameras, cables, DVR/NVR)", "Drill", "Screwdriver", "Ladder", "Fish tape (for running wires)"],
+        proTips: [
+            "Install cameras high enough to be out of easy reach but low enough for clear facial recognition.",
+            "Hide wires in conduit or within walls for a clean and secure installation.",
+            "Consider using cameras with PoE (Power over Ethernet) to run both power and data through a single cable."
+        ]
+    },
+    "garbage-disposal": {
+        title: "Garbage Disposal",
+        steps: [
+            "Turn off power at the breaker. Place a bucket under the sink.",
+            "Disconnect the dishwasher drain hose from the disposal, if applicable.",
+            "Disconnect the disposal from the sink flange, usually with a twist-lock mechanism.",
+            "Unwire the disposal from the power source in its junction box.",
+            "Install the new sink flange and mounting assembly.",
+            "Wire the new disposal, connecting the power cord or house wiring.",
+            "Lift the new disposal into place and lock it onto the mounting ring.",
+            "Reconnect the P-trap and dishwasher drain line. If it's a new installation, knock out the dishwasher plug on the disposal.",
+            "Restore power, run water, and check for leaks and proper operation."
+        ],
+        materials: ["Garbage disposal", "Plumber's putty", "Screwdriver", "Pliers", "Hammer"],
+        proTips: [
+            "If replacing an old unit, the process is much easier. The new unit will often fit the existing sink flange and wiring.",
+            "Use a car jack or a stack of books to help lift and hold the heavy disposal in place while you secure it."
+        ],
+        safetyNotes: "Never put your hands inside the disposal. Use tongs to retrieve foreign objects. Always ensure power is off before working."
+    },
+    "ranges-and-hoods": {
+        title: "Range & Hood",
+        steps: [
+            "Turn off power to both the range and hood at the breaker. Ranges are typically 240V.",
+            "For the Hood: Disconnect wiring, unmount the old hood, and mount the new one. Connect matching wires (hot, neutral, ground) and secure.",
+            "For the Range: Unplug the old range. The new range will have a specific plug type (3-prong or 4-prong). Ensure it matches your outlet. If not, you may need to replace the range cord.",
+            "Slide the new range into place, plug it in, and turn on the power.",
+            "Ensure the anti-tip bracket is properly installed."
+        ],
+        materials: ["Range Hood", "Electric Range", "Screwdriver", "Voltage tester", "4-prong range cord (if needed)"],
+        proTips: [
+            "Ensure your cabinet height and width will accommodate the new hood.",
+            "A 4-wire circuit (with a separate neutral and ground) is the modern standard for ranges and is safer."
+        ],
+        safetyNotes: "240V circuits are dangerous. Never attempt to change the outlet yourself unless you are qualified. Always use an anti-tip bracket for the range to prevent accidents."
+    },
+    "weather-tight": {
+        title: "Weather-Tight Outlet",
+        steps: [
+            "Turn off power at the circuit breaker.",
+            "Remove the old outdoor outlet and cover.",
+            "Inspect the electrical box for damage from moisture.",
+            "Connect the new weather-resistant (WR) GFCI outlet, ensuring you connect to the LINE terminals.",
+            "Place the foam gasket that comes with the new cover over the outlet.",
+            "Screw the new 'in-use' or 'bubble' cover baseplate to the outlet.",
+            "Attach the cover itself. Restore power and test the GFCI."
+        ],
+        materials: ["Weather-Resistant (WR) GFCI Outlet", "In-use 'bubble' cover", "Screwdriver", "Voltage Tester"],
+        proTips: [
+            "Use 'in-use' covers that are deep enough to keep plugs connected and protected from rain.",
+            "Ensure all outdoor outlets are GFCI protected for safety."
+        ],
+        safetyNotes: "Water and electricity are a deadly combination. Ensure the cover is rated for wet locations and seals properly."
+    },
+    "circuit-breakers": {
+        title: "Circuit Breaker Safety",
+        steps: [
+            "Understanding Your Panel: The main breaker (usually at the top) shuts off all power. Individual breakers control separate circuits.",
+            "Tripping: A breaker trips to protect the circuit from overload or a short. It will move to the middle or 'OFF' position.",
+            "Resetting a Tripped Breaker: To reset, push the breaker handle firmly to the 'OFF' position first, then back to 'ON'.",
+            "Identifying Overloads: If a breaker trips immediately after resetting, you likely have too many devices on that circuit. Unplug some and try again.",
+            "Identifying a Short Circuit: If it trips immediately with nothing plugged in, or makes a sparking sound, you may have a dangerous short circuit. Do not reset it again and call an electrician."
+        ],
+        materials: ["Flashlight", "Basic knowledge of your home's layout"],
+        proTips: [
+            "Label your breaker panel clearly and accurately. This is crucial in an emergency.",
+            "Test GFCI and AFCI breakers monthly using their 'TEST' buttons."
+        ],
+        safetyNotes: "Never touch the metal bus bars inside a panel. Never force a breaker to stay on. If a breaker feels hot, smells like burning, or trips repeatedly, contact a qualified electrician immediately."
+    },
+    "safe-wiring": {
+        title: "Safe Wiring Practices",
+        steps: [
+            "Wire Gauge: Always use the correct wire gauge for the amperage of the circuit (e.g., 14-gauge for 15A, 12-gauge for 20A).",
+            "Connections: All connections must be made inside an approved, accessible electrical box. Wires should be joined with wire nuts or other approved connectors.",
+            "Securing Cable: Romex (NM-B) cable must be stapled to studs within 12 inches of a box and every 4.5 feet thereafter.",
+            "Protection: Use nail plates to protect wires from being pierced by drywall screws or nails where they pass through studs.",
+            "Box Fill: Do not over-stuff electrical boxes. Use the Box Fill Calculator to ensure you have adequate space."
+        ],
+        materials: ["Properly gauged wire (e.g., Romex NM-B)", "Wire staples", "Nail plates", "Electrical boxes", "Wire nuts"],
+        proTips: [
+            "Leave at least 6-8 inches of extra wire inside the box to make connections easier.",
+            "When stripping wire, be careful not to nick the copper, which can create a weak spot."
+        ],
+        safetyNotes: "Exposed wiring, splices outside of boxes, and overloaded circuits are serious fire hazards. Always follow NEC guidelines."
+    },
+    "power-tools": {
+        title: "Power Tool Handling",
+        steps: [
+            "Inspect Tools: Before each use, check the tool, cord, and plug for any damage. Do not use damaged tools.",
+            "Use the Right Tool: Don't force a tool to do a job it wasn't designed for.",
+            "Keep Guards in Place: Never remove safety guards from tools like saws or grinders.",
+            "GFCI Protection: When working outdoors or in wet locations, plug your corded tools into a GFCI-protected outlet.",
+            "Disconnect When Not in Use: Unplug tools when changing bits/blades or when you are finished."
+        ],
+        materials: ["The power tool itself", "Appropriate safety gear (PPE)"],
+        proTips: [
+            "Keep your work area clean and well-lit to prevent accidents.",
+            "Use a heavy-gauge extension cord that is rated for the amperage of your tool to avoid voltage drop and overheating."
+        ],
+        safetyNotes: "Treat every tool as if it is loaded. Keep fingers away from triggers and moving parts. Be aware of your surroundings and other people."
+    },
+    "ppe": {
+        title: "Personal Protective Equipment (PPE)",
+        steps: [
+            "Eye Protection: Always wear safety glasses or goggles when cutting, drilling, or doing any work that could create flying debris.",
+            "Hand Protection: Wear insulated gloves when working with potentially live circuits. Use leather or cut-resistant gloves when handling sharp materials.",
+            "Hearing Protection: Use earplugs or earmuffs when operating loud tools like circular saws or hammer drills for an extended period.",
+            "Footwear: Wear sturdy, closed-toe shoes, preferably with a non-slip sole. Steel-toed boots are recommended for heavy work.",
+            "Head Protection: A hard hat is necessary on construction sites or when working underneath others."
+        ],
+        materials: ["Safety glasses", "Insulated/work gloves", "Hearing protection", "Sturdy boots"],
+        proTips: [
+            "Your PPE is only effective if you wear it. Make it a habit.",
+            "Keep your PPE clean and in good condition. Replace it if it becomes damaged."
+        ],
+        safetyNotes: "There is no substitute for safety. Turning off the power is the most important piece of 'PPE'. All other equipment is a secondary line of defense."
     }
 };
-
-    

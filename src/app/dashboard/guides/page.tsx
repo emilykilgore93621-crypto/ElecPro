@@ -7,13 +7,17 @@ import Image from "next/image";
 const guides = [
     { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
     { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
+    { slug: "circuit-breakers", title: "Circuit Breaker Safety", imageId: "safety-breakers" },
     { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
     { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-garbage-disposal" },
     { slug: "gfci", title: "GFCI", imageId: "guide-outlet-wiring" },
     { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-hot-water-heater" },
     { slug: "outlets", title: "Outlets", imageId: "guide-outlet-wiring" },
+    { slug: "power-tools", title: "Power Tool Handling", imageId: "safety-tools" },
+    { slug: "ppe", title: "Personal Protective Equipment", imageId: "safety-ppe" },
     { slug: "ranges-and-hoods", title: "Ranges and Hoods", imageId: "guide-ranges-and-hoods" },
     { slug: "rv-wiring", title: "RV / Trailer Wiring", imageId: "guide-rv-wiring" },
+    { slug: "safe-wiring", title: "Safe Wiring Practices", imageId: "safety-wiring" },
     { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
     { slug: "switches", title: "Switches", imageId: "guide-switch" },
     { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
@@ -24,7 +28,7 @@ export default function GuidesPage() {
     return (
         <>
             <div className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl font-headline">Installation Guides</h1>
+                <h1 className="text-lg font-semibold md:text-2xl font-headline">Installation & Safety Guides</h1>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {guides.map((guide) => {
@@ -53,5 +57,3 @@ export default function GuidesPage() {
         </>
     );
 }
-
-    
