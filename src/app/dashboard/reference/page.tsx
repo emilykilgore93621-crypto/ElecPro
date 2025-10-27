@@ -73,7 +73,7 @@ export default function ReferencePage() {
               </CardHeader>
               <CardContent className="flex flex-col space-y-2">
                   <Link href="https://www.nfpa.org/nec" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">NEC (NFPA 70)</Link>
-                  <Link href="https://www.pge.com/en/building-and-renovation/greenbook-manuals-and-guides.html" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">PGE Green Book</Link>
+                  <Link href="https://www.pge.com/en/search-results.html?fulltext=RWxlY3RyaWNhbCBpbnNwZWN0aW9uIHJlc2lkZW50aWFs" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">PGE Green Book</Link>
                   <Link href="https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">NFPA Codes & Standards</Link>
               </CardContent>
             </Card>
