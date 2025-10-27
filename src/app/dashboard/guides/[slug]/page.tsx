@@ -1,10 +1,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { placeHolderImages } from "@/lib/placeholder-images";
-import { CheckCircle2, AlertTriangle, Lightbulb } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { guideData } from "../guide-data";
+import { Button } from "@/components/ui/button";
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
@@ -72,6 +73,13 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                                    <ol className="list-decimal list-inside space-y-3">
                                        {guide.steps.map((step, index) => <li key={index}><LinkRenderer text={step} /></li>)}
                                    </ol>
+                                    {guide.detailsPage && (
+                                        <Button asChild className="mt-4">
+                                            <Link href={guide.detailsPage}>
+                                                View Full Details <ArrowRight className="ml-2 h-4 w-4" />
+                                            </Link>
+                                        </Button>
+                                    )}
                                 </CardContent>
                             </Card>
                              <Card>

@@ -5,6 +5,7 @@ export type GuideContent = {
     materials: string[];
     proTips?: string[];
     safetyNotes?: string;
+    detailsPage?: string;
 };
 
 export const guideData: { [key: string]: GuideContent } = {
@@ -346,21 +347,26 @@ export const guideData: { [key: string]: GuideContent } = {
     "well-pump": {
         title: "Water Well Pump",
         steps: [
-            "Safety First: Turn off the double-pole breaker for the well pump. Confirm power is off with a voltage tester at the pressure switch and control box.",
-            "Identify Components: Locate the pressure switch (usually near the pressure tank), the control box (for 3-wire pumps), and the pump itself (submersible or jet pump).",
-            "Pressure Switch Wiring: Note the two pairs of terminals. One pair receives incoming power from the panel (LINE), the other sends power to the pump/control box (LOAD).",
-            "Control Box Wiring (3-Wire Pumps): The control box contains a start capacitor and relay. Wires are typically color-coded (e.g., Black, Yellow, Red for pump motor, plus incoming power and ground). Follow the diagram inside the cover precisely.",
-            "Jet Pump Wiring (2-Wire Pumps): The motor is wired directly from the pressure switch. The capacitor is built into the motor. Connect LINE from the pressure switch to the motor terminals and connect the ground.",
-            "Troubleshooting: If the pump doesn't start, check for 240V at the pressure switch (LINE side). If present, check for 240V on the LOAD side when the contacts are closed. If power is present at the control box/motor but it doesn't run, suspect the control box, capacitor, or motor itself."
+            "Turn off the double-pole circuit breaker for the well pump.",
+            "Confirm power is off with a voltage tester at the pressure switch and control box.",
+            "This guide provides general troubleshooting. For detailed steps, see the dedicated Well Controls page."
         ],
-        materials: ["Voltage tester (multimeter)", "Screwdrivers", "Pliers", "Wire strippers", "Wire nuts", "Replacement components (pressure switch, capacitor, etc.)"],
-        proTips: [
-            "A humming pump that doesn't run often points to a bad start capacitor in the control box or on the motor.",
-            "If the pressure switch contacts are pitted or burnt, it's time to replace the switch.",
-            "Always re-prime a jet pump after service to avoid damage."
+        materials: ["Voltage tester (multimeter)", "Screwdrivers", "Pliers"],
+        proTips: ["A humming pump that doesn't run often points to a bad start capacitor.", "If the pressure switch contacts are pitted or burnt, it's time to replace it."],
+        safetyNotes: "Well pumps operate on a 240V circuit which is extremely dangerous. Capacitors can store a dangerous electrical charge even when the power is off. If in doubt, call a professional.",
+        detailsPage: "/dashboard/well-controls"
+    },
+    "fire-alarms": {
+        title: "Fire Alarms",
+        steps: [
+            "Turn off power at the circuit breaker.",
+            "Follow manufacturer instructions for installation and placement.",
+            "For hardwired alarms, connect the 3-wire pigtail (hot, neutral, interconnect).",
+            "Test the system by pressing the 'Test' button on one unit to ensure all alarms sound."
         ],
-        safetyNotes: "Well pumps operate on a 240V circuit which is extremely dangerous. Always verify power is off. Capacitors can store a dangerous electrical charge even when the power is off; discharge them safely with an insulated screwdriver before handling."
+        materials: ["Smoke/CO detectors", "Screwdriver", "Wire strippers"],
+        proTips: ["Use dual-sensor (photoelectric and ionization) alarms for the best protection.", "Replace all alarms every 7-10 years, or as recommended by the manufacturer."],
+        safetyNotes: "Interconnected, hardwired alarms provide the best protection for your home. Always follow NFPA 72 guidelines for placement.",
+        detailsPage: "/dashboard/fire-alarms"
     }
 };
-
-    

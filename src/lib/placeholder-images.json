@@ -105,7 +105,7 @@
     {
       "id": "guide-ceiling-fan",
       "description": "A stylish ceiling fan with a light installed in a living room.",
-      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlibrb-4.1.0&q=80&w=600",
+      "imageUrl": "https://images.unsplash.com/photo-1677959098115-1aafeb9313c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWlsaW5nJTIwZmFufGVufDB8fHx8MTc2MTQ0MzcyOHww&ixlib=rb-4.1.0&q=80&w=600",
       "imageHint": "ceiling fan"
     },
     {
@@ -137,6 +137,12 @@
       "description": "A pressure switch and gauge for a water well pump system.",
       "imageUrl": "https://images.unsplash.com/photo-1599214340299-101139a9a36f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXRlciUyMHdlbGwlMjBwdW1wfGVufDB8fDB8fHwxNzYzMTExNjk3fDA",
       "imageHint": "water well"
+    },
+    {
+      "id": "guide-fire-alarm",
+      "description": "A modern smoke and carbon monoxide detector mounted on a ceiling.",
+      "imageUrl": "https://images.unsplash.com/photo-1579450841235-437937397b37?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbW9rZSUyMGRldGVjdG9yfGVufDB8fDB8fHwxNzYzMTM0MjMwfDA",
+      "imageHint": "smoke detector"
     }
   ]
 }

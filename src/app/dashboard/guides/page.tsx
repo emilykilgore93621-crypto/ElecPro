@@ -10,6 +10,7 @@ const guides = [
     { slug: "circuit-breakers", title: "Circuit Breaker Safety", imageId: "safety-breakers" },
     { slug: "cooler-motor", title: "Cooler Motor", imageId: "guide-cooler-motor" },
     { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
+    { slug: "fire-alarms", title: "Fire Alarms", imageId: "guide-fire-alarm" },
     { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-garbage-disposal" },
     { slug: "gfci", title: "GFCI", imageId: "guide-outlet-wiring" },
     { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-hot-water-heater" },
@@ -59,5 +60,3 @@ export default function GuidesPage() {
         </>
     );
 }
-
-    
