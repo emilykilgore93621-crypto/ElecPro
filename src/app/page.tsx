@@ -12,7 +12,6 @@ export default function LoginPage() {
         <div className="mx-auto grid w-[350px] gap-6 bg-card p-8 rounded-lg shadow-lg">
           <div className="grid gap-2 text-center">
             <div className="flex justify-center items-center gap-2 mb-4">
-              <AppLogo className="size-8 text-primary" />
               <h1 className="text-3xl font-bold font-headline">
                 ELECPRO-HUB
               </h1>
