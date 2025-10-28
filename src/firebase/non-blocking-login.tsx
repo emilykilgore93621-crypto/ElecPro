@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   // Assume getAuth and app are initialized elsewhere
 } from 'firebase/auth';
-import { doc, setDoc, getFirestore } from 'firebase/firestore';
+import { doc, setDoc, getFirestore, serverTimestamp } from 'firebase/firestore';
 
 /** Initiate anonymous sign-in (non-blocking). */
 export function initiateAnonymousSignIn(authInstance: Auth): void {
@@ -30,9 +30,10 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
         setDoc(userDocRef, {
           id: user.uid,
           email: user.email,
-          registrationDate: new Date().toISOString(),
+          registrationDate: serverTimestamp(),
           firstName: '',
           lastName: '',
+          subscriptionStatus: 'free',
         }, { merge: true });
       }
     })
@@ -45,4 +46,13 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
 }
 
 /** Initiate email/password sign-in (non-blocking). */
-export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void
+export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void {
+  // CRITICAL: Call signInWithEmailAndPassword directly. Do NOT use 'await signInWithEmailAndPassword(...)'.
+  signInWithEmailAndPassword(authInstance, email, password)
+    .catch(error => {
+        // The onAuthStateChanged listener will handle UI updates for login state,
+        // but you might want to log sign-in-specific errors here if needed.
+        console.error("Error during sign-in:", error);
+    });
+  // Code continues immediately. Auth state change is handled by onAuthStateChanged listener.
+}

@@ -7,9 +7,11 @@ import {
   User,
   LogOut,
   Cog,
+  Crown,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
 
 
 import { Button } from "@/components/ui/button";
@@ -38,7 +40,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppLogo } from "@/components/app-logo";
 import { MainNav } from "@/components/main-nav";
-import { useAuth, useUser } from "@/firebase";
+import { useAuth, useUser, useFirestore } from "@/firebase";
 
 export default function DashboardLayout({
   children,
@@ -47,13 +49,22 @@ export default function DashboardLayout({
 }) {
   const { user, isUserLoading } = useUser();
   const auth = useAuth();
+  const firestore = useFirestore();
   const router = useRouter();
+  const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
       router.replace('/');
+    } else if (user && firestore) {
+      const userDocRef = doc(firestore, "users", user.uid);
+      getDoc(userDocRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          setSubscriptionStatus(docSnap.data().subscriptionStatus);
+        }
+      });
     }
-  }, [user, isUserLoading, router]);
+  }, [user, isUserLoading, router, firestore]);
 
   const handleLogout = () => {
     auth.signOut();
@@ -79,24 +90,25 @@ export default function DashboardLayout({
               </Link>
             </SidebarHeader>
             <div className="flex-1 px-4">
-              <MainNav />
+              <MainNav subscriptionStatus={subscriptionStatus} />
             </div>
-            <SidebarFooter className="p-4">
-              <Card>
-                <CardHeader className="p-2 pt-0 md:p-4">
-                  <CardTitle>Upgrade to Pro</CardTitle>
-                  <CardDescription>
-                    Unlock all features and get unlimited access to our support
-                    team.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-                  <Button size="sm" className="w-full">
-                    Upgrade
-                  </Button>
-                </CardContent>
-              </Card>
-            </SidebarFooter>
+            {subscriptionStatus === 'free' && (
+              <SidebarFooter className="p-4">
+                <Card>
+                  <CardHeader className="p-2 pt-0 md:p-4">
+                    <CardTitle className="flex items-center gap-2"><Crown className="text-primary"/>Upgrade to Pro</CardTitle>
+                    <CardDescription>
+                      Unlock the Interactive Canvas and all features for just $1.99/month.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
+                    <Button size="sm" className="w-full">
+                      Upgrade
+                    </Button>
+                  </CardContent>
+                </Card>
+              </SidebarFooter>
+            )}
           </SidebarContent>
         </Sidebar>
         <div className="flex flex-col">
@@ -121,7 +133,7 @@ export default function DashboardLayout({
                   <SheetTitle className="sr-only">Navigation</SheetTitle>
                 </SheetHeader>
                 <div className="flex-1 px-4 py-4">
-                 <MainNav />
+                 <MainNav subscriptionStatus={subscriptionStatus} />
                 </div>
               </SheetContent>
             </Sheet>

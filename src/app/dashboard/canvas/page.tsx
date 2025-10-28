@@ -2,7 +2,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
     Collapsible,
     CollapsibleContent,
@@ -33,14 +33,16 @@ import {
   Power,
   Usb,
   FileImage,
-  FileText
+  FileText,
+  Lock,
+  Crown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEvent, useMemo } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useFirebase } from "@/firebase";
-import { collection, serverTimestamp } from "firebase/firestore";
+import { collection, serverTimestamp, doc, getDoc } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
@@ -152,6 +154,7 @@ export default function CanvasPage() {
     const editInputRef = useRef<HTMLInputElement>(null);
     const { firestore, user } = useFirebase();
     const { toast } = useToast();
+    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
     
     const gridSize = 20;
     
@@ -160,6 +163,38 @@ export default function CanvasPage() {
             editInputRef.current.focus();
         }
     }, [elements]);
+
+    useEffect(() => {
+      if (user && firestore) {
+        const userDocRef = doc(firestore, "users", user.uid);
+        getDoc(userDocRef).then((docSnap) => {
+          if (docSnap.exists()) {
+            setSubscriptionStatus(docSnap.data().subscriptionStatus);
+          }
+        });
+      }
+    }, [user, firestore]);
+
+    if (subscriptionStatus !== 'pro') {
+      return (
+          <div className="flex flex-col items-center justify-center h-full text-center">
+              <Card className="max-w-md">
+                <CardHeader>
+                    <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Lock className="text-primary size-8"/> Feature Locked</CardTitle>
+                    <CardDescription>
+                        The Interactive Canvas is a Pro feature. Please upgrade your plan to design and save your electrical diagrams.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Button size="lg">
+                        <Crown className="mr-2 h-4 w-4" />
+                        Upgrade to Pro
+                    </Button>
+                </CardContent>
+              </Card>
+          </div>
+      )
+    }
 
     const handleSave = () => {
         if (!firestore || !user) {
@@ -600,4 +635,3 @@ export default function CanvasPage() {
     </div>
   );
 }
-
