@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
@@ -63,6 +63,13 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                                             </Link>
                                         </Button>
                                     )}
+                                    {guide.externalLink && (
+                                        <Button asChild className="mt-4">
+                                            <Link href={guide.externalLink} target="_blank" rel="noopener noreferrer">
+                                                External Resource <ExternalLink className="ml-2 h-4 w-4" />
+                                            </Link>
+                                        </Button>
+                                    )}
                                 </CardContent>
                             </Card>
                              <Card>
@@ -119,3 +126,5 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
         </>
     );
 }
+
+    

@@ -6,6 +6,7 @@ export type GuideContent = {
     proTips?: string[];
     safetyNotes?: string;
     detailsPage?: string;
+    externalLink?: string;
 };
 
 export const guideData: { [key: string]: GuideContent } = {
@@ -184,7 +185,8 @@ export const guideData: { [key: string]: GuideContent } = {
             "Regularly check your battery water levels (for lead-acid batteries) and clean the terminals.",
             "Understand the difference between your converter (charges batteries when on shore power) and your inverter (creates AC power from your batteries when off-grid)."
         ],
-        safetyNotes: "RV electrical systems involve both 120V AC and 12V DC. Both can be dangerous. Never work on the system with shore power connected or the batteries engaged unless you are a qualified technician. Reverse polarity at a pedestal can cause serious damage."
+        safetyNotes: "RV electrical systems involve both 120V AC and 12V DC. Both can be dangerous. Never work on the system with shore power connected or the batteries engaged unless you are a qualified technician. Reverse polarity at a pedestal can cause serious damage.",
+        externalLink: "https://rv-wire-pro-585c9517.base44.app/login?from_url=https://rv-wire-pro-585c9517.base44.app/&app_id=68f2c675fb4b32fe585c9517"
     },
     "cameras": {
         title: "Security Camera",
@@ -408,3 +410,5 @@ export const guideData: { [key: string]: GuideContent } = {
         ]
     }
 };
+
+    
