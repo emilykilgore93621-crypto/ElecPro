@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
 
 
 import { Button } from "@/components/ui/button";
@@ -196,5 +196,3 @@ export default function DashboardLayout({
     </SidebarProvider>
   );
 }
-
-    
