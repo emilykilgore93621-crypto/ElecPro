@@ -9,11 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown } from "lucide-react";
-import { useUser, useFirestore, useFirebase } from "@/firebase";
-import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 
 const wellControlData = {
     "pressure-switch": {
@@ -104,33 +100,7 @@ const wellControlData = {
 }
 
 
-export default function WellControlsPage() {
-    const { user } = useUser();
-    const firestore = useFirestore();
-    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
-    const { toast } = useToast();
-
-    useEffect(() => {
-        if (user && firestore) {
-            const userDocRef = doc(firestore, "users", user.uid);
-            const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    setSubscriptionStatus(docSnap.data().subscriptionStatus);
-                }
-            });
-            return () => unsubscribe();
-        }
-    }, [user, firestore]);
-
-    const handleUpgrade = async () => {
-        if (!user || !firestore) return;
-        const userDocRef = doc(firestore, 'users', user.uid);
-        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
-        toast({
-            title: 'Upgrade Successful!',
-            description: 'You now have access to all Pro features.',
-        });
-    };
+export default function WellControlsPage({ subscriptionStatus, handleUpgrade }: { subscriptionStatus: string | null, handleUpgrade: () => void }) {
 
     if (subscriptionStatus !== 'pro') {
         return (
@@ -211,5 +181,7 @@ export default function WellControlsPage() {
         </>
     );
 }
+
+    
 
     

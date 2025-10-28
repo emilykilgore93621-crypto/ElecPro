@@ -4,15 +4,10 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useUser, useFirestore } from "@/firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { Lock, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { guideData } from "./guide-data";
-import { useToast } from "@/hooks/use-toast";
-
 
 const guideCategories = [
     {
@@ -61,33 +56,7 @@ const guideCategories = [
     },
 ];
 
-export default function GuidesPage() {
-    const { user } = useUser();
-    const firestore = useFirestore();
-    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
-    const { toast } = useToast();
-
-    useEffect(() => {
-        if (user && firestore) {
-            const userDocRef = doc(firestore, "users", user.uid);
-            getDoc(userDocRef).then((docSnap) => {
-                if (docSnap.exists()) {
-                    setSubscriptionStatus(docSnap.data().subscriptionStatus);
-                }
-            });
-        }
-    }, [user, firestore, subscriptionStatus]);
-
-    const handleUpgrade = async () => {
-        if (!user || !firestore) return;
-        const userDocRef = doc(firestore, 'users', user.uid);
-        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
-        setSubscriptionStatus('pro');
-        toast({
-            title: 'Upgrade Successful!',
-            description: 'You now have access to all Pro features.',
-        });
-    };
+export default function GuidesPage({ subscriptionStatus, handleUpgrade }: { subscriptionStatus: string | null, handleUpgrade: () => void }) {
 
     return (
         <>
@@ -146,5 +115,7 @@ export default function GuidesPage() {
         </>
     );
 }
+
+    
 
     

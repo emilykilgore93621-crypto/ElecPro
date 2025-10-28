@@ -11,7 +11,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 
 
@@ -65,6 +65,9 @@ export default function DashboardLayout({
       const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
         if (docSnap.exists()) {
           setSubscriptionStatus(docSnap.data().subscriptionStatus);
+        } else {
+          // Handle case where user document doesn't exist yet, maybe set to 'free' by default
+          setSubscriptionStatus('free');
         }
       });
       return () => unsubscribe();
@@ -76,7 +79,7 @@ export default function DashboardLayout({
   };
 
   const handleUpgrade = async () => {
-    if (!user) return;
+    if (!user || !firestore) return;
     const userDocRef = doc(firestore, 'users', user.uid);
     await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
     toast({
@@ -85,13 +88,22 @@ export default function DashboardLayout({
     });
   };
 
-  if (isUserLoading || !user) {
+  if (isUserLoading || !user || subscriptionStatus === null) {
     return (
        <div className="flex items-center justify-center h-screen">
         <div className="text-lg font-semibold">Loading...</div>
       </div>
     );
   }
+
+  // Clone children and pass props
+  const childrenWithProps = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      // @ts-ignore
+      return React.cloneElement(child, { subscriptionStatus, handleUpgrade });
+    }
+    return child;
+  });
 
   return (
     <SidebarProvider>
@@ -189,10 +201,12 @@ export default function DashboardLayout({
                   It is always better to consult a professional for any electrical repairs if you do not have sufficient knowledge. The information contained herein is to be utilized with careful judgment.
                 </AlertDescription>
             </Alert>
-            {children}
+            {childrenWithProps}
           </main>
         </div>
       </div>
     </SidebarProvider>
   );
 }
+
+    

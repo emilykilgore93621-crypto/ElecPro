@@ -143,7 +143,7 @@ const componentIconMap: { [key: string]: React.ElementType } = {
 
 
 
-export default function CanvasPage() {
+export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subscriptionStatus: string | null, handleUpgrade: () => void }) {
     const [activeTool, setActiveTool] = useState("select");
     const [elements, setElements] = useState<CanvasElement[]>([]);
     const [wires, setWires] = useState<Wire[]>([]);
@@ -154,7 +154,6 @@ export default function CanvasPage() {
     const editInputRef = useRef<HTMLInputElement>(null);
     const { firestore, user } = useFirebase();
     const { toast } = useToast();
-    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
     
     const gridSize = 20;
     
@@ -163,28 +162,6 @@ export default function CanvasPage() {
             editInputRef.current.focus();
         }
     }, [elements]);
-
-    useEffect(() => {
-      if (user && firestore) {
-        const userDocRef = doc(firestore, "users", user.uid);
-        getDoc(userDocRef).then((docSnap) => {
-          if (docSnap.exists()) {
-            setSubscriptionStatus(docSnap.data().subscriptionStatus);
-          }
-        });
-      }
-    }, [user, firestore, subscriptionStatus]);
-
-    const handleUpgrade = async () => {
-        if (!user || !firestore) return;
-        const userDocRef = doc(firestore, 'users', user.uid);
-        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
-        setSubscriptionStatus('pro');
-        toast({
-            title: 'Upgrade Successful!',
-            description: 'You now have access to all Pro features.',
-        });
-    };
 
     if (subscriptionStatus !== 'pro') {
       return (
@@ -647,5 +624,7 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    
 
     
