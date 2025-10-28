@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 
 import { Button } from "@/components/ui/button";
@@ -43,6 +43,7 @@ import { AppLogo } from "@/components/app-logo";
 import { MainNav } from "@/components/main-nav";
 import { useAuth, useUser, useFirestore } from "@/firebase";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useToast } from "@/hooks/use-toast";
 
 export default function DashboardLayout({
   children,
@@ -54,22 +55,34 @@ export default function DashboardLayout({
   const firestore = useFirestore();
   const router = useRouter();
   const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!isUserLoading && !user) {
       router.replace('/');
     } else if (user && firestore) {
       const userDocRef = doc(firestore, "users", user.uid);
-      getDoc(userDocRef).then((docSnap) => {
+      const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
         if (docSnap.exists()) {
           setSubscriptionStatus(docSnap.data().subscriptionStatus);
         }
       });
+      return () => unsubscribe();
     }
   }, [user, isUserLoading, router, firestore]);
 
   const handleLogout = () => {
     auth.signOut();
+  };
+
+  const handleUpgrade = async () => {
+    if (!user) return;
+    const userDocRef = doc(firestore, 'users', user.uid);
+    await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
+    toast({
+        title: 'Upgrade Successful!',
+        description: 'You now have access to all Pro features.',
+    });
   };
 
   if (isUserLoading || !user) {
@@ -103,10 +116,11 @@ export default function DashboardLayout({
                       Unlock all features for just $1.99/month.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-                    <Button size="sm" className="w-full">
+                  <CardContent className="p-2 pt-0 md:p-4 md:pt-0 flex flex-col gap-2">
+                    <Button size="sm" className="w-full" onClick={handleUpgrade}>
                       Upgrade
                     </Button>
+                    <p className="text-xs text-center text-muted-foreground">Student or educator? Contact us for a discount.</p>
                   </CardContent>
                 </Card>
               </SidebarFooter>
@@ -182,3 +196,5 @@ export default function DashboardLayout({
     </SidebarProvider>
   );
 }
+
+    

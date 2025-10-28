@@ -42,7 +42,7 @@ import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEv
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useFirebase } from "@/firebase";
-import { collection, serverTimestamp, doc, getDoc } from "firebase/firestore";
+import { collection, serverTimestamp, doc, getDoc, setDoc } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
@@ -173,7 +173,18 @@ export default function CanvasPage() {
           }
         });
       }
-    }, [user, firestore]);
+    }, [user, firestore, subscriptionStatus]);
+
+    const handleUpgrade = async () => {
+        if (!user || !firestore) return;
+        const userDocRef = doc(firestore, 'users', user.uid);
+        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
+        setSubscriptionStatus('pro');
+        toast({
+            title: 'Upgrade Successful!',
+            description: 'You now have access to all Pro features.',
+        });
+    };
 
     if (subscriptionStatus !== 'pro') {
       return (
@@ -185,11 +196,12 @@ export default function CanvasPage() {
                         The Interactive Canvas is a Pro feature. Please upgrade your plan to design and save your electrical diagrams.
                     </CardDescription>
                 </CardHeader>
-                <CardContent>
-                    <Button size="lg">
+                <CardContent className="flex flex-col items-center gap-4">
+                    <Button size="lg" onClick={handleUpgrade}>
                         <Crown className="mr-2 h-4 w-4" />
                         Upgrade to Pro
                     </Button>
+                    <p className="text-xs text-muted-foreground">Are you a student or educator? Contact us for a discount.</p>
                 </CardContent>
               </Card>
           </div>
@@ -635,3 +647,5 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    

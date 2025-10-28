@@ -5,12 +5,13 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useUser, useFirestore } from "@/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Lock, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { guideData } from "./guide-data";
+import { useToast } from "@/hooks/use-toast";
 
 
 const guideCategories = [
@@ -64,6 +65,7 @@ export default function GuidesPage() {
     const { user } = useUser();
     const firestore = useFirestore();
     const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+    const { toast } = useToast();
 
     useEffect(() => {
         if (user && firestore) {
@@ -74,7 +76,18 @@ export default function GuidesPage() {
                 }
             });
         }
-    }, [user, firestore]);
+    }, [user, firestore, subscriptionStatus]);
+
+    const handleUpgrade = async () => {
+        if (!user || !firestore) return;
+        const userDocRef = doc(firestore, 'users', user.uid);
+        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
+        setSubscriptionStatus('pro');
+        toast({
+            title: 'Upgrade Successful!',
+            description: 'You now have access to all Pro features.',
+        });
+    };
 
     return (
         <>
@@ -121,10 +134,11 @@ export default function GuidesPage() {
                     <Card className="mt-8">
                         <CardHeader className="text-center">
                             <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Crown className="text-primary size-8"/> Unlock All Guides</CardTitle>
-                            <CardContent className="text-muted-foreground pt-4">
-                                Upgrade to Pro to get instant access to all premium guides, the interactive canvas, and more.
+                            <CardContent className="text-muted-foreground pt-4 flex flex-col items-center gap-4">
+                                <p>Upgrade to Pro to get instant access to all premium guides, the interactive canvas, and more.</p>
+                                <Button size="lg" onClick={handleUpgrade}>Upgrade to Pro</Button>
+                                <p className="text-xs">Are you a student or educator? Contact us for a discount.</p>
                             </CardContent>
-                            <Button size="lg">Upgrade to Pro</Button>
                         </CardHeader>
                     </Card>
                 )}
@@ -132,3 +146,5 @@ export default function GuidesPage() {
         </>
     );
 }
+
+    

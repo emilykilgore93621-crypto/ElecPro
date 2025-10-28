@@ -10,7 +10,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown } from "lucide-react";
 import { useUser, useFirestore, useFirebase } from "@/firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -113,11 +113,12 @@ export default function WellControlsPage() {
     useEffect(() => {
         if (user && firestore) {
             const userDocRef = doc(firestore, "users", user.uid);
-            getDoc(userDocRef).then((docSnap) => {
+            const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
                 if (docSnap.exists()) {
                     setSubscriptionStatus(docSnap.data().subscriptionStatus);
                 }
             });
+            return () => unsubscribe();
         }
     }, [user, firestore]);
 
@@ -125,7 +126,6 @@ export default function WellControlsPage() {
         if (!user || !firestore) return;
         const userDocRef = doc(firestore, 'users', user.uid);
         await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
-        setSubscriptionStatus('pro');
         toast({
             title: 'Upgrade Successful!',
             description: 'You now have access to all Pro features.',
@@ -142,11 +142,12 @@ export default function WellControlsPage() {
                           The Well Controls guide is a Pro feature. Please upgrade your plan to access this content.
                       </CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex flex-col items-center gap-4">
                       <Button size="lg" onClick={handleUpgrade}>
                           <Crown className="mr-2 h-4 w-4" />
                           Upgrade to Pro
                       </Button>
+                      <p className="text-xs text-muted-foreground">Are you a student or educator? Contact us for a discount.</p>
                   </CardContent>
                 </Card>
             </div>
@@ -210,3 +211,5 @@ export default function WellControlsPage() {
         </>
     );
 }
+
+    

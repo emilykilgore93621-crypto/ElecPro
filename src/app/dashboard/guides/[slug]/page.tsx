@@ -7,8 +7,9 @@ import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
 import { useUser, useFirestore } from "@/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
@@ -48,6 +49,7 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
     const { user } = useUser();
     const firestore = useFirestore();
     const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+    const { toast } = useToast();
 
     useEffect(() => {
         if (user && firestore) {
@@ -58,8 +60,19 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                 }
             });
         }
-    }, [user, firestore]);
+    }, [user, firestore, subscriptionStatus]);
     
+     const handleUpgrade = async () => {
+        if (!user || !firestore) return;
+        const userDocRef = doc(firestore, 'users', user.uid);
+        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
+        setSubscriptionStatus('pro');
+        toast({
+            title: 'Upgrade Successful!',
+            description: 'You now have access to all Pro features.',
+        });
+    };
+
     if (guide?.pro && subscriptionStatus !== 'pro') {
          return (
              <div className="flex flex-col items-center justify-center h-full text-center">
@@ -70,11 +83,12 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
                            This is a Pro guide. Please upgrade your plan to access the content.
                        </CardDescription>
                    </CardHeader>
-                   <CardContent>
-                       <Button size="lg">
+                   <CardContent className="flex flex-col items-center gap-4">
+                       <Button size="lg" onClick={handleUpgrade}>
                            <Crown className="mr-2 h-4 w-4" />
                            Upgrade to Pro
                        </Button>
+                        <p className="text-xs text-muted-foreground">Are you a student or educator? Contact us for a discount.</p>
                    </CardContent>
                  </Card>
              </div>
@@ -169,4 +183,5 @@ export default function GuideDetailPage({ params }: { params: { slug: string } }
     );
 }
 
+    
     
