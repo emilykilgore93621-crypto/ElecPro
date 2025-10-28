@@ -7,6 +7,7 @@ export type GuideContent = {
     safetyNotes?: string;
     detailsPage?: string;
     externalLink?: string;
+    pro?: boolean;
 };
 
 export const guideData: { [key: string]: GuideContent } = {
@@ -87,6 +88,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "smart-switch": {
         title: "Smart Switch",
+        pro: true,
         steps: [
             "Turn off power at the breaker. Smart switches require a neutral wire, so ensure your box has one (usually a bundle of white wires).",
             "Remove the old switch and disconnect the wires.",
@@ -105,6 +107,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "usb-outlet": {
         title: "USB Outlet",
+        pro: true,
         steps: [
             "Turn off power at the circuit breaker and verify it's off.",
             "Remove the faceplate and unscrew the existing outlet.",
@@ -140,6 +143,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "hot-water-heater": {
         title: "Electric Water Heater",
+        pro: true,
         steps: [
             "Turn off the double-pole circuit breaker for the water heater.",
             "Drain the tank completely by connecting a hose to the drain valve.",
@@ -162,6 +166,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "rv-wiring": {
         title: "RV / Trailer Wiring",
+        pro: true,
         steps: [
             "Ensure the shore power pedestal breaker is OFF before plugging in.",
             "Connect your heavy-gauge shore power cord from the pedestal to your RV's inlet.",
@@ -244,6 +249,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "weather-tight": {
         title: "Weather-Tight Outlet",
+        pro: true,
         steps: [
             "Turn off power at the circuit breaker.",
             "Remove the old outdoor outlet and cover.",
@@ -348,6 +354,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "well-pump": {
         title: "Water Well Pump",
+        pro: true,
         steps: [
             "Turn off the double-pole circuit breaker for the well pump.",
             "Confirm power is off with a voltage tester at the pressure switch and control box.",
@@ -373,6 +380,7 @@ export const guideData: { [key: string]: GuideContent } = {
     },
     "generator-transfer-switch": {
         title: "Generator Transfer Switch",
+        pro: true,
         steps: [
             "Turn off the main circuit breaker to shut down all power to the house.",
             "Identify the critical circuits you want to power with the generator (e.g., refrigerator, well pump, some lights).",

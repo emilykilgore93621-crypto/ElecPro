@@ -1,7 +1,17 @@
 
+"use client";
+
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useUser, useFirestore } from "@/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Lock, Crown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { guideData } from "./guide-data";
+
 
 const guideCategories = [
     {
@@ -51,6 +61,21 @@ const guideCategories = [
 ];
 
 export default function GuidesPage() {
+    const { user } = useUser();
+    const firestore = useFirestore();
+    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (user && firestore) {
+            const userDocRef = doc(firestore, "users", user.uid);
+            getDoc(userDocRef).then((docSnap) => {
+                if (docSnap.exists()) {
+                    setSubscriptionStatus(docSnap.data().subscriptionStatus);
+                }
+            });
+        }
+    }, [user, firestore]);
+
     return (
         <>
             <div className="flex items-center">
@@ -63,19 +88,46 @@ export default function GuidesPage() {
                         <Separator className="mb-6" />
                         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {category.guides.sort((a,b) => a.title.localeCompare(b.title)).map((guide) => {
+                                const guideDetails = guideData[guide.slug];
+                                const isLocked = guideDetails?.pro && subscriptionStatus !== 'pro';
+                                
+                                const cardContent = (
+                                     <Card className={cn("overflow-hidden transition-all h-full flex flex-col", isLocked ? "bg-muted/50 cursor-not-allowed" : "hover:shadow-lg hover:-translate-y-1")}>
+                                        <CardHeader className="flex-1 relative">
+                                            {isLocked && (
+                                                <div className="absolute top-3 right-3 bg-primary text-primary-foreground rounded-full p-1">
+                                                    <Lock className="size-3"/>
+                                                </div>
+                                            )}
+                                            <CardTitle className="font-headline text-lg">{guide.title}</CardTitle>
+                                        </CardHeader>
+                                    </Card>
+                                );
+
+                                if (isLocked) {
+                                    return <div key={guide.slug}>{cardContent}</div>;
+                                }
+
                                 return (
                                     <Link key={guide.slug} href={`/dashboard/guides/${guide.slug}`}>
-                                        <Card className="overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
-                                            <CardHeader className="flex-1">
-                                                <CardTitle className="font-headline text-lg">{guide.title}</CardTitle>
-                                            </CardHeader>
-                                        </Card>
+                                        {cardContent}
                                     </Link>
                                 )
                             })}
                         </div>
                     </div>
                 ))}
+                 {subscriptionStatus === 'free' && (
+                    <Card className="mt-8">
+                        <CardHeader className="text-center">
+                            <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Crown className="text-primary size-8"/> Unlock All Guides</CardTitle>
+                            <CardContent className="text-muted-foreground pt-4">
+                                Upgrade to Pro to get instant access to all premium guides, the interactive canvas, and more.
+                            </CardContent>
+                            <Button size="lg">Upgrade to Pro</Button>
+                        </CardHeader>
+                    </Card>
+                )}
             </div>
         </>
     );

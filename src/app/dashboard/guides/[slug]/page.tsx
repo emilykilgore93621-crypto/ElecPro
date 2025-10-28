@@ -1,9 +1,14 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight, ExternalLink } from "lucide-react";
+'use client';
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight, ExternalLink, Lock, Crown } from "lucide-react";
 import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
+import { useUser, useFirestore } from "@/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
@@ -15,6 +20,7 @@ const keywordsToLinks: { [key: string]: string } = {
 };
 
 const LinkRenderer = ({ text }: { text: string }) => {
+    if (!text) return null;
     const parts = text.split(new RegExp(`(${Object.keys(keywordsToLinks).join('|')})`, 'gi'));
 
     return (
@@ -38,7 +44,43 @@ const LinkRenderer = ({ text }: { text: string }) => {
 export default function GuideDetailPage({ params }: { params: { slug: string } }) {
     const guide = guideData[params.slug];
     const title = guide?.title ?? params.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+    const { user } = useUser();
+    const firestore = useFirestore();
+    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (user && firestore) {
+            const userDocRef = doc(firestore, "users", user.uid);
+            getDoc(userDocRef).then((docSnap) => {
+                if (docSnap.exists()) {
+                    setSubscriptionStatus(docSnap.data().subscriptionStatus);
+                }
+            });
+        }
+    }, [user, firestore]);
     
+    if (guide?.pro && subscriptionStatus !== 'pro') {
+         return (
+             <div className="flex flex-col items-center justify-center h-full text-center">
+                 <Card className="max-w-md">
+                   <CardHeader>
+                       <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Lock className="text-primary size-8"/> Premium Guide</CardTitle>
+                       <CardDescription>
+                           This is a Pro guide. Please upgrade your plan to access the content.
+                       </CardDescription>
+                   </CardHeader>
+                   <CardContent>
+                       <Button size="lg">
+                           <Crown className="mr-2 h-4 w-4" />
+                           Upgrade to Pro
+                       </Button>
+                   </CardContent>
+                 </Card>
+             </div>
+         )
+    }
+
     return (
         <>
             <div className="flex items-center">
