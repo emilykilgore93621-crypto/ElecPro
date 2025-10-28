@@ -1,53 +1,51 @@
 
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { placeHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
 const guideCategories = [
     {
         name: "Fixtures",
         guides: [
-            { slug: "cameras", title: "Cameras", imageId: "guide-camera" },
-            { slug: "ceiling-fan", title: "Ceiling Fan", imageId: "guide-ceiling-fan" },
-            { slug: "lighting-fixtures", title: "Lighting Fixtures", imageId: "guide-lighting" },
-            { slug: "outlets", title: "Outlets", imageId: "guide-outlet-wiring" },
-            { slug: "gfci", title: "GFCI Outlets", imageId: "guide-gfci" },
-            { slug: "switches", title: "Switches", imageId: "guide-switch" },
-            { slug: "smart-switch", title: "Smart Switch", imageId: "guide-smart-switch" },
-            { slug: "usb-outlet", title: "USB Outlet", imageId: "guide-usb-outlet" },
+            { slug: "cameras", title: "Cameras" },
+            { slug: "ceiling-fan", title: "Ceiling Fan" },
+            { slug: "lighting-fixtures", title: "Lighting Fixtures" },
+            { slug: "outlets", title: "Outlets" },
+            { slug: "gfci", title: "GFCI Outlets" },
+            { slug: "switches", title: "Switches" },
+            { slug: "smart-switch", title: "Smart Switch" },
+            { slug: "usb-outlet", title: "USB Outlet" },
         ]
     },
     {
         name: "Appliances",
         guides: [
-            { slug: "dishwasher", title: "Dishwasher", imageId: "guide-dishwasher" },
-            { slug: "garbage-disposal", title: "Garbage Disposal", imageId: "guide-garbage-disposal" },
-            { slug: "hot-water-heater", title: "Hot Water Heater", imageId: "guide-hot-water-heater" },
-            { slug: "ranges-and-hoods", title: "Ranges and Hoods", imageId: "guide-ranges-and-hoods" },
+            { slug: "dishwasher", title: "Dishwasher" },
+            { slug: "garbage-disposal", title: "Garbage Disposal" },
+            { slug: "hot-water-heater", title: "Hot Water Heater" },
+            { slug: "ranges-and-hoods", title: "Ranges and Hoods" },
         ]
     },
     {
         name: "HVAC & Alarms",
         guides: [
-            { slug: "cooler-motor", title: "Cooler Motor", imageId: "guide-cooler-motor" },
-            { slug: "fire-alarms", title: "Fire Alarms", imageId: "guide-fire-alarm" },
+            { slug: "cooler-motor", title: "Cooler Motor" },
+            { slug: "fire-alarms", title: "Fire Alarms" },
         ]
     },
     {
         name: "Specialty Systems",
         guides: [
-            { slug: "rv-wiring", title: "RV / Trailer Wiring", imageId: "guide-rv-wiring" },
-            { slug: "well-pump", title: "Water Well Pump", imageId: "guide-well-pump" },
+            { slug: "rv-wiring", title: "RV / Trailer Wiring" },
+            { slug: "well-pump", title: "Water Well Pump" },
         ]
     },
     {
         name: "Service & Distribution",
         guides: [
-            { slug: "circuit-breakers", title: "Circuit Breaker Safety", imageId: "safety-breakers" },
-            { slug: "generator-transfer-switch", title: "Generator Transfer Switch", imageId: "guide-transfer-switch" },
-            { slug: "weather-tight", title: "Weather-tight Outlets", imageId: "guide-weather-tight" },
+            { slug: "circuit-breakers", title: "Circuit Breaker Safety" },
+            { slug: "generator-transfer-switch", title: "Generator Transfer Switch" },
+            { slug: "weather-tight", title: "Weather-tight Outlets" },
         ]
     },
 ];
@@ -65,20 +63,9 @@ export default function GuidesPage() {
                         <Separator className="mb-6" />
                         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {category.guides.sort((a,b) => a.title.localeCompare(b.title)).map((guide) => {
-                                const image = placeHolderImages.find(p => p.id === guide.imageId);
                                 return (
                                     <Link key={guide.slug} href={`/dashboard/guides/${guide.slug}`}>
                                         <Card className="overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
-                                            {image && (
-                                                <Image
-                                                    src={image.imageUrl}
-                                                    alt={image.description}
-                                                    width={600}
-                                                    height={400}
-                                                    data-ai-hint={image.imageHint}
-                                                    className="aspect-video w-full object-cover"
-                                                />
-                                            )}
                                             <CardHeader className="flex-1">
                                                 <CardTitle className="font-headline text-lg">{guide.title}</CardTitle>
                                             </CardHeader>

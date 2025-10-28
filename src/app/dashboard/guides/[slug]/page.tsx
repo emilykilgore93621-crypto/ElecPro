@@ -1,8 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { placeHolderImages } from "@/lib/placeholder-images";
 import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
@@ -40,28 +38,13 @@ const LinkRenderer = ({ text }: { text: string }) => {
 export default function GuideDetailPage({ params }: { params: { slug: string } }) {
     const guide = guideData[params.slug];
     const title = guide?.title ?? params.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    const imageId = `guide-${params.slug}`;
-    const image = placeHolderImages.find(p => p.id === imageId);
-
+    
     return (
         <>
             <div className="flex items-center">
                 <h1 className="text-lg font-semibold md:text-2xl font-headline">{title} Installation</h1>
             </div>
             <div className="space-y-6">
-                <Card className="overflow-hidden">
-                    {image && (
-                        <Image
-                            src={image.imageUrl}
-                            alt={image.description}
-                            width={1200}
-                            height={400}
-                            data-ai-hint={image.imageHint}
-                            className="w-full object-cover aspect-[3/1]"
-                        />
-                    )}
-                </Card>
-
                 {guide ? (
                     <div className="grid gap-8 md:grid-cols-3">
                         <div className="md:col-span-2 space-y-6">

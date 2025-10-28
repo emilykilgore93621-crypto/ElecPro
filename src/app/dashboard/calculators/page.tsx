@@ -2,7 +2,6 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
@@ -13,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints, Ruler } from "lucide-react";
-import { placeHolderImages } from '@/lib/placeholder-images';
 
 const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
     "12.5": { volume: 12.5, type: "Single-gang handy box (4 x 2 1/8 x 1 7/8)" },
@@ -50,7 +48,6 @@ export default function CalculatorsPage() {
     const [boxFillResult, setBoxFillResult] = useState<{ totalVolume?: number, necArticle?: string, recommendedBox?: { volume: number, type: string }, error?: string } | null>(null);
     const [panelSizeResult, setPanelSizeResult] = useState<{ panelAmps?: number, minSpaces?: number, necArticle?: string, notes?: string[], error?: string } | null>(null);
     const [conduitFillResult, setConduitFillResult] = useState<{ maxConductors?: number, fillPercentage?: number, necArticle?: string, error?: string, notes?: string[] } | null>(null);
-    const calcImage = placeHolderImages.find(p => p.id === 'calculator-wiring-diagram');
 
     const handleOhmsLawCalculate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -274,20 +271,6 @@ export default function CalculatorsPage() {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl font-headline">Calculation Tools</h1>
       </div>
-      {calcImage && (
-        <Card className="overflow-hidden">
-            <CardContent className="p-0">
-                 <Image
-                    src={calcImage.imageUrl}
-                    alt={calcImage.description}
-                    width={1200}
-                    height={850}
-                    data-ai-hint={calcImage.imageHint}
-                    className="w-full object-contain"
-                />
-            </CardContent>
-        </Card>
-      )}
       <Tabs defaultValue="ohms-law" className="w-full">
         <ScrollArea className="w-full whitespace-nowrap">
           <TabsList className="inline-flex">

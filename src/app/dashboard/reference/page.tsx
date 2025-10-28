@@ -3,8 +3,6 @@ import { necQuickGuide } from '@/ai/flows/nec-quick-guide';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ReferenceForm } from './reference-form';
 import Link from 'next/link';
-import { placeHolderImages } from '@/lib/placeholder-images';
-import Image from 'next/image';
 
 export default function ReferencePage() {
   async function getGuidelines(
@@ -25,32 +23,12 @@ export default function ReferencePage() {
     }
   }
 
-  const symbolsImage = placeHolderImages.find(p => p.id === 'reference-symbols');
-
   return (
     <>
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl font-headline">Reference Library</h1>
       </div>
       <div className="space-y-8">
-        {symbolsImage && (
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">Common Symbols &amp; Device Reference</CardTitle>
-                    <CardDescription>A quick visual guide for typical electrical symbols, items, and boxes.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Image
-                        src={symbolsImage.imageUrl}
-                        alt={symbolsImage.description}
-                        width={1200}
-                        height={1552}
-                        data-ai-hint={symbolsImage.imageHint}
-                        className="w-full object-contain rounded-md border"
-                    />
-                </CardContent>
-            </Card>
-        )}
         <div className="grid gap-8 md:grid-cols-3">
           <div className="md:col-span-2">
             <Card className="h-full">

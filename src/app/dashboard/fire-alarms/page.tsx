@@ -5,9 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { placeHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AlertTriangle, HardHat, CheckCircle2, Home } from "lucide-react";
 import Link from "next/link";
 
@@ -76,27 +74,12 @@ const fireAlarmData = {
 
 
 export default function FireAlarmsPage() {
-    const fireAlarmImage = placeHolderImages.find(p => p.id === 'guide-fire-alarm');
-    
     return (
         <>
             <div className="flex items-center">
                 <h1 className="text-lg font-semibold md:text-2xl font-headline">Fire Alarms & Safety Systems</h1>
             </div>
             <div className="space-y-6">
-                <Card className="overflow-hidden">
-                    {fireAlarmImage && (
-                        <Image
-                            src={fireAlarmImage.imageUrl}
-                            alt={fireAlarmImage.description}
-                            width={1200}
-                            height={400}
-                            data-ai-hint={fireAlarmImage.imageHint}
-                            className="w-full object-cover aspect-[3/1]"
-                        />
-                    )}
-                </Card>
-
                  <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2 font-headline"><AlertTriangle className="text-destructive"/>Life Safety Information</CardTitle>

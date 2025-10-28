@@ -6,8 +6,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { placeHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
 import { AlertTriangle, HardHat, CheckCircle2 } from "lucide-react";
 
 const wellControlData = {
@@ -100,27 +98,12 @@ const wellControlData = {
 
 
 export default function WellControlsPage() {
-    const wellImage = placeHolderImages.find(p => p.id === 'guide-well-pump');
-    
     return (
         <>
             <div className="flex items-center">
                 <h1 className="text-lg font-semibold md:text-2xl font-headline">Well Pump Controls</h1>
             </div>
             <div className="space-y-6">
-                <Card className="overflow-hidden">
-                    {wellImage && (
-                        <Image
-                            src={wellImage.imageUrl}
-                            alt={wellImage.description}
-                            width={1200}
-                            height={400}
-                            data-ai-hint={wellImage.imageHint}
-                            className="w-full object-cover aspect-[3/1]"
-                        />
-                    )}
-                </Card>
-
                  <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2 font-headline"><AlertTriangle className="text-destructive"/>Crucial Safety Warning</CardTitle>
@@ -172,4 +155,3 @@ export default function WellControlsPage() {
         </>
     );
 }
-    
