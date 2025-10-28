@@ -8,6 +8,7 @@ import {
   LogOut,
   Cog,
   Crown,
+  AlertTriangle,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -41,6 +42,7 @@ import {
 import { AppLogo } from "@/components/app-logo";
 import { MainNav } from "@/components/main-nav";
 import { useAuth, useUser, useFirestore } from "@/firebase";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function DashboardLayout({
   children,
@@ -86,7 +88,7 @@ export default function DashboardLayout({
             <SidebarHeader className="p-4">
               <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                 <AppLogo className="h-6 w-6 text-sidebar-primary" />
-                <span className="">ELECPRO-HUB</span>
+                <span className="">WattsUp</span>
               </Link>
             </SidebarHeader>
             <div className="flex-1 px-4">
@@ -98,7 +100,7 @@ export default function DashboardLayout({
                   <CardHeader className="p-2 pt-0 md:p-4">
                     <CardTitle className="flex items-center gap-2"><Crown className="text-primary"/>Upgrade to Pro</CardTitle>
                     <CardDescription>
-                      Unlock the Interactive Canvas and all features for just $1.99/month.
+                      Unlock all features for just $1.99/month.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
@@ -128,7 +130,7 @@ export default function DashboardLayout({
                 <SheetHeader className="border-b border-sidebar-border p-4">
                   <Link href="/dashboard" className="flex items-center gap-2 font-semibold font-headline">
                     <AppLogo className="h-6 w-6 text-sidebar-primary" />
-                    <span className="">ELECPRO-HUB</span>
+                    <span className="">WattsUp</span>
                   </Link>
                   <SheetTitle className="sr-only">Navigation</SheetTitle>
                 </SheetHeader>
@@ -166,6 +168,13 @@ export default function DashboardLayout({
             </DropdownMenu>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background">
+            <Alert variant="destructive">
+                <AlertTriangle className="h-4 w-4" />
+                <AlertTitle className="font-headline">Full Disclosure</AlertTitle>
+                <AlertDescription>
+                  It is always better to consult a professional for any electrical repairs if you do not have sufficient knowledge. The information contained herein is to be utilized with careful judgment.
+                </AlertDescription>
+            </Alert>
             {children}
           </main>
         </div>
