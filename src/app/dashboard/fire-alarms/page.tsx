@@ -77,7 +77,7 @@ export default function FireAlarmsPage() {
     return (
         <>
             <div className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl font-headline">Fire Alarms & Safety Systems</h1>
+                <h1 className="text-lg font-semibold md:text-2xl font-headline">Alarm Central</h1>
             </div>
             <div className="space-y-6">
                  <Card>

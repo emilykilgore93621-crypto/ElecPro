@@ -170,7 +170,7 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
                 <CardHeader>
                     <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Lock className="text-primary size-8"/> Feature Locked</CardTitle>
                     <CardDescription>
-                        The Interactive Canvas is a Pro feature. Please upgrade your plan to design and save your electrical diagrams.
+                        The Blueprint Board is a Pro feature. Please upgrade your plan to design and save your electrical diagrams.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center gap-4">
@@ -413,7 +413,7 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
   return (
     <div className="flex flex-col h-full gap-4">
       <div className="flex items-center justify-between flex-wrap gap-2">
-        <h1 className="text-lg font-semibold md:text-2xl font-headline">Interactive Canvas</h1>
+        <h1 className="text-lg font-semibold md:text-2xl font-headline">Blueprint Board</h1>
         <div className="flex gap-2 items-center">
             <div className="flex items-center space-x-2">
                 <Switch id="show-takeoff" checked={showTakeoff} onCheckedChange={setShowTakeoff} />
@@ -624,7 +624,3 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
     </div>
   );
 }
-
-    
-
-    

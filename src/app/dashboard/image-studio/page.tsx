@@ -54,7 +54,7 @@ export default function ImageStudioPage() {
   return (
     <>
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl font-headline">Image Studio</h1>
+        <h1 className="text-lg font-semibold md:text-2xl font-headline">AI Vision</h1>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="md:col-span-2">

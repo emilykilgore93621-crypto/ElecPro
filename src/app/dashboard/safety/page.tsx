@@ -13,7 +13,7 @@ export default function SafetyPage() {
     return (
         <>
             <div className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl font-headline">Safety Overview</h1>
+                <h1 className="text-lg font-semibold md:text-2xl font-headline">Safety First Station</h1>
             </div>
             <Card>
                 <CardHeader>

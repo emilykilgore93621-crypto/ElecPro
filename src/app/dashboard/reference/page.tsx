@@ -26,7 +26,7 @@ export default function ReferencePage() {
   return (
     <>
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl font-headline">Reference Library</h1>
+        <h1 className="text-lg font-semibold md:text-2xl font-headline">Code &amp; Conduit</h1>
       </div>
       <div className="space-y-8">
         <div className="grid gap-8 md:grid-cols-3">

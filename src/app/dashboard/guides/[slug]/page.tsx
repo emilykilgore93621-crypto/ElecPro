@@ -67,7 +67,7 @@ export default function GuideDetailPage({ params, subscriptionStatus, handleUpgr
     return (
         <>
             <div className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl font-headline">{title} Installation</h1>
+                <h1 className="text-lg font-semibold md:text-2xl font-headline">{title} Blueprint</h1>
             </div>
             <div className="space-y-6">
                 {guide ? (
@@ -151,8 +151,3 @@ export default function GuideDetailPage({ params, subscriptionStatus, handleUpgr
         </>
     );
 }
-
-    
-    
-
-    

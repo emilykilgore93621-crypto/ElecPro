@@ -109,7 +109,7 @@ export default function WellControlsPage({ subscriptionStatus, handleUpgrade }: 
                   <CardHeader>
                       <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Lock className="text-primary size-8"/> Feature Locked</CardTitle>
                       <CardDescription>
-                          The Well Controls guide is a Pro feature. Please upgrade your plan to access this content.
+                          The Wellspring Controls guide is a Pro feature. Please upgrade your plan to access this content.
                       </CardDescription>
                   </CardHeader>
                   <CardContent className="flex flex-col items-center gap-4">
@@ -127,7 +127,7 @@ export default function WellControlsPage({ subscriptionStatus, handleUpgrade }: 
     return (
         <>
             <div className="flex items-center">
-                <h1 className="text-lg font-semibold md:text-2xl font-headline">Well Pump Controls</h1>
+                <h1 className="text-lg font-semibold md:text-2xl font-headline">Wellspring Controls</h1>
             </div>
             <div className="space-y-6">
                  <Card>
@@ -181,7 +181,3 @@ export default function WellControlsPage({ subscriptionStatus, handleUpgrade }: 
         </>
     );
 }
-
-    
-
-    

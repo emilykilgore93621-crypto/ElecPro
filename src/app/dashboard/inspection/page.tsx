@@ -45,7 +45,7 @@ export default function InspectionPage() {
   return (
     <>
         <div className="flex items-center">
-            <h1 className="text-lg font-semibold md:text-2xl font-headline">Inspection Tips</h1>
+            <h1 className="text-lg font-semibold md:text-2xl font-headline">Inspector's Notebook</h1>
         </div>
         <Card className="overflow-hidden">
             <CardHeader>

@@ -269,7 +269,7 @@ export default function CalculatorsPage() {
   return (
     <>
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl font-headline">Calculation Tools</h1>
+        <h1 className="text-lg font-semibold md:text-2xl font-headline">Circuit Crunches</h1>
       </div>
       <Tabs defaultValue="ohms-law" className="w-full">
         <ScrollArea className="w-full whitespace-nowrap">

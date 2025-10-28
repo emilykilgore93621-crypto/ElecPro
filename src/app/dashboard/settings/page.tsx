@@ -95,7 +95,7 @@ export default function SettingsPage() {
   return (
     <>
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl font-headline">Settings</h1>
+        <h1 className="text-lg font-semibold md:text-2xl font-headline">Tune-Up Your Account</h1>
       </div>
       <div className="max-w-xl grid gap-6">
         <Card>
