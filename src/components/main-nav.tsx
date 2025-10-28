@@ -32,7 +32,7 @@ const navItems = [
   { href: "/dashboard/guides", icon: Wrench, label: "Installation Guides" },
   { href: "/dashboard/reference", icon: BookText, label: "Reference Library" },
   { href: "/dashboard/canvas", icon: PenSquare, label: "Interactive Canvas", pro: true },
-  { href: "/dashboard/well-controls", icon: Droplet, label: "Well Controls" },
+  { href: "/dashboard/well-controls", icon: Droplet, label: "Well Controls", pro: true },
   { href: "/dashboard/fire-alarms", icon: Siren, label: "Fire Alarms" },
   { href: "/dashboard/safety", icon: ShieldCheck, label: "Safety Overview" },
   { href: "/dashboard/inspection", icon: ClipboardCheck, label: "Inspection Tips" },

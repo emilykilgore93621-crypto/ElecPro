@@ -1,4 +1,6 @@
 
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -6,7 +8,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { AlertTriangle, HardHat, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown } from "lucide-react";
+import { useUser, useFirestore, useFirebase } from "@/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const wellControlData = {
     "pressure-switch": {
@@ -98,6 +105,54 @@ const wellControlData = {
 
 
 export default function WellControlsPage() {
+    const { user } = useUser();
+    const firestore = useFirestore();
+    const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+    const { toast } = useToast();
+
+    useEffect(() => {
+        if (user && firestore) {
+            const userDocRef = doc(firestore, "users", user.uid);
+            getDoc(userDocRef).then((docSnap) => {
+                if (docSnap.exists()) {
+                    setSubscriptionStatus(docSnap.data().subscriptionStatus);
+                }
+            });
+        }
+    }, [user, firestore]);
+
+    const handleUpgrade = async () => {
+        if (!user || !firestore) return;
+        const userDocRef = doc(firestore, 'users', user.uid);
+        await setDoc(userDocRef, { subscriptionStatus: 'pro' }, { merge: true });
+        setSubscriptionStatus('pro');
+        toast({
+            title: 'Upgrade Successful!',
+            description: 'You now have access to all Pro features.',
+        });
+    };
+
+    if (subscriptionStatus !== 'pro') {
+        return (
+            <div className="flex flex-col items-center justify-center h-full text-center">
+                <Card className="max-w-md">
+                  <CardHeader>
+                      <CardTitle className="flex items-center justify-center gap-2 font-headline text-2xl"><Lock className="text-primary size-8"/> Feature Locked</CardTitle>
+                      <CardDescription>
+                          The Well Controls guide is a Pro feature. Please upgrade your plan to access this content.
+                      </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                      <Button size="lg" onClick={handleUpgrade}>
+                          <Crown className="mr-2 h-4 w-4" />
+                          Upgrade to Pro
+                      </Button>
+                  </CardContent>
+                </Card>
+            </div>
+        )
+    }
+    
     return (
         <>
             <div className="flex items-center">
