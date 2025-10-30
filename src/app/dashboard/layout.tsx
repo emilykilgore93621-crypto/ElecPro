@@ -54,29 +54,27 @@ export default function DashboardLayout({
   const auth = useAuth();
   const firestore = useFirestore();
   const router = useRouter();
-  const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
+  const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>('pro'); // Temporarily hardcoded to 'pro'
   const { toast } = useToast();
 
   useEffect(() => {
     if (!isUserLoading && !user) {
       router.replace('/');
-    } else if (user && firestore) {
-      const userDocRef = doc(firestore, "users", user.uid);
-      const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
-        if (docSnap.exists()) {
-          setSubscriptionStatus(docSnap.data().subscriptionStatus);
-        } else {
-          // Handle case where user document doesn't exist yet, maybe set to 'free' by default
-          setSubscriptionStatus('free');
-        }
-      });
-      return () => unsubscribe();
-    }
+    } 
+    // The real subscription check is temporarily disabled for sponsor review.
+    // else if (user && firestore) {
+    //   const userDocRef = doc(firestore, "users", user.uid);
+    //   const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
+    //     if (docSnap.exists()) {
+    //       setSubscriptionStatus(docSnap.data().subscriptionStatus);
+    //     } else {
+    //       // Handle case where user document doesn't exist yet, maybe set to 'free' by default
+    //       setSubscriptionStatus('free');
+    //     }
+    //   });
+    //   return () => unsubscribe();
+    // }
   }, [user, isUserLoading, router, firestore]);
-
-  const handleLogout = () => {
-    auth.signOut();
-  };
 
   const handleUpgrade = async () => {
     if (!user || !firestore) return;
@@ -208,5 +206,3 @@ export default function DashboardLayout({
     </SidebarProvider>
   );
 }
-
-    
