@@ -54,27 +54,43 @@ export default function DashboardLayout({
   const auth = useAuth();
   const firestore = useFirestore();
   const router = useRouter();
-  const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>('pro'); // Temporarily hardcoded to 'pro'
+  const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     if (!isUserLoading && !user) {
       router.replace('/');
-    } 
-    // The real subscription check is temporarily disabled for sponsor review.
+    }
+    // The real subscription check is temporarily disabled.
+    // This will be kept unlocked until you publish.
+    setSubscriptionStatus('pro');
+    
     // else if (user && firestore) {
     //   const userDocRef = doc(firestore, "users", user.uid);
     //   const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
     //     if (docSnap.exists()) {
     //       setSubscriptionStatus(docSnap.data().subscriptionStatus);
     //     } else {
-    //       // Handle case where user document doesn't exist yet, maybe set to 'free' by default
     //       setSubscriptionStatus('free');
     //     }
     //   });
     //   return () => unsubscribe();
     // }
   }, [user, isUserLoading, router, firestore]);
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      router.push('/');
+    } catch (error) {
+      console.error("Error signing out: ", error);
+      toast({
+        variant: "destructive",
+        title: "Logout Failed",
+        description: "An error occurred while logging out. Please try again.",
+      });
+    }
+  };
 
   const handleUpgrade = async () => {
     if (!user || !firestore) return;
@@ -130,7 +146,7 @@ export default function DashboardLayout({
                     <Button size="sm" className="w-full" onClick={handleUpgrade}>
                       Upgrade
                     </Button>
-                    <p className="text-xs text-center text-muted-foreground">Student or educator? Contact us for a discount.</p>
+                    <p className="text-xs text-center text-muted-foreground">Are you a student or educator? Contact us for a discount.</p>
                   </CardContent>
                 </Card>
               </SidebarFooter>
