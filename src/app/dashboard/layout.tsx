@@ -111,7 +111,7 @@ export default function DashboardLayout({
   const childrenWithProps = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       // @ts-ignore
-      return React.cloneElement(child, { subscriptionStatus, handleUpgrade });
+      return React.cloneElement(child, { ...child.props, subscriptionStatus, handleUpgrade });
     }
     return child;
   });
@@ -219,3 +219,5 @@ export default function DashboardLayout({
     </SidebarProvider>
   );
 }
+
+    
