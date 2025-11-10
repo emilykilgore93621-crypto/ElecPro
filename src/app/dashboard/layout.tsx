@@ -60,22 +60,17 @@ export default function DashboardLayout({
   useEffect(() => {
     if (!isUserLoading && !user) {
       router.replace('/');
+    } else if (user && firestore) {
+      const userDocRef = doc(firestore, "users", user.uid);
+      const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setSubscriptionStatus(docSnap.data().subscriptionStatus);
+        } else {
+          setSubscriptionStatus('free');
+        }
+      });
+      return () => unsubscribe();
     }
-    // The real subscription check is temporarily disabled.
-    // This will be kept unlocked until you publish.
-    setSubscriptionStatus('pro');
-    
-    // else if (user && firestore) {
-    //   const userDocRef = doc(firestore, "users", user.uid);
-    //   const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
-    //     if (docSnap.exists()) {
-    //       setSubscriptionStatus(docSnap.data().subscriptionStatus);
-    //     } else {
-    //       setSubscriptionStatus('free');
-    //     }
-    //   });
-    //   return () => unsubscribe();
-    // }
   }, [user, isUserLoading, router, firestore]);
 
   const handleLogout = async () => {
