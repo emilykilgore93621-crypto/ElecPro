@@ -25,6 +25,10 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
       if (user) {
         const db = getFirestore(authInstance.app);
         const userDocRef = doc(db, 'users', user.uid);
+        
+        // Check if the new user's email matches the admin email from environment variables
+        const isAdmin = process.env.NEXT_PUBLIC_ADMIN_EMAIL && user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+        
         // We use setDoc with merge:true to be safe, though this is a new doc.
         // This is a non-blocking call.
         setDoc(userDocRef, {
@@ -33,7 +37,7 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
           registrationDate: serverTimestamp(),
           firstName: '',
           lastName: '',
-          subscriptionStatus: 'free',
+          subscriptionStatus: isAdmin ? 'pro' : 'free',
         }, { merge: true });
       }
     })
