@@ -147,8 +147,7 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
     const [activeTool, setActiveTool] = useState("select");
     const [elements, setElements] = useState<CanvasElement[]>([]);
     const [wires, setWires] = useState<Wire[]>([]);
-    const [wiringStartElement, setWiringStartElement]_ = useState<CanvasElement | null>(null);
-    const wiringStartElementRef = useRef<CanvasElement | null>(null);
+    const [wiringStartElement, setWiringStartElement] = useState<CanvasElement | null>(null);
     const [draggingElement, setDraggingElement] = useState<{ id: number; offsetX: number; offsetY: number } | null>(null);
     const [showTakeoff, setShowTakeoff] = useState(true);
     const canvasRef = useRef<HTMLDivElement>(null);
@@ -157,13 +156,6 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
     const { toast } = useToast();
     
     const gridSize = 20;
-
-    const setWiringStartElement = (element: CanvasElement | null) => {
-        wiringStartElementRef.current = element;
-        setWiringStartElement_(element);
-    };
-
-    const wiringStartElement = wiringStartElementRef.current;
     
     useEffect(() => {
         if (editInputRef.current) {
@@ -548,7 +540,7 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
                     {elements.map(el => {
                         const Icon = componentIconMap[el.type];
                         const componentDetails = componentMap[el.type];
-                        const isWiringStart = wiringStartElementRef.current?.id === el.id;
+                        const isWiringStart = wiringStartElement?.id === el.id;
                         const isLabel = el.type === 'label';
                         
                         return (
