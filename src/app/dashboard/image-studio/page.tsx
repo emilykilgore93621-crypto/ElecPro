@@ -16,6 +16,22 @@ const initialState: { dataUri: string | null; error: string | null } = {
   error: null,
 };
 
+// Define the server action
+async function imageGenerationAction(prevState: typeof initialState, formData: FormData) {
+  'use server';
+  const prompt = formData.get('prompt') as string;
+  if (!prompt || prompt.trim().length < 5) {
+    return { dataUri: null, error: 'Please enter a more descriptive prompt (at least 5 characters).' };
+  }
+  try {
+    const result = await generateImage(prompt);
+    return { dataUri: result.dataUri, error: null };
+  } catch (e: any) {
+    console.error(e);
+    return { dataUri: null, error: e.message || 'An error occurred during image generation.' };
+  }
+}
+
 function SubmitButton() {
   const { pending } = useFormStatus();
 
@@ -37,19 +53,7 @@ function SubmitButton() {
 }
 
 export default function ImageStudioPage() {
-  const [state, formAction] = useActionState(async (prevState: typeof initialState, formData: FormData) => {
-    const prompt = formData.get('prompt') as string;
-    if (!prompt || prompt.trim().length < 5) {
-      return { dataUri: null, error: 'Please enter a more descriptive prompt (at least 5 characters).' };
-    }
-    try {
-      const result = await generateImage(prompt);
-      return { dataUri: result.dataUri, error: null };
-    } catch (e: any) {
-      console.error(e);
-      return { dataUri: null, error: e.message || 'An error occurred during image generation.' };
-    }
-  }, initialState);
+  const [state, formAction] = useActionState(imageGenerationAction, initialState);
 
   return (
     <>
