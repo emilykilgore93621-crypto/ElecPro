@@ -66,6 +66,8 @@ export default function DashboardLayout({
         if (docSnap.exists()) {
           setSubscriptionStatus(docSnap.data().subscriptionStatus);
         } else {
+          // If the user doc doesn't exist, they are on the free tier.
+          // We can also create it here if needed.
           setSubscriptionStatus('free');
         }
       });
