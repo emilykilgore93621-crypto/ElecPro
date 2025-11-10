@@ -418,5 +418,3 @@ export const guideData: { [key: string]: GuideContent } = {
         ]
     }
 };
-
-    
