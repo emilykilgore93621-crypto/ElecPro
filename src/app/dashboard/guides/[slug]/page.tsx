@@ -6,6 +6,7 @@ import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight, ExternalLink, Lock,
 import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
+import React from 'react';
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
@@ -39,8 +40,10 @@ const LinkRenderer = ({ text }: { text: string }) => {
 
 
 export default function GuideDetailPage({ params, subscriptionStatus, handleUpgrade }: { params: { slug: string }, subscriptionStatus: string | null, handleUpgrade: () => void }) {
-    const guide = guideData[params.slug];
-    const title = guide?.title ?? params.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    // The use() hook is used to resolve the params object. It's a new feature in React.
+    const resolvedParams = React.use(params);
+    const guide = guideData[resolvedParams.slug];
+    const title = guide?.title ?? resolvedParams.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
     if (guide?.pro && subscriptionStatus !== 'pro') {
          return (
