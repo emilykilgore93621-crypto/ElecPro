@@ -55,6 +55,21 @@ service cloud.firestore {
 
       // Allow a user to delete their own profile
       allow delete: if isExistingOwner(userId);
+      
+      /**
+       * @description Enforces ownership for the canvases subcollection, ensuring a user can only manage their own canvases.
+       * @path /users/{userId}/canvases/{canvasId}
+       */
+      match /canvases/{canvasId} {
+        // A user can create a canvas if they own the parent user document and the new canvas data's userId matches their own.
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+
+        // A user can read, update, and delete a canvas if they own the parent user document.
+        allow get, update, delete: if isOwner(userId);
+
+        // A user can list their own canvases, but not others'.
+        allow list: if isOwner(userId);
+      }
     }
   }
 }
