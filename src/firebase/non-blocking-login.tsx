@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   // Assume getAuth and app are initialized elsewhere
 } from 'firebase/auth';
-import { doc, setDoc, getFirestore, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, getFirestore, serverTimestamp, updateDoc } from 'firebase/firestore';
 
 /** Initiate anonymous sign-in (non-blocking). */
 export function initiateAnonymousSignIn(authInstance: Auth): void {
@@ -53,6 +53,18 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
 export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void {
   // CRITICAL: Call signInWithEmailAndPassword directly. Do NOT use 'await signInWithEmailAndPassword(...)'.
   signInWithEmailAndPassword(authInstance, email, password)
+    .then(userCredential => {
+        // After successful sign-in, check if the user is the admin and upgrade if necessary.
+        const user = userCredential.user;
+        const isAdmin = process.env.NEXT_PUBLIC_ADMIN_EMAIL && user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
+        if (isAdmin) {
+            const db = getFirestore(authInstance.app);
+            const userDocRef = doc(db, 'users', user.uid);
+            // Non-blocking call to update the user's status to 'pro'.
+            updateDoc(userDocRef, { subscriptionStatus: 'pro' });
+        }
+    })
     .catch(error => {
         // The onAuthStateChanged listener will handle UI updates for login state,
         // but you might want to log sign-in-specific errors here if needed.
