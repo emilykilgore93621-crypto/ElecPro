@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dialog";
 
 export default function LoginPage() {
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
   return (
     <div className="w-full min-h-screen relative">
       {/* Background can be managed here */}
@@ -41,7 +40,7 @@ export default function LoginPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="px-6 pb-6">
-                <AuthForm adminEmail={adminEmail} />
+                <AuthForm />
               </div>
             </DialogContent>
           </Dialog>

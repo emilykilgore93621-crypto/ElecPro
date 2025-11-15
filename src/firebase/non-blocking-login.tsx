@@ -17,7 +17,7 @@ export function initiateAnonymousSignIn(authInstance: Auth): void {
 }
 
 /** Initiate email/password sign-up (non-blocking). */
-export function initiateEmailSignUp(authInstance: Auth, email: string, password: string, adminEmail: string | undefined): void {
+export function initiateEmailSignUp(authInstance: Auth, email: string, password: string): void {
   // CRITICAL: Call createUserWithEmailAndPassword directly. Do NOT use 'await createUserWithEmailAndPassword(...)'.
   createUserWithEmailAndPassword(authInstance, email, password)
     .then(userCredential => {
@@ -27,8 +27,8 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
         const db = getFirestore(authInstance.app);
         const userDocRef = doc(db, 'users', user.uid);
         
-        // Check if the new user's email matches the admin email from environment variables
-        const isAdmin = adminEmail && user.email === adminEmail;
+        // Directly check if the new user's email is the admin email
+        const isAdmin = user.email === 'dev@wattsup.pro';
         
         // We use setDoc with merge:true to be safe, though this is a new doc.
         // This is a non-blocking call.
@@ -51,13 +51,14 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
 }
 
 /** Initiate email/password sign-in (non-blocking). */
-export function initiateEmailSignIn(authInstance: Auth, email: string, password: string, adminEmail: string | undefined): void {
+export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void {
   // CRITICAL: Call signInWithEmailAndPassword directly. Do NOT use 'await signInWithEmailAndPassword(...)'.
   signInWithEmailAndPassword(authInstance, email, password)
     .then(userCredential => {
         // After successful sign-in, check if the user is the admin and upgrade if necessary.
         const user = userCredential.user;
-        const isAdmin = adminEmail && user.email === adminEmail;
+        // Directly check if the logged-in user's email is the admin email
+        const isAdmin = user.email === 'dev@wattsup.pro';
 
         if (isAdmin) {
             const db = getFirestore(authInstance.app);
