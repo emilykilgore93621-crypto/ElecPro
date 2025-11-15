@@ -39,7 +39,7 @@ const formSchema = z.object({
 
 type AuthFormValues = z.infer<typeof formSchema>
 
-export function AuthForm() {
+export function AuthForm({ adminEmail }: { adminEmail: string | undefined }) {
   const [mode, setMode] = useState<"signin" | "signup" | "reset">("signin")
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -68,9 +68,9 @@ export function AuthForm() {
     setError(null)
     try {
       if (mode === "signup") {
-        initiateEmailSignUp(auth, data.email, data.password)
+        initiateEmailSignUp(auth, data.email, data.password, adminEmail)
       } else {
-        initiateEmailSignIn(auth, data.email, data.password)
+        initiateEmailSignIn(auth, data.email, data.password, adminEmail)
       }
       // The redirect is now handled by the useEffect hook above and the DashboardLayout.
     } catch (err: any) {

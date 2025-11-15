@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Auth, // Import Auth type for type hinting
@@ -16,7 +17,7 @@ export function initiateAnonymousSignIn(authInstance: Auth): void {
 }
 
 /** Initiate email/password sign-up (non-blocking). */
-export function initiateEmailSignUp(authInstance: Auth, email: string, password: string): void {
+export function initiateEmailSignUp(authInstance: Auth, email: string, password: string, adminEmail: string | undefined): void {
   // CRITICAL: Call createUserWithEmailAndPassword directly. Do NOT use 'await createUserWithEmailAndPassword(...)'.
   createUserWithEmailAndPassword(authInstance, email, password)
     .then(userCredential => {
@@ -27,7 +28,7 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
         const userDocRef = doc(db, 'users', user.uid);
         
         // Check if the new user's email matches the admin email from environment variables
-        const isAdmin = process.env.NEXT_PUBLIC_ADMIN_EMAIL && user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+        const isAdmin = adminEmail && user.email === adminEmail;
         
         // We use setDoc with merge:true to be safe, though this is a new doc.
         // This is a non-blocking call.
@@ -50,13 +51,13 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
 }
 
 /** Initiate email/password sign-in (non-blocking). */
-export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void {
+export function initiateEmailSignIn(authInstance: Auth, email: string, password: string, adminEmail: string | undefined): void {
   // CRITICAL: Call signInWithEmailAndPassword directly. Do NOT use 'await signInWithEmailAndPassword(...)'.
   signInWithEmailAndPassword(authInstance, email, password)
     .then(userCredential => {
         // After successful sign-in, check if the user is the admin and upgrade if necessary.
         const user = userCredential.user;
-        const isAdmin = process.env.NEXT_PUBLIC_ADMIN_EMAIL && user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+        const isAdmin = adminEmail && user.email === adminEmail;
 
         if (isAdmin) {
             const db = getFirestore(authInstance.app);
