@@ -42,9 +42,10 @@ import React, { useState, MouseEvent, useRef, useEffect, ChangeEvent, KeyboardEv
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useFirebase } from "@/firebase";
-import { collection, serverTimestamp, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, serverTimestamp } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
+import { useSubscription } from "@/app/dashboard/layout";
 
 
 type Tool = {
@@ -143,7 +144,8 @@ const componentIconMap: { [key: string]: React.ElementType } = {
 
 
 
-export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subscriptionStatus: string | null, handleUpgrade: () => void }) {
+export default function CanvasPage() {
+    const { subscriptionStatus, handleUpgrade } = useSubscription();
     const [activeTool, setActiveTool] = useState("select");
     const [elements, setElements] = useState<CanvasElement[]>([]);
     const [wires, setWires] = useState<Wire[]>([]);
@@ -162,6 +164,13 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
             editInputRef.current.focus();
         }
     }, [elements]);
+    
+    const handleDeleteElement = (elementId: number) => {
+        // Remove the element itself
+        setElements(prev => prev.filter(el => el.id !== elementId));
+        // Remove any wires connected to this element
+        setWires(prev => prev.filter(w => w.startElementId !== elementId && w.endElementId !== elementId));
+    };
 
     if (subscriptionStatus !== 'pro') {
       return (
@@ -266,6 +275,8 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
             setWiringStartElement(null); // Deselect wiring start if clicking on canvas background
             return;
         }
+        
+         if (activeTool === 'delete') return;
 
         const { x, y } = getCanvasCoordinates(e, e.currentTarget);
 
@@ -288,6 +299,12 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
     
     const handleElementMouseDown = (e: MouseEvent<HTMLDivElement>, element: CanvasElement) => {
         e.stopPropagation();
+        
+        if (activeTool === 'delete') {
+            handleDeleteElement(element.id);
+            return;
+        }
+
         if (activeTool === 'select') {
             if (!canvasRef.current) return;
             const { x: mouseX, y: mouseY } = getCanvasCoordinates(e, canvasRef.current);
@@ -498,6 +515,16 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
                         </Button>
                     )
                  })}
+                 <Button 
+                    variant={activeTool === 'delete' ? "destructive" : "ghost"}
+                    size="icon"
+                    className="w-16 h-16 flex-col"
+                    onClick={() => setActiveTool('delete')}
+                    title="Delete"
+                >
+                    <Trash2 className="size-8" />
+                    <span className="text-xs">Delete</span>
+                </Button>
             </CardContent>
         </Card>
         <div className="flex-1 flex flex-col gap-4">
@@ -506,7 +533,7 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
                     ref={canvasRef}
                     className={cn(
                       "h-full w-full bg-grid-slate-100 dark:bg-grid-slate-700/50 rounded-lg relative",
-                      activeTool === 'select' ? 'cursor-default' : 'cursor-crosshair'
+                      activeTool === 'select' ? 'cursor-default' : (activeTool === 'delete' ? 'cursor-not-allowed' : 'cursor-crosshair')
                     )}
                     style={{
                         backgroundSize: `${gridSize}px ${gridSize}px`,
@@ -551,6 +578,7 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
                                   !isLabel && "p-2 rounded-full",
                                   activeTool === 'select' && 'cursor-grab',
                                   activeTool === 'wire' && 'cursor-pointer',
+                                  activeTool === 'delete' && 'cursor-pointer hover:bg-destructive/20',
                                   draggingElement?.id === el.id && 'cursor-grabbing',
                                   isWiringStart && 'bg-primary/20 ring-2 ring-primary'
                                 )}
@@ -624,5 +652,3 @@ export default function CanvasPage({ subscriptionStatus, handleUpgrade }: { subs
     </div>
   );
 }
-
-    

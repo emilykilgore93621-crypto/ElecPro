@@ -10,6 +10,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSubscription } from "@/app/dashboard/layout";
 
 const wellControlData = {
     "pressure-switch": {
@@ -100,7 +101,8 @@ const wellControlData = {
 }
 
 
-export default function WellControlsPage({ subscriptionStatus, handleUpgrade }: { subscriptionStatus: string | null, handleUpgrade: () => void }) {
+export default function WellControlsPage() {
+    const { subscriptionStatus, handleUpgrade } = useSubscription();
 
     if (subscriptionStatus !== 'pro') {
         return (

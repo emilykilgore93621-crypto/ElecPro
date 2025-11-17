@@ -15,6 +15,7 @@ import {
   Droplet,
   Siren,
   Lock,
+  Camera,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -24,6 +25,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
+import { useSubscription } from "@/app/dashboard/layout"
 
 
 const navItems = [
@@ -31,6 +33,7 @@ const navItems = [
   { href: "/dashboard/calculators", icon: Calculator, label: "Calculators" },
   { href: "/dashboard/guides", icon: Wrench, label: "Installation Guides" },
   { href: "/dashboard/reference", icon: BookText, label: "Reference Library" },
+  { href: "/dashboard/image-studio", icon: Camera, label: "AI Image Studio" },
   { href: "/dashboard/canvas", icon: PenSquare, label: "Interactive Canvas", pro: true },
   { href: "/dashboard/well-controls", icon: Droplet, label: "Well Controls", pro: true },
   { href: "/dashboard/fire-alarms", icon: Siren, label: "Fire Alarms" },
@@ -39,8 +42,9 @@ const navItems = [
   { href: "/dashboard/settings", icon: Cog, label: "Settings" },
 ]
 
-export function MainNav({ subscriptionStatus }: { subscriptionStatus: string | null }) {
+export function MainNav() {
   const pathname = usePathname()
+  const { subscriptionStatus } = useSubscription();
 
   return (
     <SidebarMenu>

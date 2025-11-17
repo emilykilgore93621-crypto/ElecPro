@@ -8,6 +8,7 @@ import { Lock, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { guideData } from "./guide-data";
+import { useSubscription } from "@/app/dashboard/layout";
 
 const guideCategories = [
     {
@@ -56,7 +57,8 @@ const guideCategories = [
     },
 ];
 
-export default function GuidesPage({ subscriptionStatus, handleUpgrade }: { subscriptionStatus: string | null, handleUpgrade: () => void }) {
+export default function GuidesPage() {
+    const { subscriptionStatus, handleUpgrade } = useSubscription();
 
     return (
         <>

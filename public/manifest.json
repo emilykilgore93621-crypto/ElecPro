@@ -1,11 +1,11 @@
 {
   "name": "WattsUp Electrical Toolkit",
   "short_name": "WattsUp",
-  "description": "An all-in-one toolkit for electricians and DIY enthusiasts.",
+  "description": "Your complete electrical toolkit for residential repairs and installations.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e293b",
-  "theme_color": "#fb923c",
+  "background_color": "#1c2536",
+  "theme_color": "#f9a825",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

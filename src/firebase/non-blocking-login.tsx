@@ -7,7 +7,9 @@ import {
   signInWithEmailAndPassword,
   // Assume getAuth and app are initialized elsewhere
 } from 'firebase/auth';
-import { doc, setDoc, getFirestore, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, getFirestore, serverTimestamp, updateDoc, getDoc } from 'firebase/firestore';
+
+const ADMIN_EMAIL = 'dev@wattsup.pro';
 
 /** Initiate anonymous sign-in (non-blocking). */
 export function initiateAnonymousSignIn(authInstance: Auth): void {
@@ -28,7 +30,7 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
         const userDocRef = doc(db, 'users', user.uid);
         
         // Directly check if the new user's email is the admin email
-        const isAdmin = user.email === 'dev@wattsup.pro';
+        const isAdmin = user.email === ADMIN_EMAIL;
         
         // We use setDoc with merge:true to be safe, though this is a new doc.
         // This is a non-blocking call.
@@ -54,17 +56,27 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
 export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void {
   // CRITICAL: Call signInWithEmailAndPassword directly. Do NOT use 'await signInWithEmailAndPassword(...)'.
   signInWithEmailAndPassword(authInstance, email, password)
-    .then(userCredential => {
-        // After successful sign-in, check if the user is the admin and upgrade if necessary.
+    .then(async (userCredential) => {
         const user = userCredential.user;
-        // Directly check if the logged-in user's email is the admin email
-        const isAdmin = user.email === 'dev@wattsup.pro';
+        const db = getFirestore(authInstance.app);
+        const userDocRef = doc(db, 'users', user.uid);
 
-        if (isAdmin) {
-            const db = getFirestore(authInstance.app);
-            const userDocRef = doc(db, 'users', user.uid);
-            // Non-blocking call to update the user's status to 'pro'.
-            updateDoc(userDocRef, { subscriptionStatus: 'pro' });
+        const isAdmin = user.email === ADMIN_EMAIL;
+        
+        // Check if user document exists
+        const docSnap = await getDoc(userDocRef);
+
+        if (!docSnap.exists()) {
+          // If doc doesn't exist, create it. This can happen for users created before this logic was in place.
+          await setDoc(userDocRef, {
+            id: user.uid,
+            email: user.email,
+            registrationDate: serverTimestamp(),
+            subscriptionStatus: isAdmin ? 'pro' : 'free',
+          }, { merge: true });
+        } else if (isAdmin) {
+            // If the user is admin, ensure their status is 'pro'.
+            await updateDoc(userDocRef, { subscriptionStatus: 'pro' });
         }
     })
     .catch(error => {

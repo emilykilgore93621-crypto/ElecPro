@@ -60,8 +60,8 @@ export default function ImageStudioPage() {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl font-headline">AI Vision</h1>
       </div>
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card className="md:col-span-2">
+      <div className="grid gap-6">
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 font-headline">
               <Camera />
@@ -85,7 +85,7 @@ export default function ImageStudioPage() {
         </Card>
 
         {state.error && (
-          <Alert variant="destructive" className="md:col-span-2">
+          <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Generation Failed</AlertTitle>
             <AlertDescription>{state.error}</AlertDescription>
@@ -93,7 +93,7 @@ export default function ImageStudioPage() {
         )}
 
         {state.dataUri && (
-          <div className="space-y-4 md:col-span-2">
+          <div className="space-y-4">
             <Card>
               <CardHeader>
                 <CardTitle className="font-headline">Generated Image</CardTitle>
