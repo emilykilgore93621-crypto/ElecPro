@@ -8,9 +8,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown } from "lucide-react";
+import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown, Youtube, ListChecks } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/hooks/use-subscription";
+import Link from "next/link";
 
 const wellControlData = {
     "pressure-switch": {
@@ -206,7 +207,48 @@ export default function WellControlsPage() {
                     ))}
                 </div>
 
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 font-headline"><ListChecks className="text-primary"/>Pro Tips &amp; Final Checks</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div>
+                            <h3 className="font-semibold mb-2">"Buttoning Up" Checklist</h3>
+                            <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                                <li>**Check Connections:** Give each wire a gentle tug at its terminal to ensure it's secure.</li>
+                                <li>**Secure All Covers:** Make sure all junction box, pressure switch, and control box covers are tightly screwed down to keep out moisture, dirt, and critters.</li>
+                                <li>**Inspect for Leaks:** After restoring power and pressurizing the system, check all plumbing connections you touched for any drips.</li>
+                                <li>**Label Clearly:** If you replaced a component, ensure any new labels are clear and accurate for the next person.</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h3 className="font-semibold mb-2">General Do's and Don'ts</h3>
+                             <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                                <li><span className="font-semibold text-primary">DO:</span> Take a 'before' picture of the wiring. It’s the best reference you can have.</li>
+                                <li><span className="font-semibold text-destructive">DON'T:</span> Ever trust that a breaker is off. Always verify with a multimeter at the exact point of work.</li>
+                                <li><span className="font-semibold text-primary">DO:</span> Match capacitor MFD and voltage ratings exactly. A near match is not good enough.</li>
+                                <li><span className="font-semibold text-destructive">DON'T:</span> Forget to discharge a capacitor safely before handling it, even with the power off.</li>
+                             </ul>
+                        </div>
+                        <div>
+                            <h3 className="font-semibold mb-2">When to Call a Professional</h3>
+                            <p className="text-sm text-muted-foreground">
+                                If you've run through the troubleshooting steps and are still facing issues, or if you feel unsure at any point, it's time to call a professional water technician or "Pump Guy". They have the specialized tools and experience to diagnose complex issues safely. Never risk your safety over a repair.
+                            </p>
+                        </div>
+                         <div>
+                            <h3 className="font-semibold mb-2 flex items-center gap-2"><Youtube className="text-red-500"/>Helpful Video Snippets</h3>
+                            <div className="flex flex-col space-y-2">
+                                <Link href="https://www.youtube.com/results?search_query=how+to+test+well+pressure+switch" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium text-sm">How to Test a Well Pressure Switch</Link>
+                                <Link href="https://www.youtube.com/results?search_query=how+to+replace+well+control+box+capacitor" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium text-sm">How to Replace a Well Control Box Capacitor</Link>
+                                <Link href="https://www.youtube.com/results?search_query=how+to+check+pressure+tank+air+charge" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium text-sm">How to Check and Recharge a Pressure Tank</Link>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
         </>
     );
 }
+
+    
