@@ -8,6 +8,7 @@ import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
 import React from 'react';
 import { useSubscription } from "@/hooks/use-subscription";
+import { useParams } from "next/navigation";
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
@@ -40,7 +41,9 @@ const LinkRenderer = ({ text }: { text: string }) => {
 };
 
 
-export default function GuideDetailPage({ params: { slug } }: { params: { slug: string } }) {
+export default function GuideDetailPage() {
+    const params = useParams();
+    const slug = typeof params.slug === 'string' ? params.slug : '';
     const { subscriptionStatus, handleUpgrade } = useSubscription();
     const guide = guideData[slug];
     const title = guide?.title ?? slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
