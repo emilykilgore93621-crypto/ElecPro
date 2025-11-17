@@ -40,10 +40,10 @@ const LinkRenderer = ({ text }: { text: string }) => {
 };
 
 
-export default function GuideDetailPage({ params }: { params: { slug: string } }) {
+export default function GuideDetailPage({ params: { slug } }: { params: { slug: string } }) {
     const { subscriptionStatus, handleUpgrade } = useSubscription();
-    const guide = guideData[params.slug];
-    const title = guide?.title ?? params.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    const guide = guideData[slug];
+    const title = guide?.title ?? slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
     if (guide?.pro && subscriptionStatus !== 'pro') {
          return (
