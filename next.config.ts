@@ -2,11 +2,17 @@
 import type {NextConfig} from 'next';
 import { config } from 'dotenv';
 
-config(); // Load environment variables from .env file
-
 const nextConfig: NextConfig = {
   /* config options here */
-  typescript: {},
+  typescript: {
+    // This is the correct place to load environment variables for the Next.js server.
+    // It ensures that the GEMINI_API_KEY is available for Genkit flows.
+    ignoreBuildErrors: false, // You can set this to true if needed, but loading env here is key.
+    ...(() => {
+      config(); // Load environment variables from .env file
+      return {};
+    })(),
+  },
   images: {
     remotePatterns: [
       {
