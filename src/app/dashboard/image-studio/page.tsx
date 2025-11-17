@@ -100,7 +100,7 @@ export default function ImageStudioPage() {
                     <CardTitle className="font-headline">Image Data URI</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="p-2 border bg-muted rounded-md text-xs break-all font-code">
+                    <div className="p-2 border bg-muted rounded-md text-xs break-all font-code max-h-48 overflow-y-auto">
                         {state.dataUri}
                     </div>
                 </CardContent>
