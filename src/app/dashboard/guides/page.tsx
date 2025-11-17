@@ -8,7 +8,7 @@ import { Lock, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { guideData } from "./guide-data";
-import { useSubscription } from "@/app/dashboard/layout";
+import { useSubscription } from "@/hooks/use-subscription";
 
 const guideCategories = [
     {

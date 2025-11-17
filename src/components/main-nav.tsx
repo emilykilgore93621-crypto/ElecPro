@@ -25,7 +25,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
-import { useSubscription } from "@/app/dashboard/layout"
+import { useSubscription } from "@/hooks/use-subscription"
 
 
 const navItems = [

@@ -10,7 +10,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { AlertTriangle, HardHat, CheckCircle2, Lock, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useSubscription } from "@/app/dashboard/layout";
+import { useSubscription } from "@/hooks/use-subscription";
 
 const wellControlData = {
     "pressure-switch": {

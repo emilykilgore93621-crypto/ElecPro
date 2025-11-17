@@ -45,7 +45,7 @@ import { useFirebase } from "@/firebase";
 import { collection, serverTimestamp } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
-import { useSubscription } from "@/app/dashboard/layout";
+import { useSubscription } from "@/hooks/use-subscription";
 
 
 type Tool = {

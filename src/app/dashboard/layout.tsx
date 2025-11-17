@@ -11,9 +11,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
-
 
 import { Button } from "@/components/ui/button";
 import {
@@ -44,23 +43,7 @@ import { MainNav } from "@/components/main-nav";
 import { useAuth, useUser, useFirestore } from "@/firebase";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
-
-// --- Subscription Context ---
-type SubscriptionContextType = {
-  subscriptionStatus: string | null;
-  handleUpgrade: () => void;
-};
-
-const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);
-
-export const useSubscription = () => {
-  const context = useContext(SubscriptionContext);
-  if (context === undefined) {
-    throw new Error("useSubscription must be used within a SubscriptionProvider");
-  }
-  return context;
-};
-// ----------------------------
+import { SubscriptionProvider } from "@/hooks/use-subscription";
 
 
 export default function DashboardLayout({
@@ -126,7 +109,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <SubscriptionContext.Provider value={{ subscriptionStatus, handleUpgrade }}>
+    <SubscriptionProvider value={{ subscriptionStatus, handleUpgrade }}>
       <SidebarProvider>
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
           <Sidebar className="hidden border-r bg-sidebar text-sidebar-foreground md:block">
@@ -227,6 +210,6 @@ export default function DashboardLayout({
           </div>
         </div>
       </SidebarProvider>
-    </SubscriptionContext.Provider>
+    </SubscriptionProvider>
   );
 }

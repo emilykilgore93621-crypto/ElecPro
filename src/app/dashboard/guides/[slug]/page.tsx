@@ -7,7 +7,7 @@ import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
 import React from 'react';
-import { useSubscription } from "@/app/dashboard/layout";
+import { useSubscription } from "@/hooks/use-subscription";
 
 const keywordsToLinks: { [key: string]: string } = {
     "circuit breaker": "/dashboard/guides/circuit-breakers",
@@ -42,10 +42,8 @@ const LinkRenderer = ({ text }: { text: string }) => {
 
 export default function GuideDetailPage({ params }: { params: { slug: string } }) {
     const { subscriptionStatus, handleUpgrade } = useSubscription();
-    // The use() hook is used to resolve the params object. It's a new feature in React.
-    const resolvedParams = React.use(params);
-    const guide = guideData[resolvedParams.slug];
-    const title = guide?.title ?? resolvedParams.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    const guide = guideData[params.slug];
+    const title = guide?.title ?? params.slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
     if (guide?.pro && subscriptionStatus !== 'pro') {
          return (
