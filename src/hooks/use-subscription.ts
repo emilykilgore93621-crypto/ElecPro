@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { createContext, useContext, ReactNode } from 'react';
@@ -19,7 +18,7 @@ export const useSubscription = () => {
   return context;
 };
 
-export const SubscriptionProvider = ({ children, value }: { children: ReactNode, value: SubscriptionContextType }) => {
+export const SubscriptionProvider = ({ children, value }: { children: ReactNode; value: SubscriptionContextType }) => {
     return (
         <SubscriptionContext.Provider value={value}>
             {children}
