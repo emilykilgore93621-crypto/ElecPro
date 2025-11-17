@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Lock, Crown } from "lucide-react";
+import { Lock, Crown, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { guideData } from "./guide-data";
@@ -34,9 +34,10 @@ const guideCategories = [
         ]
     },
     {
-        name: "HVAC & Alarms",
+        name: "HVAC & Motors",
         guides: [
             { slug: "cooler-motor", title: "Cooler Motor" },
+            { slug: "motor-facts", title: "Motor Quick Facts"},
             { slug: "fire-alarms", title: "Fire Alarms" },
         ]
     },
@@ -117,3 +118,5 @@ export default function GuidesPage() {
         </>
     );
 }
+
+    

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints, Ruler } from "lucide-react";
+import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints, Ruler, Equal, Divide, X, Info } from "lucide-react";
 
 const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
     "12.5": { volume: 12.5, type: "Single-gang handy box (4 x 2 1/8 x 1 7/8)" },
@@ -287,26 +287,33 @@ export default function CalculatorsPage() {
             <form onSubmit={handleOhmsLawCalculate}>
                 <CardHeader>
                   <CardTitle className="font-headline">Ohm's Law Calculator</CardTitle>
-                  <CardDescription>Enter any two values to calculate the other two.</CardDescription>
+                  <CardDescription>A fundamental formula describing the relationship between voltage (V), current (I), and resistance (R).</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  <Alert variant="default" className="bg-muted/50">
+                      <Info className="h-4 w-4" />
+                      <AlertTitle className="font-semibold font-code flex items-center gap-2">V <Equal className="size-3"/> I <X className="size-3"/> R</AlertTitle>
+                      <AlertDescription>
+                        Voltage (V) = Current (I) × Resistance (R). Enter any two values to calculate the others.
+                      </AlertDescription>
+                  </Alert>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="voltage">Voltage (V)</Label>
                       <Input name="voltage" id="voltage" placeholder="e.g., 120" type="number" step="any"/>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="current">Current (A)</Label>
+                      <Label htmlFor="current">Current (I)</Label>
                       <Input name="current" id="current" placeholder="e.g., 15" type="number" step="any"/>
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="resistance">Resistance (Ω)</Label>
+                      <Label htmlFor="resistance">Resistance (R)</Label>
                       <Input name="resistance" id="resistance" placeholder="e.g., 8" type="number" step="any"/>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="power">Power (W)</Label>
+                      <Label htmlFor="power">Power (P)</Label>
                       <Input name="power" id="power" placeholder="e.g., 1800" type="number" step="any"/>
                     </div>
                   </div>
@@ -346,9 +353,16 @@ export default function CalculatorsPage() {
             <form onSubmit={handleWireSizingCalculate}>
                 <CardHeader>
                   <CardTitle className="font-headline">Wire Sizing Calculator</CardTitle>
-                  <CardDescription>Determine the appropriate wire gauge for your circuit based on voltage drop.</CardDescription>
+                  <CardDescription>Determine the minimum wire gauge to avoid excessive voltage drop.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                   <Alert variant="default" className="bg-muted/50">
+                      <Info className="h-4 w-4" />
+                      <AlertTitle className="font-semibold font-code flex items-center gap-1">VD <Equal className="size-3"/> (2 <X className="size-3"/> K <X className="size-3"/> I <X className="size-3"/> D) <Divide className="size-3"/> CM</AlertTitle>
+                      <AlertDescription>
+                        Calculates Voltage Drop (VD) based on conductor material (K), current (I), distance (D), and circular mils (CM).
+                      </AlertDescription>
+                  </Alert>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="voltage-ws">Voltage (V)</Label>
@@ -413,6 +427,13 @@ export default function CalculatorsPage() {
                   <CardDescription>Calculate the minimum required electrical box volume based on NEC 314.16.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                    <Alert variant="default" className="bg-muted/50">
+                      <Info className="h-4 w-4" />
+                      <AlertTitle className="font-semibold">NEC 314.16(B)</AlertTitle>
+                      <AlertDescription>
+                        Each conductor, device, and clamp in a box has a volume allowance. This calculator sums those allowances to find the minimum box size.
+                      </AlertDescription>
+                  </Alert>
                     <div className="space-y-2">
                         <Label>Largest Conductor (AWG)</Label>
                          <Select name="conductor-awg-bf">
@@ -487,9 +508,16 @@ export default function CalculatorsPage() {
             <form onSubmit={handlePanelSizingCalculate}>
                 <CardHeader>
                   <CardTitle className="font-headline">Panel Sizing Calculator</CardTitle>
-                  <CardDescription>Estimate the minimum panel size for a service or subpanel.</CardDescription>
+                  <CardDescription>Estimate the minimum panel ampacity and number of breaker spaces for a service or subpanel.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                    <Alert variant="default" className="bg-muted/50">
+                      <Info className="h-4 w-4" />
+                      <AlertTitle className="font-semibold">NEC Article 220</AlertTitle>
+                      <AlertDescription>
+                        Proper panel sizing is determined by a load calculation. This tool provides an estimate, but a full load calculation is required for permitting.
+                      </AlertDescription>
+                  </Alert>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="load-ps">Calculated Load (Amps)</Label>
@@ -551,9 +579,16 @@ export default function CalculatorsPage() {
             <form onSubmit={handleConduitFillCalculate}>
                 <CardHeader>
                   <CardTitle className="font-headline">Conduit Fill Calculator</CardTitle>
-                  <CardDescription>Calculate conduit fill percentages based on NEC Chapter 9.</CardDescription>
+                  <CardDescription>Calculate how many wires can safely fit in a specific type and size of conduit.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                    <Alert variant="default" className="bg-muted/50">
+                      <Info className="h-4 w-4" />
+                      <AlertTitle className="font-semibold">NEC Chapter 9, Table 1</AlertTitle>
+                      <AlertDescription>
+                        Fill percentage is limited to prevent heat buildup and damage to wire insulation. (40% for >2 wires).
+                      </AlertDescription>
+                  </Alert>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                      <div className="space-y-2">
                         <Label htmlFor="conduit-type-cf">Conduit Type</Label>

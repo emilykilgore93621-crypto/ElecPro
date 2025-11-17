@@ -430,7 +430,10 @@ export default function CanvasPage() {
   return (
     <div className="flex flex-col h-full gap-4">
       <div className="flex items-center justify-between flex-wrap gap-2">
-        <h1 className="text-lg font-semibold md:text-2xl font-headline">Blueprint Board</h1>
+        <div>
+            <h1 className="text-lg font-semibold md:text-2xl font-headline">Blueprint Board</h1>
+            <p className="text-sm text-muted-foreground">Practice blueprint drawing and simulate wiring diagrams. This is a Pro feature.</p>
+        </div>
         <div className="flex gap-2 items-center">
             <div className="flex items-center space-x-2">
                 <Switch id="show-takeoff" checked={showTakeoff} onCheckedChange={setShowTakeoff} />
@@ -652,3 +655,5 @@ export default function CanvasPage() {
     </div>
   );
 }
+
+    

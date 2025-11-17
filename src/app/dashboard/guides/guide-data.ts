@@ -486,5 +486,28 @@ export const guideData: { [key: string]: GuideContent } = {
         videoLinks: [
             { title: "How to Replace a Light Fixture", url: "https://www.youtube.com/results?search_query=how+to+replace+a+light+fixture" }
         ]
+    },
+    "motor-facts": {
+        title: "Motor Quick Facts",
+        steps: [
+            "HP (Horsepower): A measure of a motor's power. It's crucial to replace a motor with one of the same HP to avoid overloading circuits or having under-powered performance.",
+            "Voltage: Motors are rated for specific voltages (e.g., 120V, 240V). Using the wrong voltage will destroy the motor.",
+            "Phase: Residential motors are almost always single-phase. Industrial motors are often three-phase.",
+            "Capacitors: Many single-phase motors use capacitors to help them start and run efficiently. A bulged or leaking capacitor is a common point of failure and a good first thing to check on a non-starting motor.",
+            "Thermal Protection: Most motors have a built-in thermal overload switch (often a small red button) that will trip if the motor overheats. Allow it to cool before attempting to reset it."
+        ],
+        materials: ["Multimeter (for testing capacitors and voltage)", "Screwdriver", "Wrench set"],
+        proTips: [
+            "A motor's nameplate is the most important source of information. It contains HP, voltage, RPM, and wiring diagrams.",
+            "A humming sound often indicates a motor is receiving power but cannot start, frequently pointing to a bad start capacitor or a seized mechanical load.",
+            "Keep motors clean and ventilated to prevent overheating."
+        ],
+        safetyNotes: "Always disconnect power before working on any motor. Capacitors can store a dangerous electrical charge even with the power off. Learn how to safely discharge them before handling.",
+        videoLinks: [
+            { title: "How to Read a Motor Nameplate", url: "https://www.youtube.com/results?search_query=how+to+read+motor+nameplate" },
+            { title: "How to Test a Motor Capacitor", url: "https://www.youtube.com/results?search_query=how+to+test+motor+capacitor" }
+        ]
     }
 };
+
+    
