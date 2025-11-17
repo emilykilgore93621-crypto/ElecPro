@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import {
   sendPasswordResetEmail,
+  type AuthError,
 } from "firebase/auth"
 
 import { useAuth } from "@/firebase"
@@ -74,7 +75,12 @@ export function AuthForm() {
       }
       // The redirect is now handled by the useEffect hook above and the DashboardLayout.
     } catch (err: any) {
-      setError(err.message)
+        const authError = err as AuthError;
+        if (authError.code === 'auth/email-already-in-use') {
+            setError('This email is already registered. Please login instead.');
+        } else {
+            setError(authError.message);
+        }
     } finally {
       setIsSubmitting(false)
     }

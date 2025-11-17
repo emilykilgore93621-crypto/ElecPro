@@ -25,4 +25,3 @@ export const SubscriptionProvider = ({ children, value }: { children: ReactNode;
         </SubscriptionContext.Provider>
     );
 };
-// ----------------------------
