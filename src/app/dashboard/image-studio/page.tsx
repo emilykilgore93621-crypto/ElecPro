@@ -3,7 +3,7 @@
 
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
-import { generateImage } from '@/ai/flows/generate-image-flow';
+import { imageGenerationAction, type ImageGenerationState } from './actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,26 +11,10 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Camera, AlertCircle, Loader2, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 
-const initialState: { dataUri: string | null; error: string | null } = {
+const initialState: ImageGenerationState = {
   dataUri: null,
   error: null,
 };
-
-// Define the server action
-async function imageGenerationAction(prevState: typeof initialState, formData: FormData) {
-  'use server';
-  const prompt = formData.get('prompt') as string;
-  if (!prompt || prompt.trim().length < 5) {
-    return { dataUri: null, error: 'Please enter a more descriptive prompt (at least 5 characters).' };
-  }
-  try {
-    const result = await generateImage(prompt);
-    return { dataUri: result.dataUri, error: null };
-  } catch (e: any) {
-    console.error(e);
-    return { dataUri: null, error: e.message || 'An error occurred during image generation.' };
-  }
-}
 
 function SubmitButton() {
   const { pending } = useFormStatus();
