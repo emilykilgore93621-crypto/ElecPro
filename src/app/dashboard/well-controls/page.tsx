@@ -48,6 +48,33 @@ const wellControlData = {
             "It does not matter which hot wire goes to which LINE or LOAD terminal, as long as LINE and LOAD are not mixed."
         ]
     },
+    "contactors": {
+        title: "Contactors",
+        troubleshooting: [
+            {
+                symptom: "Pump won't start, contactor doesn't 'click'.",
+                solutions: [
+                    "No power to the contactor coil. Check the control circuit (float switch, pressure switch, timer).",
+                    "Verify the coil voltage (e.g., 24V, 120V, 240V) and ensure the correct voltage is being supplied.",
+                    "Bad coil: The contactor's internal coil has failed and the contactor needs to be replaced."
+                ]
+            },
+            {
+                symptom: "Contactor 'chatters' or hums loudly.",
+                solutions: [
+                    "Low voltage to the coil. Check for loose connections in the control circuit.",
+                    "Debris is preventing the contactor from closing completely.",
+                    "The contactor is failing and should be replaced."
+                ]
+            }
+        ],
+        hardwiring: [
+            "High-voltage power (e.g., 240V) from the breaker connects to the 'LINE' terminals (L1, L2).",
+            "The wires going to the pump motor connect to the 'LOAD' or 'T' terminals (T1, T2).",
+            "The low-voltage control circuit (from a float or pressure switch) connects to the two coil terminals.",
+            "When the coil is energized by the control circuit, it closes the internal switch, sending power to the pump."
+        ]
+    },
     "control-box": {
         title: "Control Box (3-Wire Pumps)",
         troubleshooting: [
@@ -72,30 +99,30 @@ const wellControlData = {
             "The ground wire from the panel connects to the ground wire from the pump.",
         ]
     },
-     "jet-pump": {
-        title: "Jet Pump (Above Ground)",
+    "float-switches": {
+        title: "Float Switches",
         troubleshooting: [
             {
-                symptom: "Motor runs, but no water.",
+                symptom: "Pump doesn't turn on/off at the correct water level.",
                 solutions: [
-                    "Lost prime: The pump and suction line must be completely full of water. Re-prime the system.",
-                    "Leak in suction line: The pump is sucking air instead of water. Check all fittings on the suction side.",
-                    "Foot valve is stuck or clogged: The valve at the bottom of the suction line in the well is not opening.",
+                    "Float is tangled or obstructed and cannot move freely. Ensure clear range of motion.",
+                    "Incorrect wiring (Normally Open vs. Normally Closed).",
+                    "Internal switch has failed. The float switch needs to be replaced."
                 ]
             },
-            {
-                symptom: "Motor doesn't run.",
+             {
+                symptom: "Pump runs continuously.",
                 solutions: [
-                    "Check power at the pressure switch.",
-                    "For 2-wire pumps, the start/run capacitor is inside the motor housing and may have failed.",
+                    "A 'pump down' (Normally Closed) float is stuck in the 'up' position.",
+                    "The float switch has failed in a closed state.",
                 ]
             }
         ],
         hardwiring: [
-            "Jet pumps are typically 2-wire pumps (plus ground).",
-            "Power comes directly from the 'LOAD' side of the pressure switch.",
-            "Connect the two hot wires and the ground according to the motor's terminal diagram.",
-            "Many jet pumps have a voltage switch to select between 120V and 240V operation. Ensure it's set correctly to match your supply voltage.",
+            "Normally Open (NO) / 'Pump Up': Closes the circuit when the float rises. Used to fill a tank. The pump turns ON when water is low and OFF when high.",
+            "Normally Closed (NC) / 'Pump Down': Opens the circuit when the float rises. Used to empty a sump pit. The pump turns ON when water is high and OFF when low.",
+            "Typically wired into the control circuit of a contactor, not usually used to switch the pump's high-voltage power directly.",
+            "Can be wired in series with a pressure switch for systems that need both level and pressure control."
         ]
     }
 }
@@ -144,7 +171,7 @@ export default function WellControlsPage() {
                     </CardContent>
                 </Card>
 
-                <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
                     {Object.values(wellControlData).map((component) => (
                         <Card key={component.title}>
                             <CardHeader>
