@@ -3,12 +3,14 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Calculator,
-  LayoutDashboard,
   Wrench,
   BookText,
   PenSquare,
   ShieldCheck,
   ClipboardCheck,
+  Camera,
+  Droplet,
+  Siren,
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -32,11 +34,29 @@ const features = [
     description: 'NEC, PGE, and NFPA docs with AI-powered guidance.',
     href: '/dashboard/reference',
   },
+   {
+    icon: Camera,
+    title: 'AI Image Studio',
+    description: 'Generate unique images from text prompts.',
+    href: '/dashboard/image-studio',
+  },
   {
     icon: PenSquare,
     title: 'Interactive Canvas',
-    description: 'Simulate wiring setups and circuit designs.',
+    description: 'Simulate wiring setups and circuit designs. (Pro)',
     href: '/dashboard/canvas',
+  },
+   {
+    icon: Droplet,
+    title: 'Well Controls',
+    description: 'Troubleshoot and understand well pump systems. (Pro)',
+    href: '/dashboard/well-controls',
+  },
+  {
+    icon: Siren,
+    title: 'Fire Alarms',
+    description: 'Guides for smoke, CO, and interconnected alarms.',
+    href: '/dashboard/fire-alarms',
   },
   {
     icon: ShieldCheck,
@@ -59,7 +79,7 @@ export default function DashboardPage() {
         <h1 className="text-lg font-semibold md:text-2xl font-headline">Your Toolkit</h1>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {features.map((feature) => (
+        {features.sort((a, b) => a.title.localeCompare(b.title)).map((feature) => (
           <Card key={feature.title} className="flex flex-col transition-all hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
               <div className="flex items-center gap-4 mb-2">
