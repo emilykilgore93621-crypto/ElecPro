@@ -8,6 +8,7 @@ export type GuideContent = {
     detailsPage?: string;
     externalLink?: string;
     pro?: boolean;
+    videoLinks?: { title: string; url: string }[];
 };
 
 export const guideData: { [key: string]: GuideContent } = {
@@ -27,6 +28,9 @@ export const guideData: { [key: string]: GuideContent } = {
             "Use the holes on the back for wire insertion for a quicker connection, but wrapping the wire around the screw provides a more secure connection.",
             "If the box is metal, ensure the ground wire also connects to the box.",
             "Take a picture of the old wiring before disconnecting anything."
+        ],
+        videoLinks: [
+            { title: "How to Replace an Electrical Outlet", url: "https://www.youtube.com/results?search_query=how+to+replace+an+electrical+outlet" }
         ]
     },
     "switches": {
@@ -44,6 +48,9 @@ export const guideData: { [key: string]: GuideContent } = {
         proTips: [
             "For a standard switch, both wires connected to it are 'hot'. One brings power in, the other sends power to the fixture.",
             "Make sure the 'ON' and 'OFF' markings on the switch are oriented correctly before tightening."
+        ],
+        videoLinks: [
+            { title: "How to Replace a Light Switch", url: "https://www.youtube.com/results?search_query=how+to+replace+a+light+switch" }
         ]
     },
     "gfci": {
@@ -63,7 +70,11 @@ export const guideData: { [key: string]: GuideContent } = {
             "If you're unsure which wires are LINE, connect only one pair, restore power, and see if the GFCI works. If it does, those are the LINE wires.",
             "A single GFCI outlet can protect all subsequent outlets on the same circuit."
         ],
-        safetyNotes: "Incorrectly wiring LINE and LOAD terminals is a common and dangerous mistake. The test button may work, but the outlet will not provide downstream protection. Always double-check your connections."
+        safetyNotes: "Incorrectly wiring LINE and LOAD terminals is a common and dangerous mistake. The test button may work, but the outlet will not provide downstream protection. Always double-check your connections.",
+        videoLinks: [
+            { title: "How to Install a GFCI Outlet", url: "https://www.youtube.com/results?search_query=how+to+install+a+gfci+outlet" },
+            { title: "Understanding LINE vs LOAD on a GFCI", url: "https://www.youtube.com/results?search_query=gfci+line+vs+load" }
+        ]
     },
     "ceiling-fan": {
         title: "Ceiling Fan",
@@ -84,7 +95,11 @@ export const guideData: { [key: string]: GuideContent } = {
             "Use wire nuts to secure connections and wrap with electrical tape for extra security.",
             "Balance the fan using the included balancing kit to prevent wobbling."
         ],
-        safetyNotes: "Standard electrical boxes are not strong enough to support the weight and vibration of a ceiling fan. You MUST use a fan-rated box."
+        safetyNotes: "Standard electrical boxes are not strong enough to support the weight and vibration of a ceiling fan. You MUST use a fan-rated box.",
+        videoLinks: [
+            { title: "How to Install a Ceiling Fan", url: "https://www.youtube.com/results?search_query=how+to+install+a+ceiling+fan" },
+            { title: "How to Replace a Light Fixture with a Ceiling Fan", url: "https://www.youtube.com/results?search_query=replace+light+fixture+with+ceiling+fan" }
+        ]
     },
     "smart-switch": {
         title: "Smart Switch",
@@ -103,7 +118,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "The most common issue is the lack of a neutral wire in older homes. Check for this before you buy a switch.",
             "Smart switches are bulkier than regular switches. You may need to neatly organize wires to make them fit."
         ],
-        safetyNotes: "Smart switches will not work without a neutral wire. Connecting them improperly can damage the switch or be a fire hazard."
+        safetyNotes: "Smart switches will not work without a neutral wire. Connecting them improperly can damage the switch or be a fire hazard.",
+        videoLinks: [
+            { title: "How to Install a Smart Switch", url: "https://www.youtube.com/results?search_query=how+to+install+a+smart+switch" }
+        ]
     },
     "usb-outlet": {
         title: "USB Outlet",
@@ -121,6 +139,9 @@ export const guideData: { [key: string]: GuideContent } = {
         proTips: [
             "Choose a USB outlet with a high amperage rating (e.g., 3.1A or higher) for faster charging.",
             "Some USB outlets are too deep for shallow 'pancake' electrical boxes. Check your box depth first."
+        ],
+        videoLinks: [
+            { title: "How to Install a USB Outlet", url: "https://www.youtube.com/results?search_query=how+to+install+a+usb+outlet" }
         ]
     },
     "dishwasher": {
@@ -139,7 +160,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Dishwashers must be on a dedicated circuit. Do not share with other appliances like a garbage disposal.",
             "Leave a service loop of wire and water line behind the dishwasher to make it easier to pull out for service."
         ],
-        safetyNotes: "Water and electricity are a dangerous combination. Ensure all connections are tight and the junction box is properly sealed and secured."
+        safetyNotes: "Water and electricity are a dangerous combination. Ensure all connections are tight and the junction box is properly sealed and secured.",
+        videoLinks: [
+            { title: "How to Hardwire a Dishwasher", url: "https://www.youtube.com/results?search_query=how+to+hardwire+a+dishwasher" }
+        ]
     },
     "hot-water-heater": {
         title: "Electric Water Heater",
@@ -162,7 +186,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "It's a good idea to replace the temperature and pressure (T&P) relief valve.",
             "Check local codes for requirements like expansion tanks or drain pans."
         ],
-        safetyNotes: "A 240V circuit is dangerous. Verify power is off at the breaker and at the heater's junction box with a voltage tester. If you see two linked breakers for one appliance, that is a double-pole breaker."
+        safetyNotes: "A 240V circuit is dangerous. Verify power is off at the breaker and at the heater's junction box with a voltage tester. If you see two linked breakers for one appliance, that is a double-pole breaker.",
+        videoLinks: [
+            { title: "How to Replace an Electric Water Heater", url: "https://www.youtube.com/results?search_query=how+to+replace+electric+water+heater" }
+        ]
     },
     "rv-wiring": {
         title: "RV / Trailer Wiring",
@@ -191,7 +218,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Understand the difference between your converter (charges batteries when on shore power) and your inverter (creates AC power from your batteries when off-grid)."
         ],
         safetyNotes: "RV electrical systems involve both 120V AC and 12V DC. Both can be dangerous. Never work on the system with shore power connected or the batteries engaged unless you are a qualified technician. Reverse polarity at a pedestal can cause serious damage.",
-        externalLink: "https://rv-wire-pro-585c9517.base44.app/login?from_url=https://rv-wire-pro-585c9517.base44.app/&app_id=68f2c675fb4b32fe585c9517"
+        externalLink: "https://rv-wire-pro-585c9517.base44.app/login?from_url=https://rv-wire-pro-585c9517.base44.app/&app_id=68f2c675fb4b32fe585c9517",
+        videoLinks: [
+            { title: "RV Electrical Systems Explained", url: "https://www.youtube.com/results?search_query=rv+electrical+systems+explained" }
+        ]
     },
     "cameras": {
         title: "Security Camera",
@@ -209,6 +239,9 @@ export const guideData: { [key: string]: GuideContent } = {
             "Install cameras high enough to be out of easy reach but low enough for clear facial recognition.",
             "Hide wires in conduit or within walls for a clean and secure installation.",
             "Consider using cameras with PoE (Power over Ethernet) to run both power and data through a single cable."
+        ],
+        videoLinks: [
+            { title: "How to Install a PoE Security Camera System", url: "https://www.youtube.com/results?search_query=how+to+install+poe+security+camera+system" }
         ]
     },
     "garbage-disposal": {
@@ -229,7 +262,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "If replacing an old unit, the process is much easier. The new unit will often fit the existing sink flange and wiring.",
             "Use a car jack or a stack of books to help lift and hold the heavy disposal in place while you secure it."
         ],
-        safetyNotes: "Never put your hands inside the disposal. Use tongs to retrieve foreign objects. Always ensure power is off before working."
+        safetyNotes: "Never put your hands inside the disposal. Use tongs to retrieve foreign objects. Always ensure power is off before working.",
+        videoLinks: [
+            { title: "How to Replace a Garbage Disposal", url: "https://www.youtube.com/results?search_query=how+to+replace+garbage+disposal" }
+        ]
     },
     "ranges-and-hoods": {
         title: "Range & Hood",
@@ -245,7 +281,11 @@ export const guideData: { [key: string]: GuideContent } = {
             "Ensure your cabinet height and width will accommodate the new hood.",
             "A 4-wire circuit (with a separate neutral and ground) is the modern standard for ranges and is safer."
         ],
-        safetyNotes: "240V circuits are dangerous. Never attempt to change the outlet yourself unless you are qualified. Always use an anti-tip bracket for the range to prevent accidents."
+        safetyNotes: "240V circuits are dangerous. Never attempt to change the outlet yourself unless you are qualified. Always use an anti-tip bracket for the range to prevent accidents.",
+        videoLinks: [
+            { title: "How to Replace a Range Hood", url: "https://www.youtube.com/results?search_query=how+to+replace+range+hood" },
+            { title: "How to Replace a 3-Prong Range Cord with 4-Prong", url: "https://www.youtube.com/results?search_query=how+to+replace+3-prong+range+cord+with+4-prong" }
+        ]
     },
     "weather-tight": {
         title: "Weather-Tight Outlet",
@@ -264,7 +304,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Use 'in-use' covers that are deep enough to keep plugs connected and protected from rain.",
             "Ensure all outdoor outlets are GFCI protected for safety."
         ],
-        safetyNotes: "Water and electricity are a deadly combination. Ensure the cover is rated for wet locations and seals properly."
+        safetyNotes: "Water and electricity are a deadly combination. Ensure the cover is rated for wet locations and seals properly.",
+        videoLinks: [
+            { title: "How to Install a Weather-Resistant Outdoor Outlet", url: "https://www.youtube.com/results?search_query=how+to+install+weather+resistant+outdoor+outlet" }
+        ]
     },
     "circuit-breakers": {
         title: "Circuit Breaker Safety",
@@ -280,7 +323,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Label your breaker panel clearly and accurately. This is crucial in an emergency.",
             "Test GFCI and AFCI breakers monthly using their 'TEST' buttons."
         ],
-        safetyNotes: "Never touch the metal bus bars inside a panel. Never force a breaker to stay on. If a breaker feels hot, smells like burning, or trips repeatedly, contact a qualified electrician immediately."
+        safetyNotes: "Never touch the metal bus bars inside a panel. Never force a breaker to stay on. If a breaker feels hot, smells like burning, or trips repeatedly, contact a qualified electrician immediately.",
+        videoLinks: [
+            { title: "How to Reset a Tripped Circuit Breaker", url: "https://www.youtube.com/results?search_query=how+to+reset+tripped+circuit+breaker" }
+        ]
     },
     "safe-wiring": {
         title: "Safe Wiring Practices",
@@ -296,7 +342,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Leave at least 6-8 inches of extra wire inside the box to make connections easier.",
             "When stripping wire, be careful not to nick the copper, which can create a weak spot."
         ],
-        safetyNotes: "Exposed wiring, splices outside of boxes, and overloaded circuits are serious fire hazards. Always follow NEC guidelines."
+        safetyNotes: "Exposed wiring, splices outside of boxes, and overloaded circuits are serious fire hazards. Always follow NEC guidelines.",
+        videoLinks: [
+            { title: "Basic Home Wiring Tips for Beginners", url: "https://www.youtube.com/results?search_query=basic+home+wiring+tips" }
+        ]
     },
     "power-tools": {
         title: "Power Tool Handling",
@@ -312,7 +361,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Keep your work area clean and well-lit to prevent accidents.",
             "Use a heavy-gauge extension cord that is rated for the amperage of your tool to avoid voltage drop and overheating."
         ],
-        safetyNotes: "Treat every tool as if it is loaded. Keep fingers away from triggers and moving parts. Be aware of your surroundings and other people."
+        safetyNotes: "Treat every tool as if it is loaded. Keep fingers away from triggers and moving parts. Be aware of your surroundings and other people.",
+        videoLinks: [
+            { title: "Power Tool Safety Tips", url: "https://www.youtube.com/results?search_query=power+tool+safety+tips" }
+        ]
     },
     "ppe": {
         title: "Personal Protective Equipment (PPE)",
@@ -328,7 +380,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "Your PPE is only effective if you wear it. Make it a habit.",
             "Keep your PPE clean and in good condition. Replace it if it becomes damaged."
         ],
-        safetyNotes: "There is no substitute for safety. Turning off the power is the most important piece of 'PPE'. All other equipment is a secondary line of defense."
+        safetyNotes: "There is no substitute for safety. Turning off the power is the most important piece of 'PPE'. All other equipment is a secondary line of defense.",
+        videoLinks: [
+            { title: "Beginners Guide to PPE for DIY Projects", url: "https://www.youtube.com/results?search_query=ppe+for+diy+projects" }
+        ]
     },
     "cooler-motor": {
         title: "Cooler Motor",
@@ -350,7 +405,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "New motors often come with a wiring diagram sticker on them. Always prefer this over your old wiring photo if there are discrepancies.",
             "Check the rotation of the new motor. Some are reversible. It should match the direction of the old motor."
         ],
-        safetyNotes: "Coolers involve both water and electricity. Ensure power is completely off before starting. The fan blades can be sharp. Wear gloves."
+        safetyNotes: "Coolers involve both water and electricity. Ensure power is completely off before starting. The fan blades can be sharp. Wear gloves.",
+        videoLinks: [
+            { title: "How to Replace a Swamp Cooler Motor", url: "https://www.youtube.com/results?search_query=how+to+replace+swamp+cooler+motor" }
+        ]
     },
     "well-pump": {
         title: "Water Well Pump",
@@ -363,7 +421,10 @@ export const guideData: { [key: string]: GuideContent } = {
         materials: ["Voltage tester (multimeter)", "Screwdrivers", "Pliers"],
         proTips: ["A humming pump that doesn't run often points to a bad start capacitor.", "If the pressure switch contacts are pitted or burnt, it's time to replace it."],
         safetyNotes: "Well pumps operate on a 240V circuit which is extremely dangerous. Capacitors can store a dangerous electrical charge even when the power is off. If in doubt, call a professional.",
-        detailsPage: "/dashboard/well-controls"
+        detailsPage: "/dashboard/well-controls",
+        videoLinks: [
+            { title: "Well Pump Troubleshooting Guide", url: "https://www.youtube.com/results?search_query=well+pump+troubleshooting" }
+        ]
     },
     "fire-alarms": {
         title: "Fire Alarms",
@@ -376,7 +437,10 @@ export const guideData: { [key: string]: GuideContent } = {
         materials: ["Smoke/CO detectors", "Screwdriver", "Wire strippers"],
         proTips: ["Use dual-sensor (photoelectric and ionization) alarms for the best protection.", "Replace all alarms every 7-10 years, or as recommended by the manufacturer."],
         safetyNotes: "Interconnected, hardwired alarms provide the best protection for your home. Always follow NFPA 72 guidelines for placement.",
-        detailsPage: "/dashboard/fire-alarms"
+        detailsPage: "/dashboard/fire-alarms",
+        videoLinks: [
+            { title: "How to Install Hardwired Smoke Detectors", url: "https://www.youtube.com/results?search_query=how+to+install+hardwired+smoke+detectors" }
+        ]
     },
     "generator-transfer-switch": {
         title: "Generator Transfer Switch",
@@ -397,7 +461,10 @@ export const guideData: { [key: string]: GuideContent } = {
             "A 6-circuit switch is common for essential loads.",
             "Interlock kits are a cheaper alternative but may not be legal in all areas. A transfer switch is the safest method."
         ],
-        safetyNotes: "This is an advanced project. Incorrectly wiring a generator can be lethal to you and utility workers. It can also cause fires. Back-feeding your panel without a proper transfer switch is illegal and extremely dangerous. If you have any doubts, hire a licensed electrician."
+        safetyNotes: "This is an advanced project. Incorrectly wiring a generator can be lethal to you and utility workers. It can also cause fires. Back-feeding your panel without a proper transfer switch is illegal and extremely dangerous. If you have any doubts, hire a licensed electrician.",
+        videoLinks: [
+            { title: "How to Install a Generator Transfer Switch", url: "https://www.youtube.com/results?search_query=how+to+install+generator+transfer+switch" }
+        ]
     },
     "lighting-fixtures": {
         title: "Lighting Fixtures",
@@ -415,6 +482,9 @@ export const guideData: { [key: string]: GuideContent } = {
             "If the new fixture is significantly heavier than the old one, ensure your electrical box is securely mounted to a ceiling joist.",
             "Have a helper hold the fixture while you connect the wires.",
             "For chandeliers on high ceilings, consider renting scaffolding for a safer installation."
+        ],
+        videoLinks: [
+            { title: "How to Replace a Light Fixture", url: "https://www.youtube.com/results?search_query=how+to+replace+a+light+fixture" }
         ]
     }
 };

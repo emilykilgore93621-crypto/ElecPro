@@ -2,7 +2,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight, ExternalLink, Lock, Crown } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Lightbulb, ArrowRight, ExternalLink, Lock, Crown, Youtube } from "lucide-react";
 import Link from "next/link";
 import { guideData } from "../guide-data";
 import { Button } from "@/components/ui/button";
@@ -141,6 +141,22 @@ export default function GuideDetailPage() {
                                     </ul>
                                 </CardContent>
                             </Card>
+                            {guide.videoLinks && guide.videoLinks.length > 0 && (
+                                 <Card>
+                                    <CardHeader>
+                                        <CardTitle className="flex items-center gap-2 font-headline"><Youtube className="text-red-500"/>Helpful Videos</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex flex-col space-y-2">
+                                            {guide.videoLinks.map((video, index) => (
+                                                 <Link key={index} href={video.url} target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium text-sm">
+                                                    {video.title}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            )}
                         </div>
                     </div>
                 ) : (
