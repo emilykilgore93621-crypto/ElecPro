@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "genkit:watch": "genkit start --tsx",
+    "genkit:watch": "genkit start --watch",
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
