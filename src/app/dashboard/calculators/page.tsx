@@ -274,11 +274,11 @@ export default function CalculatorsPage() {
       <Tabs defaultValue="ohms-law" className="w-full">
         <ScrollArea className="w-full whitespace-nowrap">
           <TabsList className="inline-flex">
-            <TabsTrigger value="ohms-law"><Sigma />Ohm's Law</TabsTrigger>
-            <TabsTrigger value="wire-sizing"><Ruler />Wire Sizing</TabsTrigger>
-            <TabsTrigger value="box-fill"><Box />Box Fill</TabsTrigger>
-            <TabsTrigger value="panel-sizing"><LayoutPanelTop />Panel Sizing</TabsTrigger>
-            <TabsTrigger value="conduit-fill"><Waypoints />Conduit Fill</TabsTrigger>
+            <TabsTrigger value="ohms-law" className="flex items-center gap-2"><Sigma />Ohm's Law</TabsTrigger>
+            <TabsTrigger value="wire-sizing" className="flex items-center gap-2"><Ruler />Wire Sizing</TabsTrigger>
+            <TabsTrigger value="box-fill" className="flex items-center gap-2"><Box />Box Fill</TabsTrigger>
+            <TabsTrigger value="panel-sizing" className="flex items-center gap-2"><LayoutPanelTop />Panel Sizing</TabsTrigger>
+            <TabsTrigger value="conduit-fill" className="flex items-center gap-2"><Waypoints />Conduit Fill</TabsTrigger>
           </TabsList>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
