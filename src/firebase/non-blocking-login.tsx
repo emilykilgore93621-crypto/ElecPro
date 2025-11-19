@@ -1,4 +1,3 @@
-
 'use client';
 import {
   Auth, // Import Auth type for type hinting
@@ -56,28 +55,23 @@ export function initiateEmailSignUp(authInstance: Auth, email: string, password:
 export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): void {
   // CRITICAL: Call signInWithEmailAndPassword directly. Do NOT use 'await signInWithEmailAndPassword(...)'.
   signInWithEmailAndPassword(authInstance, email, password)
-    .then(async (userCredential) => {
+    .then(userCredential => {
         const user = userCredential.user;
         const db = getFirestore(authInstance.app);
         const userDocRef = doc(db, 'users', user.uid);
 
-        const isAdmin = user.email === ADMIN_EMAIL;
-        
         // Check if user document exists
-        const docSnap = await getDoc(userDocRef);
-
-        if (!docSnap.exists()) {
-          // If doc doesn't exist, create it. This can happen for users created before this logic was in place.
-          await setDoc(userDocRef, {
-            id: user.uid,
-            email: user.email,
-            registrationDate: serverTimestamp(),
-            subscriptionStatus: isAdmin ? 'pro' : 'free',
-          }, { merge: true });
-        } else if (isAdmin) {
-            // If the user is admin, ensure their status is 'pro'.
-            await updateDoc(userDocRef, { subscriptionStatus: 'pro' });
-        }
+         getDoc(userDocRef).then(docSnap => {
+            if (!docSnap.exists()) {
+              // If doc doesn't exist, create it. This can happen for users created before this logic was in place.
+              setDoc(userDocRef, {
+                id: user.uid,
+                email: user.email,
+                registrationDate: serverTimestamp(),
+                subscriptionStatus: 'free',
+              }, { merge: true });
+            }
+         });
     })
     .catch(error => {
         // The onAuthStateChanged listener will handle UI updates for login state,

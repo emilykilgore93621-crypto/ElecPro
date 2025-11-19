@@ -377,7 +377,7 @@ export default function CanvasPage() {
         setWiringStartElement(null);
     }
     
-    const getElementById = (id: number) => {
+    const getElementById = (id: number): CanvasElement | null => {
       const elData = elements.find(el => el.id === id);
       if (!elData) return null;
       
@@ -386,7 +386,7 @@ export default function CanvasPage() {
 
       return {
           ...elData,
-          transform: component.transform,
+          transform: elData.transform || component.transform,
       };
     };
     
@@ -597,7 +597,7 @@ export default function CanvasPage() {
                                 {Icon && (
                                     <Icon 
                                         className="h-8 w-8 text-primary pointer-events-none" 
-                                        style={{ transform: componentDetails?.transform }} 
+                                        style={{ transform: el.transform || componentDetails?.transform }} 
                                     />
                                 )}
                                 {isLabel && el.isEditing ? (
@@ -655,5 +655,3 @@ export default function CanvasPage() {
     </div>
   );
 }
-
-    

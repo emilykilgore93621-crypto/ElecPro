@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Lightbulb, AlertCircle, CheckCircle, Scale, Sigma, Zap, Box, LayoutPanelTop, Waypoints, Ruler, Equal, Divide, X, Info } from "lucide-react";
-import { cn } from '@/lib/utils';
 
 
 const standardBoxSizes: { [key: string]: { volume: number, type: string } } = {
@@ -645,14 +644,14 @@ export default function CalculatorsPage() {
                                 Max <strong className="text-primary">{conduitFillResult.maxConductors}</strong> conductors allowed for 40% fill.
                              </p>
                               {conduitFillResult.fillPercentage !== undefined && conduitFillResult.fillPercentage > 0 && (
-                                <p>Your current configuration is at <strong className={cn("text-primary", conduitFillResult.fillPercentage > 40 && "text-destructive")}>{conduitFillResult.fillPercentage}%</strong> fill.</p>
+                                <p>Your current configuration is at <strong className={conduitFillResult.fillPercentage > 40 ? "text-destructive" : "text-primary"}>{conduitFillResult.fillPercentage}%</strong> fill.</p>
                               )}
                               <div className="mt-4">
                                 <h4 className="font-semibold">Residential Do's & Don'ts:</h4>
                                 <ul className="list-disc pl-5 mt-1 text-xs space-y-1">
                                     {conduitFillResult.notes?.map((note, i) => {
                                         const isDont = note.startsWith("DON'T");
-                                        return <li key={i} className={cn(isDont ? "text-destructive" : "text-muted-foreground")}>{note}</li>
+                                        return <li key={i} className={isDont ? "text-destructive" : "text-muted-foreground"}>{note}</li>
                                     })}
                                 </ul>
                              </div>
