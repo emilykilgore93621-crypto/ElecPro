@@ -1,7 +1,6 @@
-
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -47,14 +46,7 @@ export function AuthForm() {
   const auth = useAuth()
   const router = useRouter()
   const { toast } = useToast()
-  const { user, isUserLoading } = useUser();
-
-  useEffect(() => {
-    // This effect redirects the user to the dashboard if they are already logged in.
-    if (!isUserLoading && user) {
-        router.push('/dashboard');
-    }
-  }, [user, isUserLoading, router]);
+  const { isUserLoading } = useUser();
 
   const form = useForm<AuthFormValues>({
     resolver: zodResolver(formSchema),
@@ -73,7 +65,8 @@ export function AuthForm() {
       } else {
         initiateEmailSignIn(auth, data.email, data.password);
       }
-      // The redirect is now handled by the useEffect hook above and the DashboardLayout.
+      // The redirect is now handled by the onAuthStateChanged listener in the DashboardLayout
+       router.push('/dashboard');
     } catch (err: any) {
         const authError = err as AuthError;
         if (authError.code === 'auth/email-already-in-use') {
