@@ -61,9 +61,9 @@ export function AuthForm() {
     setError(null)
     try {
       if (mode === "signup") {
-        initiateEmailSignUp(auth, data.email, data.password);
+        await initiateEmailSignUp(auth, data.email, data.password);
       } else {
-        initiateEmailSignIn(auth, data.email, data.password);
+        await initiateEmailSignIn(auth, data.email, data.password);
       }
       // The redirect is now handled by the onAuthStateChanged listener in the DashboardLayout
        router.push('/dashboard');
