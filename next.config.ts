@@ -2,7 +2,7 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'standalone',
   typescript: {
     // We want to see build errors, so we'll set this to false.
     // The environment variables are loaded above, so they will be available during the build.

@@ -1,4 +1,21 @@
 {
-  "cloud_run_deploy": {},
-  "secrets_manager": {}
+  "cloud_run_deploy": {
+    "services": [
+      {
+        "id": "wattsup-backend",
+        "region": "us-central1",
+        "secrets": [
+          "GEMINI_API_KEY"
+        ]
+      }
+    ]
+  },
+  "secrets_manager": {
+    "secrets": [
+      {
+        "name": "GEMINI_API_KEY",
+        "description": "API Key for Google Gemini to power the Reference Library and Image Studio."
+      }
+    ]
+  }
 }
