@@ -38,7 +38,6 @@
     "class-variance-authority": "0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "embla-carousel-react": "^8.1.5",
     "firebase": "^10.12.2",
     "genkit": "1.22.0",
     "html2canvas": "^1.4.1",

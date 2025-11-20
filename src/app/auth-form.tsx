@@ -74,8 +74,7 @@ export function AuthForm() {
         } else {
             setError(authError.message);
         }
-    } finally {
-      setIsSubmitting(false)
+        setIsSubmitting(false);
     }
   }
 

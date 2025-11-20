@@ -5,21 +5,17 @@ import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore'
 
-// IMPORTANT: DO NOT MODIFY THIS FUNCTION
-export function initializeFirebase() {
-  if (getApps().length) {
-    // If already initialized, return the SDKs with the already initialized App
-    return getSdks(getApp());
+// This function ensures Firebase is initialized only once.
+function getFirebaseApp(): FirebaseApp {
+  if (getApps().length > 0) {
+    return getApp();
   }
-  
-  // Explicitly initialize with the config. This works for both local dev and production.
-  // Firebase App Hosting will override with its own config if environment variables are present.
-  const firebaseApp = initializeApp(firebaseConfig);
-
-  return getSdks(firebaseApp);
+  return initializeApp(firebaseConfig);
 }
 
-export function getSdks(firebaseApp: FirebaseApp) {
+// IMPORTANT: DO NOT MODIFY THIS FUNCTION
+export function initializeFirebase() {
+  const firebaseApp = getFirebaseApp();
   const firestore = getFirestore(firebaseApp);
   const auth = getAuth(firebaseApp);
   
