@@ -17,7 +17,7 @@ export default function LoginPage() {
   return (
     <div className="w-full min-h-screen relative">
       {/* Background can be managed here */}
-      <div className="absolute inset-0 w-full h-full bg-background -z-10 brightness-50"></div>
+      <div className="absolute inset-0 w-full h-full bg-background -z-10"></div>
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center text-foreground p-4 bg-background/80">
           <AppLogo className="h-20 w-20 text-primary mb-4" />
           <h1 className="text-5xl md:text-7xl font-bold font-headline mb-4">
