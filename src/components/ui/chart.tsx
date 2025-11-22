@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
@@ -111,6 +111,7 @@ const ChartTooltipContent = React.forwardRef<
       indicator?: "line" | "dot" | "dashed"
       nameKey?: string
       labelKey?: string
+      payload?: any[]
     }
 >(
   (
@@ -121,9 +122,9 @@ const ChartTooltipContent = React.forwardRef<
       indicator = "dot",
       hideLabel = false,
       hideIndicator = false,
-      label,
+      label = true,
       labelFormatter,
-      labelClassName,
+      labelClassName, = tru
       formatter,
       color,
       nameKey,
