@@ -585,7 +585,7 @@ export default function CalculatorsPage() {
                       <Info className="h-4 w-4" />
                       <AlertTitle className="font-semibold">NEC Chapter 9, Table 1</AlertTitle>
                       <AlertDescription>
-                        Fill percentage is limited to prevent heat buildup and damage to wire insulation. (40% for >2 wires).
+                        Fill percentage is limited to prevent heat buildup and damage to wire insulation. (40% for &groundCount@2 wires).
                       </AlertDescription>
                   </Alert>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

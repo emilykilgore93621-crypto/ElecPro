@@ -8,9 +8,12 @@ import {
   FirestoreError,
   QuerySnapshot,
   CollectionReference,
+  collection,
+  doc,
 } from 'firebase/firestore';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError } from '@/firebase/errors';
+import { useFirestore } from '..';
 
 /** Utility type to add an 'id' field to a given type T. */
 export type WithId<T> = T & { id: string };
@@ -25,17 +28,17 @@ export interface UseCollectionResult<T> {
   error: FirestoreError | Error | null; // Error object, or null.
 }
 
-/* Internal implementation of Query:
-  https://github.com/firebase/firebase-js-sdk/blob/c5f08a9bc5da0d2b0207802c972d53724ccef055/packages/firestore/src/lite-api/reference.ts#L143
-*/
-export interface InternalQuery extends Query<DocumentData> {
-  _query: {
-    path: {
-      canonicalString(): string;
-      toString(): string;
+function getPathFromRefOrQuery(refOrQuery: CollectionReference | Query): string {
+    if (refOrQuery.type === 'collection') {
+        return refOrQuery.path;
     }
-  }
+    // For queries, we can reconstruct the path from its segments.
+    // This is a safer way than accessing private properties.
+    const query = refOrQuery as Query;
+    // @ts-ignore - _query is a private but stable API for getting path segments
+    return query._query.path.segments.join('/');
 }
+
 
 /**
  * React hook to subscribe to a Firestore collection or query in real-time.
@@ -85,11 +88,7 @@ export function useCollection<T = any>(
         setIsLoading(false);
       },
       (error: FirestoreError) => {
-        // This logic extracts the path from either a ref or a query
-        const path: string =
-          memoizedTargetRefOrQuery.type === 'collection'
-            ? (memoizedTargetRefOrQuery as CollectionReference).path
-            : (memoizedTargetRefOrQuery as unknown as InternalQuery)._query.path.canonicalString()
+        const path = getPathFromRefOrQuery(memoizedTargetRefOrQuery);
 
         const contextualError = new FirestorePermissionError({
           operation: 'list',
@@ -108,7 +107,7 @@ export function useCollection<T = any>(
     return () => unsubscribe();
   }, [memoizedTargetRefOrQuery]); // Re-run if the target query/reference changes.
   if(memoizedTargetRefOrQuery && !memoizedTargetRefOrQuery.__memo) {
-    throw new Error(memoizedTargetRefOrQuery + ' was not properly memoized using useMemoFirebase');
+    throw new Error('useCollection target was not properly memoized using useMemoFirebase. This will cause infinite re-renders.');
   }
   return { data, isLoading, error };
 }

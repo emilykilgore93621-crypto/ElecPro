@@ -37,8 +37,8 @@ function SubmitButton() {
 }
 
 export default function ImageStudioPage() {
-  const [state, formAction] = useActionState(imageGenerationAction, initialState);
-
+  const [state, formAction] = useActionState<ImageGenerationState, FormData>(imageGenerationAction, initialState);
+  
   return (
     <>
       <div className="flex items-center">

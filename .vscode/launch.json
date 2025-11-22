@@ -1,6 +1,7 @@
 {
       "version": "0.2.0",
         "configurations": [
+            
 
              
             {
@@ -9,8 +10,7 @@
                               "request": "launch",
                                     "command": "npm run dev"
                                         },
-                                            {
-                                                  "name": "Next.js: debug client-side",
+                                            {                                            "name": "Next.js: debug client-side",
                                                         "type": "chrome",
                                                               "request": "launch",
                                                                     "url": "http://localhost:3000"
@@ -33,6 +33,5 @@
                                                                                                                                                                         "mainClass": "${file}"
                                                                                                                                                                             }
                                                                                                                                                                               ]
-                                                                                                                                                                              }
-
+                                                                                                                                                                              
 }
