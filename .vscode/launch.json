@@ -6,8 +6,7 @@
              
             {
                   "name": "Next.js: debug server-side",
-                        "type": "node-terminal",
-                              "request": "launch",
+                        "type": ["request"],
                                     "command": "npm run dev"
                                         },
                                             {                                            "name": "Next.js: debug client-side",

@@ -111,7 +111,7 @@ const ChartTooltipContent = React.forwardRef<
       indicator?: "line" | "dot" | "dashed"
       nameKey?: string
       labelKey?: string
-      payload?: any[]
+      label?: any
     }
 >(
   (
@@ -122,13 +122,13 @@ const ChartTooltipContent = React.forwardRef<
       indicator = "dot",
       hideLabel = false,
       hideIndicator = false,
-      label  = "value",
-      labelFormatter = undefined,
-      labelClassName = "",
-      labelkey = undefined,
-      color= undefined,
-      nameKey = undefined,
-      labelKey = undefined,
+      label,
+      labelFormatter,
+      labelClassName,
+      formatter,
+      color,
+      nameKey,
+      labelKey,
     },
     ref
   ) => {
@@ -166,6 +166,7 @@ const ChartTooltipContent = React.forwardRef<
       payload,
       hideLabel,
       labelClassName,
+      config,
       labelKey,
     ])
 

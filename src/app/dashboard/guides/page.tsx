@@ -36,7 +36,6 @@ const guideCategories = [
     {
         name: "HVAC & Motors",
         guides: [
-            { slug: "cooler-motor", title: "Cooler Motor" },
             { slug: "motor-facts", title: "Motor Quick Facts"},
             { slug: "fire-alarms", title: "Fire Alarms" },
         ]
@@ -44,6 +43,7 @@ const guideCategories = [
     {
         name: "Specialty Systems",
         guides: [
+            { slug: "cooler-motor", title: "Cooler Motor" },
             { slug: "rv-wiring", title: "RV / Trailer Wiring" },
             { slug: "well-pump", title: "Water Well Pump" },
         ]
