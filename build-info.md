@@ -13,7 +13,7 @@ The email addresses of the testers you want to distribute builds to.
 
 **Example:**
 ```
-testers="ali@example.com, bri@example.com, cal@example.com"
+testers="emily.kilgore93621@gmail.com"
 ```
 
 Or, you can specify the path to a file containing a comma-separated list of email addresses:
